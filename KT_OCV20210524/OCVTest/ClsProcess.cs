@@ -478,13 +478,13 @@ namespace OCV
                             // ClsGlobal.OCVType= ClsGlobal.WCSCOM.Get_NowStepFormWCS(TrayCode,out  nowstep)
                             int reTryTime = 3;
                             MesHelper mes = new MesHelper();
-                            ClsGlobal.OCVType = mes.Get_PermissionFormMES(TrayCode, "OIF");
+                            ClsGlobal.OCVType = mes.Get_PermissionFormMES(TrayCode, ClsGlobal.process_id);
 
                             if (ClsGlobal.OCVType == 0)
                             {
                                 for (int i = 0; i < 3; i++)
                                 {
-                                    ClsGlobal.OCVType = mes.Get_PermissionFormMES(TrayCode, "OIF");
+                                    ClsGlobal.OCVType = mes.Get_PermissionFormMES(TrayCode, ClsGlobal.process_id);
                                     if (ClsGlobal.OCVType != 0)
                                     {
                                         break;
@@ -924,8 +924,9 @@ namespace OCV
 
 
                         //保存到MES                  
-                        Task threadUploadToMes = new Task(() => { UploadResultToMES(); });
-                        threadUploadToMes.Start();
+                        //Task threadUploadToMes = new Task(() => { UploadResultToMES(); });
+                        //threadUploadToMes.Start();
+                        UploadResultToMES();
                         mStep = 10;
                         #endregion
                         break;
@@ -1772,7 +1773,7 @@ namespace OCV
                 {
                     equipment_id = ClsGlobal.DeviceCode,
                     traycode = TrayCode,
-                    process_id = "OIF",
+                    process_id = ClsGlobal.process_id,
                     procedure = ClsGlobal.OCVType.ToString()
 
                 };
@@ -1786,8 +1787,9 @@ namespace OCV
                         {    new OCVResultUpLoadData2()
                         {   parameter_code= ClsGlobal.listETCELL[i].NgState,
                             parameter_name= ClsGlobal.listETCELL[i].NgState ,
-                            parameter_value=  ClsGlobal.listETCELL[i].NgState}
-    }
+                            parameter_value=  ClsGlobal.listETCELL[i].NgState
+                        }
+                        }
                     });
                 }
                 var result = new MesHelper().HttpPostOCVResultUpLoad("http://127.0.0.1:8080/IEAM/userManagement/loginAPP", postData);

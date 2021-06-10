@@ -136,6 +136,14 @@ namespace OCV
 
                 //ClsGlobal.DeviceCode = ClsGlobal.SITE + "-" + ClsGlobal.DeviceNo + "-" + "OCV" + ClsGlobal.OCVType + "-" + ClsGlobal.JT_NO;
                 ClsGlobal.DeviceCode = "L5" + "-" + "OCV" + "-" + ClsGlobal.JT_NO;
+                if (ClsGlobal.DeviceCode=="L5-OCV-01")
+                {
+                    ClsGlobal.process_id = "OIF";
+                }
+                else 
+                {
+                    ClsGlobal.process_id = "OIS";
+                }
                 tssMachineId.Text = ClsGlobal.DeviceCode;
 
                 if (ClsGlobal.TestType == 0)

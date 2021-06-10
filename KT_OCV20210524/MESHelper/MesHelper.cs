@@ -252,7 +252,7 @@ namespace OCV.MESHelper
             return JsonConvert.DeserializeObject<T2>(retString);
         }
 
-        public int Get_PermissionFormMES(string TrayCode,String process_id)
+        public int Get_PermissionFormMES(string TrayCode, String process_id)
         {
             try
             {
@@ -316,7 +316,7 @@ namespace OCV.MESHelper
                         resultlist.Add(new ET_CELL()
                         {
                             Cell_ID = resultStackedMaterialCheck.data[i].bar_code,
-                            Cell_Position = resultStackedMaterialCheck.data[i].location,
+                            Cell_Position = i + 1,// resultStackedMaterialCheck.data[i].location,
                             Pallet_ID = resultStackedMaterialCheck.traycode
                         }
                         );
@@ -335,7 +335,7 @@ namespace OCV.MESHelper
                 {
                     StackedMaterialCheck stackMaterialCheck = new StackedMaterialCheck();
                     stackMaterialCheck.equipment_id = ClsGlobal.DeviceCode;
-                    stackMaterialCheck.process_id = ClsGlobal.DeviceCode;
+                    stackMaterialCheck.process_id = ClsGlobal.process_id;
                     stackMaterialCheck.traycode = TrayCode;
                     resultStackedMaterialCheck = HttpPostStackedMaterialCheck("http://127.0.0.1:8080/IEAM/userManagement", stackMaterialCheck);
                     for (int i = 0; i < resultStackedMaterialCheck.data.Count; i++)
@@ -344,8 +344,8 @@ namespace OCV.MESHelper
                         resultlist.Add(new ET_CELL()
                         {
                             Cell_ID = resultStackedMaterialCheck.data[i].bar_code,
-                            Cell_Position = resultStackedMaterialCheck.data[i].location, 
-                            Pallet_ID= resultStackedMaterialCheck.traycode
+                            Cell_Position = i + 1,// resultStackedMaterialCheck.data[i].location, 
+                            Pallet_ID = resultStackedMaterialCheck.traycode
                         }
                         );
                     }
@@ -366,7 +366,7 @@ namespace OCV.MESHelper
             }
 
         }
-       
+
 
 
     }

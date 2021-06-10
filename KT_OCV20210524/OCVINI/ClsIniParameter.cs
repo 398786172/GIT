@@ -21,7 +21,7 @@ namespace OCV.INI
             ClsGlobal.sql = new SqLiteHelper("Setting");
             int flag = 0;
             int Value = 0;
-
+            
             #region 创建配置文件表，插入参数
             ////系统参数
             //ClsGlobal.sql.CreateTable("System", new string[] { "Parameter", "Value" }, new string[] { "CHAR KEY NOT NULL  UNIQUE", "CHAR", "CHAR" });

@@ -52,7 +52,7 @@ namespace OCV
 
         public static string FlowTimeA;
         public static string TraycodeA;
-
+        public static string process_id;
         public static bool SetParflag = false;   //是否有设置参数
         //public static bool OCVUpload = false;
         //public static bool MesUpload = false;
