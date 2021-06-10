@@ -930,6 +930,7 @@ namespace OCV
                         //threadUploadToMes.Start();
                         UploadResultToMES();
                         mStep = 10;
+                        ErrUpLoadngData = true;
                         #endregion
                         break;
                     case 10:
