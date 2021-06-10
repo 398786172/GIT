@@ -492,7 +492,9 @@ namespace OCV
                                 }
                                 if (ClsGlobal.OCVType == 0)
                                 {
-                                    MessageBox.Show("MES系统返回托盘工序信息失败");
+                                    mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_指示上位机有报警, 1);
+                                    mInfoSend("MES系统返回托盘工序信息失败");
+                                    //MessageBox.Show("MES系统返回托盘工序信息失败");
                                     throw new Exception("MES OCV入栈校验失败");
                                 }
                             }
