@@ -568,9 +568,8 @@ namespace OCV
                                     FlowEndTime = ClsGlobal.listETCELL[i].TEST_DATE;
                                     break;
                                 }
-                            }
-                            DateTime TestTime;
-                            if (DateTime.TryParse(FlowEndTime, out TestTime) == false)
+                            }                     
+                            if (DateTime.TryParse(FlowEndTime, out DateTime TestTime) == false)
                             {
                                 strMsn = "异常:" + "托盘[" + TrayCode + "]无对应的OCV2的测试时间!";
                                 mInfoSend(strMsn);
@@ -657,7 +656,7 @@ namespace OCV
                     {
                         if (isTestAgainState == false)
                         {
-                            ClsGlobal.BattInfoReqFlag = ClsGetConfigDetail.GetProjectInfo(ClsGlobal.ProjectSetType, ClsGlobal.OCVType);
+                            ClsGlobal.BattInfoReqFlag = ClsGetConfigDetail.GetProjectInfo(ClsGlobal.ProjectSetType, ClsGlobal.OCVType);//判断工艺参数
                         }
                         else
                         {
