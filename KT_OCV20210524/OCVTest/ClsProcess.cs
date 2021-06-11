@@ -523,20 +523,20 @@ namespace OCV
                 #endregion
                 case 6:
                     #region  刷新读取电池型号
-                    //for (int i = 0; i < ClsGlobal.TrayType; i++)
-                    //{
-                    //    if (ClsGlobal.listETCELL[i].MODEL_NO != "" && ClsGlobal.listETCELL[i].MODEL_NO != null)
-                    //    {
-                    //        ClsGlobal.MODEL_NO = ClsGlobal.listETCELL[i].MODEL_NO.Trim().ToUpper();
-                    //        //ClsGlobal.BATCH_NO = ClsGlobal.listETCELL[i].BATCH_NO.Trim().ToUpper();
-                    //        //ClsGlobal.PROJECT_NO = ClsGlobal.listETCELL[i].PROJECT_NO.Trim().ToUpper();
-                    //    }
-                    //}
-                    //if (ClsGlobal.MODEL_NO == "" || ClsGlobal.MODEL_NO == null)
-                    //{
-                    //    mInfoSend("异常:获取[" + TrayCode + "]的电池型号异常!");
-                    //    mStateFlag = eTransState.TestAlarm;
-                    //}
+                    for (int i = 0; i < ClsGlobal.TrayType; i++)
+                    {
+                        if (ClsGlobal.listETCELL[i].MODEL_NO != "" && ClsGlobal.listETCELL[i].MODEL_NO != null)
+                        {
+                            ClsGlobal.MODEL_NO = ClsGlobal.listETCELL[i].MODEL_NO.Trim().ToUpper();
+                            //ClsGlobal.BATCH_NO = ClsGlobal.listETCELL[i].BATCH_NO.Trim().ToUpper();
+                            //ClsGlobal.PROJECT_NO = ClsGlobal.listETCELL[i].PROJECT_NO.Trim().ToUpper();
+                        }
+                    }
+                    if (ClsGlobal.MODEL_NO == "" || ClsGlobal.MODEL_NO == null)
+                    {
+                        mInfoSend("异常:获取[" + TrayCode + "]的电池型号异常!");
+                        mStateFlag = eTransState.TestAlarm;
+                    }
                     mStep = 8;
                     break;
                 #endregion
@@ -559,7 +559,7 @@ namespace OCV
                         }
                         else
                         {
-                            strMsn = "托盘[" + TrayCode + "]的OCV" + (ClsGlobal.OCVType - 1) + "的测试数据获取成功";
+                            strMsn = "托盘[" + TrayCode + "]的OCV" + (ClsGlobal.OCVType ) + "的测试数据获取成功";
                             mInfoSend(strMsn);
                             for (int i = 0; i < ClsGlobal.listETCELL.Count; i++)
                             {
