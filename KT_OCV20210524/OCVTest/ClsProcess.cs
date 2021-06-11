@@ -72,7 +72,7 @@ namespace OCV
         private bool ErrDataSaveQTFail = false;     //保存到擎天数据库失败
         private bool ErrDataSaveCSVFail = false;     //保存到本地csv失败
         private bool ErrUpLoadngData = false;     //保存NG信息失败
-        private bool ErrUpLoadMESData = false;     //上传MES信息失败
+        private bool UpLoadMESData = false;     //上传MES信息失败
         TimeSpan Ts;                            //计时
         DateTime Time1;
         public ClsProcess(string Unit, InfoSend infoSend, ManualScanCode ManualScanCode)
@@ -904,6 +904,7 @@ namespace OCV
                         ErrDataSaveCSVFail = false;
                         ErrDataSaveQTFail = false;
                         ErrUpLoadngData = false;
+                        UpLoadMESData = false;
                         //保存到本地                           
                         Thread threadExportData = new Thread(new ThreadStart(ExportLocalData));
                         threadExportData.IsBackground = true;
@@ -920,24 +921,24 @@ namespace OCV
                         Thread threadUploadNGToWsc = new Thread(new ThreadStart(UploadNGToWsc));
                         threadUploadNGToWsc.IsBackground = true;
                         threadUploadNGToWsc.Start();
-
+                        ErrUpLoadngData = true;
 
                         //保存到MES                  
                         //Task threadUploadToMes = new Task(() => { UploadResultToMES(); });
                         //threadUploadToMes.Start();
                         UploadResultToMES();
                         mStep = 10;
-                        ErrUpLoadngData = true;
+                        UpLoadMESData = true;
                         #endregion
                         break;
                     case 10:
 
                         #region 保存数据完成
-                        if (ErrDataSaveQTFail == true || ErrDataSaveQTFail == true || ErrDataSaveCSVFail == true)
+                        if (ErrDataSaveQTFail == true || ErrDataSaveQTFail == true || ErrDataSaveCSVFail == true || UpLoadMESData == false)
                         {
                             mStateFlag = eTransState.TestAlarm;
                         }
-                        if (ExportToLocFinish == true && ExportToServerFinish == true && ErrUpLoadngData == true)
+                        if (ExportToLocFinish == true && ExportToServerFinish == true && ErrUpLoadngData == true&& UpLoadMESData == true)
                         {
                             ClsGlobal.OCV_TestState = eTestState.TestEnd;
 
@@ -1796,6 +1797,7 @@ namespace OCV
                 if (result.message == "请求成功")
                 {
                     mInfoSend("托盘[" + TrayCode + "] 电池数据上传成功");
+                    UpLoadMESData = true;
                 }
             }
             catch (Exception ex)
