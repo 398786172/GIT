@@ -317,7 +317,8 @@ namespace OCV.MESHelper
                         {
                             Cell_ID = resultStackedMaterialCheck.data[i].bar_code,
                             Cell_Position = i + 1,// resultStackedMaterialCheck.data[i].location,
-                            Pallet_ID = resultStackedMaterialCheck.traycode
+                            Pallet_ID = resultStackedMaterialCheck.traycode,
+                            MODEL_NO= resultStackedMaterialCheck.data[i].marking_memo,
                         }
                         );
                     }
@@ -345,7 +346,8 @@ namespace OCV.MESHelper
                         {
                             Cell_ID = resultStackedMaterialCheck.data[i].bar_code,
                             Cell_Position = i + 1,// resultStackedMaterialCheck.data[i].location, 
-                            Pallet_ID = resultStackedMaterialCheck.traycode
+                            Pallet_ID = resultStackedMaterialCheck.traycode,
+                            MODEL_NO = resultStackedMaterialCheck.data[i].marking_memo,
                         }
                         );
                     }
