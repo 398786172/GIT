@@ -15,28 +15,26 @@ using System.Threading.Tasks;
 
 namespace OCV
 {
+    /// <summary>
+    /// 输送部工作状态
+    /// </summary>
+    public enum eTransState
+    {
+        Stop = -1,      //停止
+        Init = 0,       //初始状态
+        Ready = 1,      //就绪状态
+        TrayIn = 2,     //进托盘
+        TestWork = 3,   //测试工作
+        NGSel = 4,      //NG分选
+        TrayOut = 5,     // 出托盘
+        //InAlarm = 9,     //报警状态
+        TestAlarm = 10,   //测试报警
+    }
     //过程处理
     public class ClsProcess
     {
-
-        /// <summary>
-        /// 输送部工作状态
-        /// </summary>
-        public enum eTransState
-        {
-            Stop = -1,      //停止
-            Init = 0,       //初始状态
-            Ready = 1,      //就绪状态
-            TrayIn = 2,     //进托盘
-            TestWork = 3,   //测试工作
-            NGSel = 4,      //NG分选
-            TrayOut = 5,     // 出托盘
-                             //InAlarm = 9,     //报警状态
-            TestAlarm = 10,   //测试报警
-        }
-
         private string mUnit;                 //使用OCV的单元: A,B
-        private Thread myThread;
+        private Thread myThread;             //流程线程
         public eTransState mStateFlag;       //流程状态标识
         private int mStep;                    //步标识
         private bool mPauseFlag;              //暂停标识
@@ -45,9 +43,9 @@ namespace OCV
         //OCV测试
         public string TrayCode;          //托盘条码
         private string CurrTrayCode = "";          //当前托盘条码
-        public string LastTrayCode;      //上一次托盘条码
-        public bool isTestAgainState = false;    //是否复测状态的标识
-        private int mRunState;                //过程处理的运行状态    
+        public string LastTrayCode;                //上一次托盘条码
+        public bool isTestAgainState = false;      //是否复测状态的标识
+        private int mRunState;                     //过程处理的运行状态    
 
         /// <summary>
         /// 运行状态  0:停止  1:运行  2:暂停  3:报警
@@ -94,7 +92,7 @@ namespace OCV
             try
             {
                 mRunState = 1;
-                mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_指示上位机有报警, 0);
+                mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_指示上位机有报警, 0);//反馈PLC上位机无报警
                 myThread = new Thread(ThreadProcess);
                 mStateFlag = eTransState.Init;
                 mStep = 1;
@@ -153,7 +151,7 @@ namespace OCV
         //控制流程
         private void ThreadProcess()
         {
-            int[] flag = new int[4];
+           int[] flag = new int[4];
             while (true)
             {
                 try
@@ -479,7 +477,7 @@ namespace OCV
                             int reTryTime = 3;
                             MesHelper mes = new MesHelper();
                             ClsGlobal.OCVType = mes.Get_PermissionFormMES(TrayCode, ClsGlobal.process_id);
-
+                            //可能需要校验盘子信息
                             if (ClsGlobal.OCVType == 0)
                             {
                                 for (int i = 0; i < 3; i++)
@@ -492,7 +490,7 @@ namespace OCV
                                 }
                                 if (ClsGlobal.OCVType == 0)
                                 {
-                                    mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_指示上位机有报警, 1);
+                                    //mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_指示上位机有报警, 1);
                                     mInfoSend("MES系统返回托盘工序信息失败");
                                     //MessageBox.Show("MES系统返回托盘工序信息失败");
                                     throw new Exception("MES OCV入栈校验失败");
@@ -525,20 +523,20 @@ namespace OCV
                 #endregion
                 case 6:
                     #region  刷新读取电池型号
-                    for (int i = 0; i < ClsGlobal.TrayType; i++)
-                    {
-                        if (ClsGlobal.listETCELL[i].MODEL_NO != "" && ClsGlobal.listETCELL[i].MODEL_NO != null)
-                        {
-                            ClsGlobal.MODEL_NO = ClsGlobal.listETCELL[i].MODEL_NO.Trim().ToUpper();
-                            //ClsGlobal.BATCH_NO = ClsGlobal.listETCELL[i].BATCH_NO.Trim().ToUpper();
-                            //ClsGlobal.PROJECT_NO = ClsGlobal.listETCELL[i].PROJECT_NO.Trim().ToUpper();
-                        }
-                    }
-                    if (ClsGlobal.MODEL_NO == "" || ClsGlobal.MODEL_NO == null)
-                    {
-                        mInfoSend("异常:获取[" + TrayCode + "]的电池型号异常!");
-                        mStateFlag = eTransState.TestAlarm;
-                    }
+                    //for (int i = 0; i < ClsGlobal.TrayType; i++)
+                    //{
+                    //    if (ClsGlobal.listETCELL[i].MODEL_NO != "" && ClsGlobal.listETCELL[i].MODEL_NO != null)
+                    //    {
+                    //        ClsGlobal.MODEL_NO = ClsGlobal.listETCELL[i].MODEL_NO.Trim().ToUpper();
+                    //        //ClsGlobal.BATCH_NO = ClsGlobal.listETCELL[i].BATCH_NO.Trim().ToUpper();
+                    //        //ClsGlobal.PROJECT_NO = ClsGlobal.listETCELL[i].PROJECT_NO.Trim().ToUpper();
+                    //    }
+                    //}
+                    //if (ClsGlobal.MODEL_NO == "" || ClsGlobal.MODEL_NO == null)
+                    //{
+                    //    mInfoSend("异常:获取[" + TrayCode + "]的电池型号异常!");
+                    //    mStateFlag = eTransState.TestAlarm;
+                    //}
                     mStep = 8;
                     break;
                 #endregion
