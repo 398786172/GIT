@@ -987,7 +987,7 @@ namespace OCV
                         List<DevInfo.Model.SET_Info> lstSetInfo;
                         mDBCOM_DevInfo = new DBCOM_DevInfo(ClsGlobal.mDevInfoPath);
                         DevInfo.Model.SET_Info mSET_Info = new DevInfo.Model.SET_Info();
-
+                        
                         //获取参数
                         mDBCOM_DevInfo.GetSetInfoList(out lstSetInfo);
 
