@@ -74,7 +74,7 @@ namespace OCV
         private bool ErrDataSaveQTFail = false;     //保存到擎天数据库失败
         private bool ErrDataSaveCSVFail = false;     //保存到本地csv失败
         private bool ErrUpLoadngData = false;     //保存NG信息失败
-
+        private bool ErrUpLoadMESData = false;     //上传MES信息失败
         TimeSpan Ts;                            //计时
         DateTime Time1;
         public ClsProcess(string Unit, InfoSend infoSend, ManualScanCode ManualScanCode)
