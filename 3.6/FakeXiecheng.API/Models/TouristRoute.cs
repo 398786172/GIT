@@ -7,7 +7,8 @@ using System.ComponentModel.DataAnnotations;
 namespace FakeXiecheng.API.Models
 {
     public class TouristRoute
-    {   [Key]
+    {
+        [Key]
         public Guid Id { get; set; }
         [Required]
         [MaxLength(100)]
@@ -15,9 +16,9 @@ namespace FakeXiecheng.API.Models
         [Required]
         [MaxLength(1500)]
         public string Description { get; set; }
-       [System.ComponentModel.DataAnnotations.Schema.Column(TypeName ="decimal(18,2)")]
+        [System.ComponentModel.DataAnnotations.Schema.Column(TypeName = "decimal(18,2)")]
         public decimal OriginalPrice { get; set; }
-        [Range(0.0,1.0)]
+        [Range(0.0, 1.0)]
         public double? DiscountPresent { get; set; }
         public DateTime CreateTime { get; set; }
         public DateTime? UpdateTime { get; set; }
@@ -29,5 +30,11 @@ namespace FakeXiecheng.API.Models
         [MaxLength]
         public string Notes { get; set; }
         public ICollection<TouristRoutePicture> TouristRoutePictures { get; set; } = new List<TouristRoutePicture>();
+        public double? Rating { get; set; }
+        public TravelDays? travelDays { get; set; }
+        public TripType? tripType { get; set; }
+
+        public DepartureCity? departureCity { get; set; }
+
     }
 }
