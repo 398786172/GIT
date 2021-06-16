@@ -61,7 +61,7 @@ namespace OCV
 
         public void StopAction()
         {
-            mAutoTestStop = true;     
+            mAutoTestStop = true;
         }
 
         public ClsOCVContr(ClsSWControl swControl, ClsDMM_Ag344X dmm_Ag344X, InfoSend infoSend, FrmSys Fm)
@@ -202,7 +202,7 @@ namespace OCV
                                     Thread.Sleep(500);
                                     TimeTestReqThread = DateTime.Now;
                                 }
-                             
+
                             }
                             TsTestReqThread = DateTime.Now - TimeTestReqThread;
                             if (TsTestReqThread.TotalSeconds > 5)
@@ -311,7 +311,7 @@ namespace OCV
                     }
                 }
                 this.CalDROPRange();
-                if (ClsGlobal.IS_Enable_ACIRRange == "Y"&& ClsGlobal.TestType==2)
+                if (ClsGlobal.IS_Enable_ACIRRange == "Y" && ClsGlobal.TestType == 2)
                 {
                     this.CalACIRRange();
                 }
@@ -534,10 +534,10 @@ namespace OCV
                     }
                     else
                     {
-                        ClsGlobal.listETCELL[iSW].OCV_Now =  99999;
+                        ClsGlobal.listETCELL[iSW].OCV_Now = 99999;
                     }
                     #region 显示数据
-                    if (mForm.IsHandleCreated == true)
+                    if (mForm.IsHandleCreated == true)//判断main页面是否存在
                     {
                         mForm.Invoke(new EventHandler(delegate
                         {
@@ -575,7 +575,7 @@ namespace OCV
                     this.SWControl.ChannelVoltIRSwitchContr(2, 1, i);  //单通道测内阻
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     this.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
-                
+
                     int index = 2 * (pos - 1) + i;
                     iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index]);    //转换为真实对应的通道
                     theIRAcir = theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[iSW - 1]);   //经过adjust
@@ -679,7 +679,7 @@ namespace OCV
                     int ActualNum = Convert.ToUInt16(ClsGlobal.mSwitchCH[index]);    //转换为真实对应的通道
                     //正极温度
                     ClsGlobal.G_dbl_P_TempArr[i] = ClsGlobal.TempContr.Anodetemperature[ActualNum - 1] + double.Parse(ClsGlobal.mTempAdjustVal_P[ActualNum - 1]);
-                
+
                     //负极温度
                     ClsGlobal.G_dbl_N_TempArr[i] = ClsGlobal.TempContr.Poletemperature[ActualNum - 1] + double.Parse(ClsGlobal.mTempAdjustVal_P[ActualNum - 1]);
 
@@ -694,7 +694,7 @@ namespace OCV
                         }
                         ));
                     }
-                 
+
                 }
             }
             catch (Exception ex)
@@ -954,7 +954,7 @@ namespace OCV
             {
                 for (int i = 0; i < ClsGlobal.TrayType; i++)
                 {
-                    if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode") )
+                    if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode"))
                     {
                         if (ClsGlobal.TestType == 2)
                         {
@@ -966,28 +966,28 @@ namespace OCV
                     }
                 }
                 double VSVal = 0;
-                if (  lstVSAcirVal.Count != 0)
+                if (lstVSAcirVal.Count != 0)
                 {
                     if (ClsGlobal.ACIR_MinOrMedian == "Y")
                     {
-                        VSVal = Math.Round(this.CalMedian(lstVSAcirVal), 4); 
+                        VSVal = Math.Round(this.CalMedian(lstVSAcirVal), 4);
                     }
                     else
                     {
                         VSVal = lstVSAcirVal.Min();
                     }
                 }
-               
+
                 for (int i = 0; i < ClsGlobal.TrayType; i++)
                 {
-                    if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode") )
+                    if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode"))
                     {
                         if (ClsGlobal.TestType == 2)
                         {
                             if (ClsGlobal.listETCELL[i].Test_NgResult.NgState == "OK" && ClsGlobal.listETCELL[i].SV_NgResult.NgState == "OK" && lstVSAcirVal.Count != 0)
                             {
-                                ClsGlobal.listETCELL[i].ACIR_range = Math.Round(ClsGlobal.listETCELL[i].ACIR_Now - VSVal,4);     //获得ACIR对比值的极差
-                                ClsGlobal.listETCELL[i].ACIR_NgResult = CheckACIRRangeNG(2,ClsGlobal.listETCELL[i].ACIR_range);
+                                ClsGlobal.listETCELL[i].ACIR_range = Math.Round(ClsGlobal.listETCELL[i].ACIR_Now - VSVal, 4);     //获得ACIR对比值的极差
+                                ClsGlobal.listETCELL[i].ACIR_NgResult = CheckACIRRangeNG(2, ClsGlobal.listETCELL[i].ACIR_range);
                             }
                             else
                             {
@@ -1007,7 +1007,7 @@ namespace OCV
             }
 
         }
-       
+
         //计算压降极差
         public void CalDROPRange()
         {
@@ -1018,7 +1018,7 @@ namespace OCV
                 {
                     for (int i = 0; i < ClsGlobal.TrayType; i++)
                     {
-                        if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode") )
+                        if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode"))
                         {
                             if (ClsGlobal.TestType > 0)
                             {
@@ -1042,7 +1042,7 @@ namespace OCV
                     {
                         if (ClsGlobal.Drop_MinOrMedian == "Y")
                         {
-                            VSVal = Math.Round(this.CalMedian(lstVSVal), 4); 
+                            VSVal = Math.Round(this.CalMedian(lstVSVal), 4);
 
                         }
                         else
@@ -1053,13 +1053,13 @@ namespace OCV
 
                     for (int i = 0; i < ClsGlobal.TrayType; i++)
                     {
-                        if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode") )
+                        if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode"))
                         {
                             if (ClsGlobal.TestType > 0)
                             {
                                 if (ClsGlobal.listETCELL[i].Test_NgResult.NgState == "OK" && ClsGlobal.listETCELL[i].SV_NgResult.NgState == "OK" && lstVSVal.Count != 0)
                                 {
-                                    ClsGlobal.listETCELL[i].DROP_range = Math.Round(ClsGlobal.listETCELL[i].VoltDrop_Now - VSVal,4);     //获得压降对比值的极差
+                                    ClsGlobal.listETCELL[i].DROP_range = Math.Round(ClsGlobal.listETCELL[i].VoltDrop_Now - VSVal, 4);     //获得压降对比值的极差
                                     ClsGlobal.listETCELL[i].DROP_NgResult = CheckVDropRangeNG(2, ClsGlobal.listETCELL[i].DROP_range);
                                 }
                                 else
@@ -1071,7 +1071,7 @@ namespace OCV
                             {
                                 if (ClsGlobal.listETCELL[i].Test_NgResult.NgState == "OK" && lstVSVal.Count != 0)
                                 {
-                                    ClsGlobal.listETCELL[i].DROP_range = Math.Round(ClsGlobal.listETCELL[i].VoltDrop_Now - VSVal,4);     //获得压降对比值的极差
+                                    ClsGlobal.listETCELL[i].DROP_range = Math.Round(ClsGlobal.listETCELL[i].VoltDrop_Now - VSVal, 4);     //获得压降对比值的极差
                                     ClsGlobal.listETCELL[i].DROP_NgResult = CheckVDropRangeNG(2, ClsGlobal.listETCELL[i].DROP_range);
                                 }
                                 else
@@ -1087,7 +1087,7 @@ namespace OCV
 
                     }
                 }
-               
+
             }
             catch (Exception ex)
             {
@@ -1097,7 +1097,7 @@ namespace OCV
         }
 
         //中值计算
-        public double CalMedian(List<double> lstVal )
+        public double CalMedian(List<double> lstVal)
         {
             double[] VSVal = lstVal.ToArray();
             Array.Sort(VSVal);
@@ -1109,14 +1109,14 @@ namespace OCV
                 Median = VSVal[len / 2];
             return Median;
         }
-   
+
         //压降极差判断
         private NgResult CheckVDropRangeNG(int flag, double Val)
         {
             NgResult mNgResult;
             if (flag == 0)
             {
-                mNgResult.NgType =1;
+                mNgResult.NgType = 1;
                 mNgResult.NgCode = "C";
                 mNgResult.NgState = "NG";
                 mNgResult.NgDescribe = "无电池";
@@ -1124,13 +1124,13 @@ namespace OCV
             }
             else if (flag == 1)
             {
-                mNgResult.NgType =1;
+                mNgResult.NgType = 1;
                 mNgResult.NgCode = "N";
                 mNgResult.NgState = "NG";
                 mNgResult.NgDescribe = "测试不合格";
                 return mNgResult;
             }
-            
+
             mNgResult.NgType = 0;
             mNgResult.NgCode = "00";
             mNgResult.NgDescribe = "合格";
@@ -1154,13 +1154,13 @@ namespace OCV
             }
             return mNgResult;
         }
-    
+
         //ACIR极差判断
         private NgResult CheckACIRRangeNG(int flag, double Val)
         {
             //自放电异常判断
             NgResult mNgResult;
-          
+
             if (flag == 0)
             {
                 mNgResult.NgType = 1;
@@ -1185,7 +1185,7 @@ namespace OCV
 
             if (Val > ClsGlobal.UpLMT_ACIRRange)
             {
-                mNgResult.NgType =1;
+                mNgResult.NgType = 1;
                 mNgResult.NgCode = "AJ2";
                 mNgResult.NgState = "NG";
                 mNgResult.NgDescribe = "ACIR极差超上限";
@@ -1206,7 +1206,7 @@ namespace OCV
         //壳压判断
         private void CheckSVNG()
         {
-            NgResult mNgResult=new NgResult();         
+            NgResult mNgResult = new NgResult();
             for (int i = 0; i < ClsGlobal.TrayType; i++)
             {
                 mNgResult.NgType = 0;
@@ -1292,7 +1292,7 @@ namespace OCV
             mForm.Invoke(new EventHandler(delegate
             {
                 //界面处理->表格数据清空
-                int Val = ClsGlobal.TrayType ;
+                int Val = ClsGlobal.TrayType;
 
                 for (int i = 0; i < Val; i++)
                 {
@@ -1310,21 +1310,21 @@ namespace OCV
 
         public void ShowCellid()
         {
-            
+
             mForm.Invoke(new EventHandler(delegate
             {
                 for (int i = 0; i < ClsGlobal.TrayType; i++)
                 {
-                    if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode") )
+                    if (!ClsGlobal.listETCELL[i].Cell_ID.Contains("NullCellCode"))
                     {
                         mForm.dgvTest.Rows[i].Cells["SFC"].Value = ClsGlobal.listETCELL[i].Cell_ID;
                     }
-                   
+
                 }
 
             }));
         }
-     
+
         //停止
         public void StopManualTest()
         {
@@ -1348,7 +1348,7 @@ namespace OCV
         }
 
         //手动测试正负极电压
-        private void ManualTestVolt(object  mTestType)
+        private void ManualTestVolt(object mTestType)
         {
             try
             {
@@ -1437,7 +1437,7 @@ namespace OCV
                                 case 1:
 
                                     #region 测正负极 
-                                   // this.TestVoltForProc(pos);
+                                    // this.TestVoltForProc(pos);
                                     #endregion
                                     #region 测壳体电压
                                     this.ManualTestVolt_ShellNeg(pos);
@@ -1449,7 +1449,7 @@ namespace OCV
                                     #endregion
 
                                     #region 测壳体电压
-                                   // this.TestShellVoltForProc(pos);
+                                    // this.TestShellVoltForProc(pos);
                                     #endregion
 
                                     #region 测内阻
@@ -1573,7 +1573,7 @@ namespace OCV
                 int iSW;
                 double theIRAcir = 0;
                 double theIRSample = 0;
-                
+
                 this.ClearDgv(3);
                 mManualTestFinish = false;
                 mManualTestStop = false;
@@ -1596,7 +1596,7 @@ namespace OCV
                         {
                             ManualTest.dgvManualTest.Rows[iSW].Cells[3].Value = Math.Round(theIRAcir, 4).ToString("F4");   //刷新界面
                         }));
-                    } 
+                    }
                 }
 
                 this.SWControl.ChannelVoltIRSwitchContr(2, 0, 0);      //结束,通道全部关断   
@@ -1613,7 +1613,7 @@ namespace OCV
 
         public void ClearDgv(int index)
         {
-          
+
             ManualTest.Invoke(new EventHandler(delegate
             {
                 //界面处理->表格数据清空
@@ -1628,7 +1628,7 @@ namespace OCV
 
             }));
         }
-    
+
         ////手动电压清0
         //private void ManualVoltZero()
         //{
@@ -1680,7 +1680,7 @@ namespace OCV
         //                }));
         //            }
         //        }
-    
+
         //        mManualVoltZeroFinish = true;
         //    }
         //    catch (Exception ex)
@@ -1740,7 +1740,7 @@ namespace OCV
         //                }));
         //            }
         //        }
-   
+
         //        mManualIRAdjustFinish = true;
         //    }
         //    catch (Exception ex)
@@ -1775,7 +1775,7 @@ namespace OCV
         //            ManualAdjust.btnIRAdjustAllStart.Enabled = false;
         //            ManualAdjust.btnIRAdjustAllValClr.Enabled = false;
         //        }));
- 
+
         //        mManualIRAdjustFinish = false;
         //        mManualIRAdjustStop = false;
 
@@ -1857,7 +1857,7 @@ namespace OCV
         //                ManualAdjust.lblNote_IRMetering.Text = ("请先填入正确的计量值，再进行计量");
         //                return;
         //            }
-                    
+
         //            if (double.TryParse(ManualAdjust.txtIRMeterErrRange.Text, out MeterErrRange) == false)
         //            {
         //                ManualAdjust.lblNote_IRMetering.Text = ("请先填入正确的计量误差值，再进行计量");
