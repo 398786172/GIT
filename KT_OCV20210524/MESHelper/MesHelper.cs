@@ -211,7 +211,7 @@ namespace OCV.MESHelper
 
 
 
-        public T2 HttpPostm<T1, T2>(string url, T1 postData)
+        public T2 HttpPost<T1, T2>(string url, T1 postData)
         {
             string retString = null;
             HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url ?? "http://127.0.0.1:8080/IEAM/userManagement/loginAPP");
