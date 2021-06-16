@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FakeXiecheng.API.Services
 {
-    public class MockTouristRouteRepository : ITouristRouteRepository
+    public class MockTouristRouteRepository //: ITouristRouteRepository
     {
         private List<TouristRoute> _routes;
 
