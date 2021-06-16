@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
+using FakeXiecheng.API.Dtos;
 using FakeXiecheng.API.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +15,12 @@ namespace FakeXiecheng.API.Controllers
     public class TouristRoutesController : ControllerBase
     {
         private ITouristRouteRepository _touristRouteRepository;
+        private readonly IMapper _mapper;
         
-        public TouristRoutesController(ITouristRouteRepository touristRouteRepository)
+        public TouristRoutesController(ITouristRouteRepository touristRouteRepository,IMapper mapper)
         {
             _touristRouteRepository = touristRouteRepository;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -27,7 +31,8 @@ namespace FakeXiecheng.API.Controllers
             {
                 return NotFound("没有旅游路线");
             }
-            return Ok(touristRoutesFromRepo);
+            var touristRoutesDto = _mapper.Map<IEnumerable<TouristRouteDto>>(touristRoutesFromRepo);
+            return Ok(touristRoutesDto);
         }
 
         // api/touristroutes/{touristRouteId}
@@ -39,7 +44,8 @@ namespace FakeXiecheng.API.Controllers
             {
                 return NotFound($"旅游路线{touristRouteId}找不到");
             }
-            return Ok(touristRouteFromRepo);
+            var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRouteFromRepo);
+            return Ok(touristRouteDto);
         }
     }
 }
