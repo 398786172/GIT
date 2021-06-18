@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace FakeXiecheng.API.Profiles
 {
-    public class TouristRouteProfile:Profile
+    public class TouristRouteProfile : Profile
     {
         public TouristRouteProfile()
         {
@@ -29,7 +29,14 @@ namespace FakeXiecheng.API.Profiles
                     dest => dest.DepartureCity,
                     opt => opt.MapFrom(src => src.DepartureCity.ToString())
                 );
+            CreateMap<TouristRouteForCreationDto, TouristRoute>()
+                .ForMember(
+                    dest => dest.Id,
+                    opt => opt.MapFrom(src => Guid.NewGuid())
+                );
         }
+
+
 
     }
 }
