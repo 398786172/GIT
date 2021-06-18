@@ -172,7 +172,10 @@ namespace OCV
             //AnimateWindow(this.Handle, 1000, AW_BLEND | AW_HIDE);
             try
             {
-                time.Enabled = false;
+                if (time!=null)
+                {
+                    time.Enabled = false;
+                }
                 FormsPopup.Remove(this);
                 ResetLocation();
             }
