@@ -135,21 +135,21 @@ namespace OCV
             AnimateWindow(this.Handle, 1000, AW_SLIDE | AW_VER_NEGATIVE);
             TopMost = true;
 
-            if (InfoExistTime > 100)
-            {
-                time = new Timer( );
-                time.Interval = InfoExistTime;
-                time.Tick += delegate
-                {
-                    if (IsHandleCreated)
-                    {
-                        time.Dispose();
-                        AnimateWindow(this.Handle, 1000, AW_BLEND | AW_HIDE);
-                        Close();
-                    }
-                };
-                time.Start();
-            }
+            //if (InfoExistTime > 100)
+            //{
+            //    time = new Timer( );
+            //    time.Interval = InfoExistTime;
+            //    time.Tick += delegate
+            //    {
+            //        if (IsHandleCreated)
+            //        {
+            //            time.Dispose();
+            //            AnimateWindow(this.Handle, 1000, AW_BLEND | AW_HIDE);
+            //            Close();
+            //        }
+            //    };
+            //    time.Start();
+            //}
         }
         /// <summary>
         /// 窗体的位置进行向上调整
@@ -174,7 +174,7 @@ namespace OCV
             {
                 if (time!=null)
                 {
-                    time.Enabled = false;
+                    //time.Enabled = false;
                 }
                 FormsPopup.Remove(this);
                 ResetLocation();

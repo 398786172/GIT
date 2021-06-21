@@ -1,16 +1,24 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Threading.Tasks;
+using FakeXiecheng.API.ValidationAttributes;
 
 namespace FakeXiecheng.API.Dtos
 {
-    public class TouristRouteForCreationDto
+    [TouristRouteTitleMustBeDifferentFromDescription]
+    public class TouristRouteForCreationDto //: IValidatableObject
     {
+        [Required(ErrorMessage = "title 不可为空")]
+        [MaxLength(100)]
         public string Title { get; set; }
-        public string Description { get; set; }
+
+        [Required] [MaxLength(1500)] public string Description { get; set; }
+
         // 计算方式：原价 * 折扣
         public decimal Price { get; set; }
+
         //public decimal OriginalPrice { get; set; }
         //public double? DiscountPresent { get; set; }
         public DateTime CreateTime { get; set; }
@@ -23,5 +31,16 @@ namespace FakeXiecheng.API.Dtos
         public string TravelDays { get; set; }
         public string TripType { get; set; }
         public string DepartureCity { get; set; }
+
+        //public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        //{
+        //    if (this.Title == this.Description)
+        //    {
+        //        yield return new ValidationResult(
+        //           "路线名称必须与路线描述不同",
+        //           new[] { "TouristRouteForCreationDto" }
+        //       );
+        //    }
+        //}
     }
 }

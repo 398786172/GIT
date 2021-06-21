@@ -12,6 +12,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
+using Microsoft.AspNetCore.Mvc;
 
 namespace FakeXiecheng.API
 {
@@ -28,17 +29,38 @@ namespace FakeXiecheng.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(setupAction => { setupAction.ReturnHttpNotAcceptable = true; }).AddXmlDataContractSerializerFormatters();
-            services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
-            //services.AddSingleton
-            //services.AddScoped
-            services.AddDbContext<AppDbContext>(option =>
-            {
-                //option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FakeXiechengDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
-                //option.UseSqlServer("server=localhost; Database=FakeXiechengDb; User Id=sa; Password=PaSSword12!;");
-                option.UseSqlServer(Configuration["DbContext:ConnectionString"]);
-            });
-            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddControllers(setupAction => { setupAction.ReturnHttpNotAcceptable = true; })
+                .AddXmlDataContractSerializerFormatters()
+                .ConfigureApiBehaviorOptions(setupAction =>
+                {
+                    setupAction.InvalidModelStateResponseFactory = context =>
+                    {
+                        var problemDetail = new ValidationProblemDetails(context.ModelState)
+                        {
+                            Type = "无所谓",
+                            Title = "数据验证失败",
+                            Status = StatusCodes.Status422UnprocessableEntity,
+                            Detail = "请看详细说明",
+                            Instance = context.HttpContext.Request.Path
+                        };
+                        problemDetail.Extensions.Add("traceId", context.HttpContext.TraceIdentifier);
+                        return new UnprocessableEntityObjectResult(problemDetail)
+                        {
+                            ContentTypes = {"application/problem+json"}
+                        };
+                    };
+                    ;
+                    services.AddTransient<ITouristRouteRepository, TouristRouteRepository>();
+                    //services.AddSingleton
+                    //services.AddScoped
+                    services.AddDbContext<AppDbContext>(option =>
+                    {
+                        //option.UseSqlServer(@"Data Source=(localdb)\MSSQLLocalDB;Initial Catalog=FakeXiechengDb;Integrated Security=True;Connect Timeout=30;Encrypt=False;TrustServerCertificate=False;ApplicationIntent=ReadWrite;MultiSubnetFailover=False");
+                        //option.UseSqlServer("server=localhost; Database=FakeXiechengDb; User Id=sa; Password=PaSSword12!;");
+                        option.UseSqlServer(Configuration["DbContext:ConnectionString"]);
+                    });
+                    services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
