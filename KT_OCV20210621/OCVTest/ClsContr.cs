@@ -1355,7 +1355,7 @@ namespace OCV
                 int TestType = int.Parse(mTestType.ToString());
                 mStep_TestReq = 1;
                 short pos = 0;
-                for (int i = 0; i < ClsGlobal.TestType / 2; i++)
+                for (int i = 0; i < 100; i++)//ClsGlobal.TestType / 2
                 {
                     switch (mStep_TestReq)
                     {
