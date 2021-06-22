@@ -13,6 +13,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json.Serialization;
 
 namespace FakeXiecheng.API
 {
@@ -29,8 +30,14 @@ namespace FakeXiecheng.API
         // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers(setupAction => { setupAction.ReturnHttpNotAcceptable = true; })
-                .AddXmlDataContractSerializerFormatters()
+            services.AddControllers
+                    (setupAction => { setupAction.ReturnHttpNotAcceptable = true; })
+                .AddNewtonsoftJson(setupAction =>
+                    {
+                        setupAction.SerializerSettings.ContractResolver =
+                            new CamelCasePropertyNamesContractResolver();
+                    })
+                    .AddXmlDataContractSerializerFormatters()
                 .ConfigureApiBehaviorOptions(setupAction =>
                 {
                     setupAction.InvalidModelStateResponseFactory = context =>
@@ -46,7 +53,7 @@ namespace FakeXiecheng.API
                         problemDetail.Extensions.Add("traceId", context.HttpContext.TraceIdentifier);
                         return new UnprocessableEntityObjectResult(problemDetail)
                         {
-                            ContentTypes = {"application/problem+json"}
+                            ContentTypes = { "application/problem+json" }
                         };
                     };
                     ;
