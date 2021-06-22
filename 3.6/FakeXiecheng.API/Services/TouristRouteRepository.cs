@@ -20,13 +20,13 @@ namespace FakeXiecheng.API.Services
         public TouristRoutePicture GetPicture(int pictureId)
         {
 
-            return _context.touristRoutePictures.Where(p => p.Id == pictureId).FirstOrDefault();
+            return _context.TouristRoutePictures.Where(p => p.Id == pictureId).FirstOrDefault();
 
         }
 
         public IEnumerable<TouristRoutePicture> GetPicturesByTouristRouteId(Guid touristRouteId)
         {
-            return _context.touristRoutePictures
+            return _context.TouristRoutePictures
                 .Where(p => p.TouristRouteId == touristRouteId).ToList();
         }
 
@@ -87,7 +87,11 @@ namespace FakeXiecheng.API.Services
                 throw new ArgumentNullException(nameof(touristRoutePicture));
             }
             touristRoutePicture.TouristRouteId = touristRouteId;
-            _context.touristRoutePictures.Add(touristRoutePicture);
+            _context.TouristRoutePictures.Add(touristRoutePicture);
+        }
+        public void DeleteTouristRoute(TouristRoute touristRoute)
+        {
+            _context.TouristRoutes.Remove(touristRoute);
         }
         public bool Save()
         {

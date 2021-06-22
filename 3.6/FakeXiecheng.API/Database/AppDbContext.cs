@@ -29,11 +29,13 @@ namespace FakeXiecheng.API.Database
             //    CreateTime = DateTime.UtcNow
             //});
 
+          
 
 
             var touristRouteJsonData = File.ReadAllText(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"/Database/touristRoutesMockData.json");
             IList<TouristRoute> touristRoutes = JsonConvert.DeserializeObject<IList<TouristRoute>>(touristRouteJsonData);
             modelBuilder.Entity<TouristRoute>().HasData(touristRoutes);
+
 
             var touristRoutePictureJsonData = File.ReadAllText(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location) + @"/Database/touristRoutePicturesMockData.json");
             IList<TouristRoutePicture> touristRoutePictures = JsonConvert.DeserializeObject<IList<TouristRoutePicture>>(touristRoutePictureJsonData);
@@ -41,6 +43,6 @@ namespace FakeXiecheng.API.Database
         }
 
         public DbSet<TouristRoute> TouristRoutes { get; set; }
-        public DbSet<TouristRoutePicture> touristRoutePictures { get; set; }
+        public DbSet<TouristRoutePicture> TouristRoutePictures { get; set; }
     }
 }
