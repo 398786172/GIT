@@ -192,6 +192,12 @@
     <Compile Include="OCVTest\FrmManualTest.designer.cs">
       <DependentUpon>FrmManualTest.cs</DependentUpon>
     </Compile>
+    <Compile Include="OCVTest\ManualRunMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\ManualRunMode.Designer.cs">
+      <DependentUpon>ManualRunMode.cs</DependentUpon>
+    </Compile>
     <Compile Include="OCV_SYS\FormIO.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -272,6 +278,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="OCVTest\FrmManualTest.resx">
       <DependentUpon>FrmManualTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\ManualRunMode.resx">
+      <DependentUpon>ManualRunMode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="OCV_SYS\FormIO.resx">
       <DependentUpon>FormIO.cs</DependentUpon>

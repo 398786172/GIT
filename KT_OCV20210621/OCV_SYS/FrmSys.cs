@@ -14,6 +14,7 @@ using DB_OCV.DAL;
 using OCV.INI;
 using System.Collections.Generic;
 using System.Threading;
+using OCV.OCVTest;
 
 namespace OCV
 {
@@ -664,7 +665,7 @@ namespace OCV
             //FB.ShowDialog();
         }
 
-        private void Btn_A_RUN_Click(object sender, EventArgs e)
+        public void Btn_A_RUN_Click(object sender, EventArgs e)
         {
             Btn_A_RUN.Enabled = false;
 
@@ -694,7 +695,7 @@ namespace OCV
 
         }
 
-        private void Btn_A_stop_Click(object sender, EventArgs e)
+       public void Btn_A_stop_Click(object sender, EventArgs e)
         {
             if (mProc != null)
             {
@@ -816,7 +817,7 @@ namespace OCV
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void skinButton2_Click(object sender, EventArgs e)
+        public void skinButton2_Click(object sender, EventArgs e)
         {
             Action act = delegate
             {  //W00073
@@ -827,7 +828,7 @@ namespace OCV
             act.BeginInvoke(null, null);
         }
 
-        private void btnRunMode_Click(object sender, EventArgs e)
+        public void btnRunMode_Click(object sender, EventArgs e)
         {
             if (btnRunMode.SwitchStatus == true)
             {
@@ -844,7 +845,7 @@ namespace OCV
 
 
 
-        private void skinButton1_Click(object sender, EventArgs e)
+        public void skinButton1_Click(object sender, EventArgs e)
         {
 
             ////实现复位
@@ -855,7 +856,7 @@ namespace OCV
 
         }
 
-        private void btnHome_Click(object sender, EventArgs e)
+        public void btnHome_Click(object sender, EventArgs e)
         {
             InitPlc();
         }
@@ -910,6 +911,12 @@ namespace OCV
             {
                 act();
             }
+        }
+
+        private void toolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ManualRunMode manualRunMode = new ManualRunMode();
+            manualRunMode.ShowDialog(this);
         }
     }
 

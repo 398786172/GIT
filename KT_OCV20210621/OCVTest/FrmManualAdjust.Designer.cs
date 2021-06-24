@@ -126,20 +126,18 @@
             this.tabControl1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl1.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
-            this.tabControl1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(1472, 750);
+            this.tabControl1.Size = new System.Drawing.Size(1028, 599);
             this.tabControl1.TabIndex = 120;
             // 
             // tab_TEMPAdjust
             // 
             this.tab_TEMPAdjust.BackColor = System.Drawing.SystemColors.Control;
             this.tab_TEMPAdjust.Controls.Add(this.groupBoxTEMP);
-            this.tab_TEMPAdjust.Location = new System.Drawing.Point(4, 36);
-            this.tab_TEMPAdjust.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.tab_TEMPAdjust.Location = new System.Drawing.Point(4, 30);
             this.tab_TEMPAdjust.Name = "tab_TEMPAdjust";
-            this.tab_TEMPAdjust.Size = new System.Drawing.Size(1464, 710);
+            this.tab_TEMPAdjust.Size = new System.Drawing.Size(1020, 565);
             this.tab_TEMPAdjust.TabIndex = 5;
             this.tab_TEMPAdjust.Text = "手动温度校准";
             // 
@@ -150,10 +148,8 @@
             this.groupBoxTEMP.Controls.Add(this.panel1);
             this.groupBoxTEMP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.groupBoxTEMP.Location = new System.Drawing.Point(0, 0);
-            this.groupBoxTEMP.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.groupBoxTEMP.Name = "groupBoxTEMP";
-            this.groupBoxTEMP.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBoxTEMP.Size = new System.Drawing.Size(1464, 710);
+            this.groupBoxTEMP.Size = new System.Drawing.Size(1020, 565);
             this.groupBoxTEMP.TabIndex = 44;
             this.groupBoxTEMP.TabStop = false;
             this.groupBoxTEMP.Text = "温度校准";
@@ -162,10 +158,10 @@
             // 
             this.panelTEMP.AutoScroll = true;
             this.panelTEMP.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelTEMP.Location = new System.Drawing.Point(4, 81);
-            this.panelTEMP.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelTEMP.Location = new System.Drawing.Point(3, 65);
+            this.panelTEMP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelTEMP.Name = "panelTEMP";
-            this.panelTEMP.Size = new System.Drawing.Size(1193, 625);
+            this.panelTEMP.Size = new System.Drawing.Size(817, 497);
             this.panelTEMP.TabIndex = 56;
             // 
             // panel8
@@ -176,19 +172,18 @@
             this.panel8.Controls.Add(this.lblNote_TEMP);
             this.panel8.Controls.Add(this.groupBox14);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel8.Location = new System.Drawing.Point(1197, 81);
-            this.panel8.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel8.Location = new System.Drawing.Point(820, 65);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(263, 625);
+            this.panel8.Size = new System.Drawing.Size(197, 497);
             this.panel8.TabIndex = 55;
             // 
             // btnClrAllTempAdjust
             // 
             this.btnClrAllTempAdjust.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnClrAllTempAdjust.Location = new System.Drawing.Point(56, 192);
-            this.btnClrAllTempAdjust.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnClrAllTempAdjust.Location = new System.Drawing.Point(42, 154);
             this.btnClrAllTempAdjust.Name = "btnClrAllTempAdjust";
-            this.btnClrAllTempAdjust.Size = new System.Drawing.Size(163, 48);
+            this.btnClrAllTempAdjust.Size = new System.Drawing.Size(122, 38);
             this.btnClrAllTempAdjust.TabIndex = 0;
             this.btnClrAllTempAdjust.Text = "清0";
             this.btnClrAllTempAdjust.UseVisualStyleBackColor = true;
@@ -197,10 +192,9 @@
             // btnSetAllTempAdjust
             // 
             this.btnSetAllTempAdjust.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnSetAllTempAdjust.Location = new System.Drawing.Point(56, 118);
-            this.btnSetAllTempAdjust.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSetAllTempAdjust.Location = new System.Drawing.Point(42, 94);
             this.btnSetAllTempAdjust.Name = "btnSetAllTempAdjust";
-            this.btnSetAllTempAdjust.Size = new System.Drawing.Size(163, 48);
+            this.btnSetAllTempAdjust.Size = new System.Drawing.Size(122, 38);
             this.btnSetAllTempAdjust.TabIndex = 1;
             this.btnSetAllTempAdjust.Text = "所有通道校准";
             this.btnSetAllTempAdjust.UseVisualStyleBackColor = true;
@@ -209,30 +203,28 @@
             // lblNote_TEMP
             // 
             this.lblNote_TEMP.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.lblNote_TEMP.Location = new System.Drawing.Point(20, 378);
+            this.lblNote_TEMP.Location = new System.Drawing.Point(15, 302);
+            this.lblNote_TEMP.Margin = new System.Windows.Forms.Padding(2, 0, 2, 0);
             this.lblNote_TEMP.Name = "lblNote_TEMP";
-            this.lblNote_TEMP.Size = new System.Drawing.Size(216, 161);
+            this.lblNote_TEMP.Size = new System.Drawing.Size(162, 129);
             this.lblNote_TEMP.TabIndex = 4;
             // 
             // groupBox14
             // 
             this.groupBox14.Controls.Add(this.txtTempBase_adjust);
             this.groupBox14.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.groupBox14.Location = new System.Drawing.Point(56, 20);
-            this.groupBox14.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox14.Location = new System.Drawing.Point(42, 16);
             this.groupBox14.Name = "groupBox14";
-            this.groupBox14.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox14.Size = new System.Drawing.Size(180, 78);
+            this.groupBox14.Size = new System.Drawing.Size(135, 62);
             this.groupBox14.TabIndex = 3;
             this.groupBox14.TabStop = false;
             this.groupBox14.Text = "温度基准值(°C)";
             // 
             // txtTempBase_adjust
             // 
-            this.txtTempBase_adjust.Location = new System.Drawing.Point(41, 34);
-            this.txtTempBase_adjust.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtTempBase_adjust.Location = new System.Drawing.Point(19, 27);
             this.txtTempBase_adjust.Name = "txtTempBase_adjust";
-            this.txtTempBase_adjust.Size = new System.Drawing.Size(100, 29);
+            this.txtTempBase_adjust.Size = new System.Drawing.Size(76, 25);
             this.txtTempBase_adjust.TabIndex = 2;
             // 
             // panel1
@@ -245,10 +237,9 @@
             this.panel1.Controls.Add(this.lblBaseAdjust1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.panel1.Location = new System.Drawing.Point(4, 31);
-            this.panel1.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel1.Location = new System.Drawing.Point(3, 25);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1456, 50);
+            this.panel1.Size = new System.Drawing.Size(1014, 40);
             this.panel1.TabIndex = 53;
             // 
             // label2
@@ -256,10 +247,9 @@
             this.label2.AutoSize = true;
             this.label2.BackColor = System.Drawing.Color.Chartreuse;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label2.Location = new System.Drawing.Point(784, 14);
-            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label2.Location = new System.Drawing.Point(588, 11);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 23);
+            this.label2.Size = new System.Drawing.Size(65, 20);
             this.label2.TabIndex = 5;
             this.label2.Text = "负极温度";
             // 
@@ -268,10 +258,9 @@
             this.label1.AutoSize = true;
             this.label1.BackColor = System.Drawing.Color.Chartreuse;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label1.Location = new System.Drawing.Point(24, 14);
-            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label1.Location = new System.Drawing.Point(18, 11);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(78, 23);
+            this.label1.Size = new System.Drawing.Size(65, 20);
             this.label1.TabIndex = 4;
             this.label1.Text = "正极温度";
             // 
@@ -279,10 +268,9 @@
             // 
             this.btnSampleTemp2.AutoSize = true;
             this.btnSampleTemp2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnSampleTemp2.Location = new System.Drawing.Point(615, 6);
-            this.btnSampleTemp2.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSampleTemp2.Location = new System.Drawing.Point(461, 5);
             this.btnSampleTemp2.Name = "btnSampleTemp2";
-            this.btnSampleTemp2.Size = new System.Drawing.Size(72, 41);
+            this.btnSampleTemp2.Size = new System.Drawing.Size(54, 33);
             this.btnSampleTemp2.TabIndex = 3;
             this.btnSampleTemp2.Text = "采样";
             this.btnSampleTemp2.UseVisualStyleBackColor = true;
@@ -292,20 +280,18 @@
             // 
             this.lblBaseAdjust2.AutoSize = true;
             this.lblBaseAdjust2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblBaseAdjust2.Location = new System.Drawing.Point(693, 15);
-            this.lblBaseAdjust2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseAdjust2.Location = new System.Drawing.Point(520, 12);
             this.lblBaseAdjust2.Name = "lblBaseAdjust2";
-            this.lblBaseAdjust2.Size = new System.Drawing.Size(61, 23);
+            this.lblBaseAdjust2.Size = new System.Drawing.Size(51, 20);
             this.lblBaseAdjust2.TabIndex = 2;
             this.lblBaseAdjust2.Text = "基准值";
             // 
             // btnSampleTemp
             // 
             this.btnSampleTemp.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnSampleTemp.Location = new System.Drawing.Point(125, 8);
-            this.btnSampleTemp.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSampleTemp.Location = new System.Drawing.Point(94, 6);
             this.btnSampleTemp.Name = "btnSampleTemp";
-            this.btnSampleTemp.Size = new System.Drawing.Size(71, 35);
+            this.btnSampleTemp.Size = new System.Drawing.Size(53, 28);
             this.btnSampleTemp.TabIndex = 0;
             this.btnSampleTemp.Text = "采样";
             this.btnSampleTemp.UseVisualStyleBackColor = true;
@@ -315,10 +301,9 @@
             // 
             this.lblBaseAdjust1.AutoSize = true;
             this.lblBaseAdjust1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblBaseAdjust1.Location = new System.Drawing.Point(204, 16);
-            this.lblBaseAdjust1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblBaseAdjust1.Location = new System.Drawing.Point(153, 13);
             this.lblBaseAdjust1.Name = "lblBaseAdjust1";
-            this.lblBaseAdjust1.Size = new System.Drawing.Size(61, 23);
+            this.lblBaseAdjust1.Size = new System.Drawing.Size(51, 20);
             this.lblBaseAdjust1.TabIndex = 1;
             this.lblBaseAdjust1.Text = "基准值";
             // 
@@ -326,10 +311,10 @@
             // 
             this.tab_VoltZero.BackColor = System.Drawing.SystemColors.Control;
             this.tab_VoltZero.Controls.Add(this.grpBoxVoltAZero);
-            this.tab_VoltZero.Location = new System.Drawing.Point(4, 36);
-            this.tab_VoltZero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tab_VoltZero.Location = new System.Drawing.Point(4, 30);
+            this.tab_VoltZero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tab_VoltZero.Name = "tab_VoltZero";
-            this.tab_VoltZero.Size = new System.Drawing.Size(1464, 710);
+            this.tab_VoltZero.Size = new System.Drawing.Size(1020, 565);
             this.tab_VoltZero.TabIndex = 6;
             this.tab_VoltZero.Text = "手动电压清零";
             // 
@@ -340,10 +325,8 @@
             this.grpBoxVoltAZero.Controls.Add(this.panel3);
             this.grpBoxVoltAZero.Dock = System.Windows.Forms.DockStyle.Fill;
             this.grpBoxVoltAZero.Location = new System.Drawing.Point(0, 0);
-            this.grpBoxVoltAZero.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.grpBoxVoltAZero.Name = "grpBoxVoltAZero";
-            this.grpBoxVoltAZero.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.grpBoxVoltAZero.Size = new System.Drawing.Size(1464, 710);
+            this.grpBoxVoltAZero.Size = new System.Drawing.Size(1020, 565);
             this.grpBoxVoltAZero.TabIndex = 52;
             this.grpBoxVoltAZero.TabStop = false;
             this.grpBoxVoltAZero.Text = "电压清零";
@@ -352,10 +335,10 @@
             // 
             this.panelVoltZero.AutoScroll = true;
             this.panelVoltZero.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelVoltZero.Location = new System.Drawing.Point(4, 79);
-            this.panelVoltZero.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelVoltZero.Location = new System.Drawing.Point(3, 63);
+            this.panelVoltZero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelVoltZero.Name = "panelVoltZero";
-            this.panelVoltZero.Size = new System.Drawing.Size(1233, 627);
+            this.panelVoltZero.Size = new System.Drawing.Size(847, 499);
             this.panelVoltZero.TabIndex = 57;
             // 
             // panel4
@@ -366,29 +349,27 @@
             this.panel4.Controls.Add(this.btnVoltZeroAllStart);
             this.panel4.Controls.Add(this.lblNote_VoltZero);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel4.Location = new System.Drawing.Point(1237, 79);
-            this.panel4.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel4.Location = new System.Drawing.Point(850, 63);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(223, 627);
+            this.panel4.Size = new System.Drawing.Size(167, 499);
             this.panel4.TabIndex = 56;
             // 
             // label13
             // 
             this.label13.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.label13.Location = new System.Drawing.Point(33, 18);
-            this.label13.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label13.Location = new System.Drawing.Point(25, 14);
             this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(165, 81);
+            this.label13.Size = new System.Drawing.Size(124, 65);
             this.label13.TabIndex = 8;
             this.label13.Text = "请使用清零(校准)工装进行操作";
             // 
             // btnSaveVoltZeroResult
             // 
             this.btnSaveVoltZeroResult.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnSaveVoltZeroResult.Location = new System.Drawing.Point(20, 249);
-            this.btnSaveVoltZeroResult.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnSaveVoltZeroResult.Location = new System.Drawing.Point(15, 199);
             this.btnSaveVoltZeroResult.Name = "btnSaveVoltZeroResult";
-            this.btnSaveVoltZeroResult.Size = new System.Drawing.Size(180, 44);
+            this.btnSaveVoltZeroResult.Size = new System.Drawing.Size(135, 35);
             this.btnSaveVoltZeroResult.TabIndex = 7;
             this.btnSaveVoltZeroResult.Text = "保存清零结果";
             this.btnSaveVoltZeroResult.UseVisualStyleBackColor = true;
@@ -397,10 +378,9 @@
             // btnVoltZeroAllStop
             // 
             this.btnVoltZeroAllStop.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnVoltZeroAllStop.Location = new System.Drawing.Point(21, 185);
-            this.btnVoltZeroAllStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVoltZeroAllStop.Location = new System.Drawing.Point(16, 148);
             this.btnVoltZeroAllStop.Name = "btnVoltZeroAllStop";
-            this.btnVoltZeroAllStop.Size = new System.Drawing.Size(180, 44);
+            this.btnVoltZeroAllStop.Size = new System.Drawing.Size(135, 35);
             this.btnVoltZeroAllStop.TabIndex = 4;
             this.btnVoltZeroAllStop.Text = "停止";
             this.btnVoltZeroAllStop.UseVisualStyleBackColor = true;
@@ -409,10 +389,9 @@
             // btnVoltZeroAllStart
             // 
             this.btnVoltZeroAllStart.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnVoltZeroAllStart.Location = new System.Drawing.Point(21, 121);
-            this.btnVoltZeroAllStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnVoltZeroAllStart.Location = new System.Drawing.Point(16, 97);
             this.btnVoltZeroAllStart.Name = "btnVoltZeroAllStart";
-            this.btnVoltZeroAllStart.Size = new System.Drawing.Size(180, 44);
+            this.btnVoltZeroAllStart.Size = new System.Drawing.Size(135, 35);
             this.btnVoltZeroAllStart.TabIndex = 1;
             this.btnVoltZeroAllStart.Text = "所有通道电压清零";
             this.btnVoltZeroAllStart.UseVisualStyleBackColor = true;
@@ -423,10 +402,9 @@
             this.lblNote_VoltZero.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblNote_VoltZero.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblNote_VoltZero.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblNote_VoltZero.Location = new System.Drawing.Point(20, 345);
-            this.lblNote_VoltZero.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNote_VoltZero.Location = new System.Drawing.Point(15, 276);
             this.lblNote_VoltZero.Name = "lblNote_VoltZero";
-            this.lblNote_VoltZero.Size = new System.Drawing.Size(181, 202);
+            this.lblNote_VoltZero.Size = new System.Drawing.Size(136, 162);
             this.lblNote_VoltZero.TabIndex = 2;
             // 
             // panel3
@@ -434,20 +412,18 @@
             this.panel3.Controls.Add(this.lblVoltZeroVal2);
             this.panel3.Controls.Add(this.lblVoltZeroVal1);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel3.Location = new System.Drawing.Point(4, 31);
-            this.panel3.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel3.Location = new System.Drawing.Point(3, 25);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1456, 48);
+            this.panel3.Size = new System.Drawing.Size(1014, 38);
             this.panel3.TabIndex = 53;
             // 
             // lblVoltZeroVal2
             // 
             this.lblVoltZeroVal2.AutoSize = true;
             this.lblVoltZeroVal2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblVoltZeroVal2.Location = new System.Drawing.Point(587, 14);
-            this.lblVoltZeroVal2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVoltZeroVal2.Location = new System.Drawing.Point(440, 11);
             this.lblVoltZeroVal2.Name = "lblVoltZeroVal2";
-            this.lblVoltZeroVal2.Size = new System.Drawing.Size(101, 23);
+            this.lblVoltZeroVal2.Size = new System.Drawing.Size(83, 20);
             this.lblVoltZeroVal2.TabIndex = 6;
             this.lblVoltZeroVal2.Text = "测试值(mV)";
             // 
@@ -455,10 +431,9 @@
             // 
             this.lblVoltZeroVal1.AutoSize = true;
             this.lblVoltZeroVal1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblVoltZeroVal1.Location = new System.Drawing.Point(157, 15);
-            this.lblVoltZeroVal1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblVoltZeroVal1.Location = new System.Drawing.Point(118, 12);
             this.lblVoltZeroVal1.Name = "lblVoltZeroVal1";
-            this.lblVoltZeroVal1.Size = new System.Drawing.Size(101, 23);
+            this.lblVoltZeroVal1.Size = new System.Drawing.Size(83, 20);
             this.lblVoltZeroVal1.TabIndex = 5;
             this.lblVoltZeroVal1.Text = "测试值(mV)";
             // 
@@ -466,10 +441,10 @@
             // 
             this.tab_IRAdjust_Meterage.BackColor = System.Drawing.SystemColors.Control;
             this.tab_IRAdjust_Meterage.Controls.Add(this.tabContrIR);
-            this.tab_IRAdjust_Meterage.Location = new System.Drawing.Point(4, 36);
-            this.tab_IRAdjust_Meterage.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tab_IRAdjust_Meterage.Location = new System.Drawing.Point(4, 30);
+            this.tab_IRAdjust_Meterage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tab_IRAdjust_Meterage.Name = "tab_IRAdjust_Meterage";
-            this.tab_IRAdjust_Meterage.Size = new System.Drawing.Size(1464, 710);
+            this.tab_IRAdjust_Meterage.Size = new System.Drawing.Size(1020, 565);
             this.tab_IRAdjust_Meterage.TabIndex = 7;
             this.tab_IRAdjust_Meterage.Text = "手动内阻校准/计量";
             // 
@@ -479,10 +454,10 @@
             this.tabContrIR.Controls.Add(this.tabPage2);
             this.tabContrIR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabContrIR.Location = new System.Drawing.Point(0, 0);
-            this.tabContrIR.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabContrIR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabContrIR.Name = "tabContrIR";
             this.tabContrIR.SelectedIndex = 0;
-            this.tabContrIR.Size = new System.Drawing.Size(1464, 710);
+            this.tabContrIR.Size = new System.Drawing.Size(1020, 565);
             this.tabContrIR.TabIndex = 54;
             // 
             // tabPage1
@@ -491,11 +466,11 @@
             this.tabPage1.Controls.Add(this.panelIRAdjust);
             this.tabPage1.Controls.Add(this.panel7);
             this.tabPage1.Controls.Add(this.panel6);
-            this.tabPage1.Location = new System.Drawing.Point(4, 36);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage1.Location = new System.Drawing.Point(4, 30);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage1.Size = new System.Drawing.Size(1456, 670);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Size = new System.Drawing.Size(1012, 531);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "内阻校准";
             // 
@@ -503,10 +478,10 @@
             // 
             this.panelIRAdjust.AutoScroll = true;
             this.panelIRAdjust.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelIRAdjust.Location = new System.Drawing.Point(3, 44);
-            this.panelIRAdjust.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelIRAdjust.Location = new System.Drawing.Point(2, 36);
+            this.panelIRAdjust.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelIRAdjust.Name = "panelIRAdjust";
-            this.panelIRAdjust.Size = new System.Drawing.Size(1219, 624);
+            this.panelIRAdjust.Size = new System.Drawing.Size(835, 493);
             this.panelIRAdjust.TabIndex = 61;
             // 
             // panel7
@@ -519,19 +494,18 @@
             this.panel7.Controls.Add(this.lblNote_IRAdjust);
             this.panel7.Controls.Add(this.btnIRAdjustAllStop);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel7.Location = new System.Drawing.Point(1222, 44);
-            this.panel7.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel7.Location = new System.Drawing.Point(837, 36);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(231, 624);
+            this.panel7.Size = new System.Drawing.Size(173, 493);
             this.panel7.TabIndex = 60;
             // 
             // btnIRAdjustSampleAllStart
             // 
             this.btnIRAdjustSampleAllStart.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnIRAdjustSampleAllStart.Location = new System.Drawing.Point(23, 106);
-            this.btnIRAdjustSampleAllStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIRAdjustSampleAllStart.Location = new System.Drawing.Point(17, 85);
             this.btnIRAdjustSampleAllStart.Name = "btnIRAdjustSampleAllStart";
-            this.btnIRAdjustSampleAllStart.Size = new System.Drawing.Size(185, 46);
+            this.btnIRAdjustSampleAllStart.Size = new System.Drawing.Size(139, 37);
             this.btnIRAdjustSampleAllStart.TabIndex = 60;
             this.btnIRAdjustSampleAllStart.Text = "所有通道测试";
             this.btnIRAdjustSampleAllStart.UseVisualStyleBackColor = true;
@@ -541,31 +515,27 @@
             // 
             this.groupBox16.Controls.Add(this.txtIRBase_Adjust);
             this.groupBox16.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.groupBox16.Location = new System.Drawing.Point(29, 20);
-            this.groupBox16.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox16.Location = new System.Drawing.Point(22, 16);
             this.groupBox16.Name = "groupBox16";
-            this.groupBox16.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox16.Size = new System.Drawing.Size(179, 78);
+            this.groupBox16.Size = new System.Drawing.Size(134, 62);
             this.groupBox16.TabIndex = 59;
             this.groupBox16.TabStop = false;
             this.groupBox16.Text = "内阻基准值(mΩ)";
             // 
             // txtIRBase_Adjust
             // 
-            this.txtIRBase_Adjust.Location = new System.Drawing.Point(45, 32);
-            this.txtIRBase_Adjust.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIRBase_Adjust.Location = new System.Drawing.Point(34, 26);
             this.txtIRBase_Adjust.Name = "txtIRBase_Adjust";
-            this.txtIRBase_Adjust.Size = new System.Drawing.Size(87, 29);
+            this.txtIRBase_Adjust.Size = new System.Drawing.Size(66, 25);
             this.txtIRBase_Adjust.TabIndex = 2;
             this.txtIRBase_Adjust.Text = "0";
             // 
             // btnIRAdjustAllStart
             // 
             this.btnIRAdjustAllStart.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnIRAdjustAllStart.Location = new System.Drawing.Point(23, 169);
-            this.btnIRAdjustAllStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIRAdjustAllStart.Location = new System.Drawing.Point(17, 135);
             this.btnIRAdjustAllStart.Name = "btnIRAdjustAllStart";
-            this.btnIRAdjustAllStart.Size = new System.Drawing.Size(185, 46);
+            this.btnIRAdjustAllStart.Size = new System.Drawing.Size(139, 37);
             this.btnIRAdjustAllStart.TabIndex = 55;
             this.btnIRAdjustAllStart.Text = "所有通道校准";
             this.btnIRAdjustAllStart.UseVisualStyleBackColor = true;
@@ -574,10 +544,9 @@
             // btnIRAdjustAllValClr
             // 
             this.btnIRAdjustAllValClr.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnIRAdjustAllValClr.Location = new System.Drawing.Point(23, 300);
-            this.btnIRAdjustAllValClr.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIRAdjustAllValClr.Location = new System.Drawing.Point(17, 240);
             this.btnIRAdjustAllValClr.Name = "btnIRAdjustAllValClr";
-            this.btnIRAdjustAllValClr.Size = new System.Drawing.Size(185, 46);
+            this.btnIRAdjustAllValClr.Size = new System.Drawing.Size(139, 37);
             this.btnIRAdjustAllValClr.TabIndex = 57;
             this.btnIRAdjustAllValClr.Text = " 全部校准值清0";
             this.btnIRAdjustAllValClr.UseVisualStyleBackColor = true;
@@ -587,19 +556,17 @@
             // 
             this.lblNote_IRAdjust.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblNote_IRAdjust.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblNote_IRAdjust.Location = new System.Drawing.Point(27, 365);
-            this.lblNote_IRAdjust.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNote_IRAdjust.Location = new System.Drawing.Point(20, 292);
             this.lblNote_IRAdjust.Name = "lblNote_IRAdjust";
-            this.lblNote_IRAdjust.Size = new System.Drawing.Size(181, 180);
+            this.lblNote_IRAdjust.Size = new System.Drawing.Size(136, 144);
             this.lblNote_IRAdjust.TabIndex = 58;
             // 
             // btnIRAdjustAllStop
             // 
             this.btnIRAdjustAllStop.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnIRAdjustAllStop.Location = new System.Drawing.Point(23, 235);
-            this.btnIRAdjustAllStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIRAdjustAllStop.Location = new System.Drawing.Point(17, 188);
             this.btnIRAdjustAllStop.Name = "btnIRAdjustAllStop";
-            this.btnIRAdjustAllStop.Size = new System.Drawing.Size(185, 46);
+            this.btnIRAdjustAllStop.Size = new System.Drawing.Size(139, 37);
             this.btnIRAdjustAllStop.TabIndex = 56;
             this.btnIRAdjustAllStop.Text = "停止";
             this.btnIRAdjustAllStop.UseVisualStyleBackColor = true;
@@ -612,20 +579,18 @@
             this.panel6.Controls.Add(this.lblIRBaseVal2);
             this.panel6.Controls.Add(this.lblIRBaseVal1);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel6.Location = new System.Drawing.Point(3, 2);
-            this.panel6.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel6.Location = new System.Drawing.Point(2, 2);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(1450, 42);
+            this.panel6.Size = new System.Drawing.Size(1008, 34);
             this.panel6.TabIndex = 54;
             // 
             // lblIRTestVal2
             // 
             this.lblIRTestVal2.AutoSize = true;
             this.lblIRTestVal2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblIRTestVal2.Location = new System.Drawing.Point(540, 10);
-            this.lblIRTestVal2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIRTestVal2.Location = new System.Drawing.Point(405, 8);
             this.lblIRTestVal2.Name = "lblIRTestVal2";
-            this.lblIRTestVal2.Size = new System.Drawing.Size(61, 23);
+            this.lblIRTestVal2.Size = new System.Drawing.Size(51, 20);
             this.lblIRTestVal2.TabIndex = 5;
             this.lblIRTestVal2.Text = "测试值";
             // 
@@ -633,10 +598,9 @@
             // 
             this.lblIRTestVal1.AutoSize = true;
             this.lblIRTestVal1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblIRTestVal1.Location = new System.Drawing.Point(115, 10);
-            this.lblIRTestVal1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIRTestVal1.Location = new System.Drawing.Point(86, 8);
             this.lblIRTestVal1.Name = "lblIRTestVal1";
-            this.lblIRTestVal1.Size = new System.Drawing.Size(61, 23);
+            this.lblIRTestVal1.Size = new System.Drawing.Size(51, 20);
             this.lblIRTestVal1.TabIndex = 4;
             this.lblIRTestVal1.Text = "测试值";
             // 
@@ -644,10 +608,9 @@
             // 
             this.lblIRBaseVal2.AutoSize = true;
             this.lblIRBaseVal2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblIRBaseVal2.Location = new System.Drawing.Point(600, 10);
-            this.lblIRBaseVal2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIRBaseVal2.Location = new System.Drawing.Point(450, 8);
             this.lblIRBaseVal2.Name = "lblIRBaseVal2";
-            this.lblIRBaseVal2.Size = new System.Drawing.Size(61, 23);
+            this.lblIRBaseVal2.Size = new System.Drawing.Size(51, 20);
             this.lblIRBaseVal2.TabIndex = 3;
             this.lblIRBaseVal2.Text = "基准值";
             // 
@@ -655,10 +618,9 @@
             // 
             this.lblIRBaseVal1.AutoSize = true;
             this.lblIRBaseVal1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblIRBaseVal1.Location = new System.Drawing.Point(175, 10);
-            this.lblIRBaseVal1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIRBaseVal1.Location = new System.Drawing.Point(131, 8);
             this.lblIRBaseVal1.Name = "lblIRBaseVal1";
-            this.lblIRBaseVal1.Size = new System.Drawing.Size(61, 23);
+            this.lblIRBaseVal1.Size = new System.Drawing.Size(51, 20);
             this.lblIRBaseVal1.TabIndex = 2;
             this.lblIRBaseVal1.Text = "基准值";
             // 
@@ -668,11 +630,11 @@
             this.tabPage2.Controls.Add(this.panelIRMetering);
             this.tabPage2.Controls.Add(this.panel9);
             this.tabPage2.Controls.Add(this.panel5);
-            this.tabPage2.Location = new System.Drawing.Point(4, 36);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.tabPage2.Location = new System.Drawing.Point(4, 30);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1453, 794);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Size = new System.Drawing.Size(1090, 534);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "内阻计量";
             // 
@@ -680,10 +642,10 @@
             // 
             this.panelIRMetering.AutoScroll = true;
             this.panelIRMetering.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panelIRMetering.Location = new System.Drawing.Point(3, 43);
-            this.panelIRMetering.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panelIRMetering.Location = new System.Drawing.Point(2, 35);
+            this.panelIRMetering.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panelIRMetering.Name = "panelIRMetering";
-            this.panelIRMetering.Size = new System.Drawing.Size(1220, 749);
+            this.panelIRMetering.Size = new System.Drawing.Size(916, 497);
             this.panelIRMetering.TabIndex = 57;
             // 
             // panel9
@@ -695,19 +657,18 @@
             this.panel9.Controls.Add(this.btnIRMeteringAllStart);
             this.panel9.Controls.Add(this.lblNote_IRMetering);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(1223, 43);
-            this.panel9.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.panel9.Location = new System.Drawing.Point(918, 35);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(227, 749);
+            this.panel9.Size = new System.Drawing.Size(170, 497);
             this.panel9.TabIndex = 55;
             // 
             // btnIRMeteringSave
             // 
             this.btnIRMeteringSave.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnIRMeteringSave.Location = new System.Drawing.Point(27, 304);
-            this.btnIRMeteringSave.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIRMeteringSave.Location = new System.Drawing.Point(20, 243);
             this.btnIRMeteringSave.Name = "btnIRMeteringSave";
-            this.btnIRMeteringSave.Size = new System.Drawing.Size(181, 44);
+            this.btnIRMeteringSave.Size = new System.Drawing.Size(136, 35);
             this.btnIRMeteringSave.TabIndex = 6;
             this.btnIRMeteringSave.Text = "保存计量结果";
             this.btnIRMeteringSave.UseVisualStyleBackColor = true;
@@ -717,30 +678,26 @@
             // 
             this.groupBox13.Controls.Add(this.txtIRMeterErrRange);
             this.groupBox13.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.groupBox13.Location = new System.Drawing.Point(24, 111);
-            this.groupBox13.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox13.Location = new System.Drawing.Point(18, 89);
             this.groupBox13.Name = "groupBox13";
-            this.groupBox13.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox13.Size = new System.Drawing.Size(189, 78);
+            this.groupBox13.Size = new System.Drawing.Size(142, 62);
             this.groupBox13.TabIndex = 5;
             this.groupBox13.TabStop = false;
             this.groupBox13.Text = "误差范围(mΩ)";
             // 
             // txtIRMeterErrRange
             // 
-            this.txtIRMeterErrRange.Location = new System.Drawing.Point(35, 34);
-            this.txtIRMeterErrRange.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIRMeterErrRange.Location = new System.Drawing.Point(26, 27);
             this.txtIRMeterErrRange.Name = "txtIRMeterErrRange";
-            this.txtIRMeterErrRange.Size = new System.Drawing.Size(127, 29);
+            this.txtIRMeterErrRange.Size = new System.Drawing.Size(96, 25);
             this.txtIRMeterErrRange.TabIndex = 2;
             // 
             // btnIRMeteringAllStop
             // 
             this.btnIRMeteringAllStop.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnIRMeteringAllStop.Location = new System.Drawing.Point(27, 252);
-            this.btnIRMeteringAllStop.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIRMeteringAllStop.Location = new System.Drawing.Point(20, 202);
             this.btnIRMeteringAllStop.Name = "btnIRMeteringAllStop";
-            this.btnIRMeteringAllStop.Size = new System.Drawing.Size(181, 44);
+            this.btnIRMeteringAllStop.Size = new System.Drawing.Size(136, 35);
             this.btnIRMeteringAllStop.TabIndex = 4;
             this.btnIRMeteringAllStop.Text = "停止";
             this.btnIRMeteringAllStop.UseVisualStyleBackColor = true;
@@ -750,30 +707,26 @@
             // 
             this.groupBox21.Controls.Add(this.txtIRSet_Metering);
             this.groupBox21.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.groupBox21.Location = new System.Drawing.Point(24, 16);
-            this.groupBox21.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.groupBox21.Location = new System.Drawing.Point(18, 13);
             this.groupBox21.Name = "groupBox21";
-            this.groupBox21.Padding = new System.Windows.Forms.Padding(4, 4, 4, 4);
-            this.groupBox21.Size = new System.Drawing.Size(189, 78);
+            this.groupBox21.Size = new System.Drawing.Size(142, 62);
             this.groupBox21.TabIndex = 3;
             this.groupBox21.TabStop = false;
             this.groupBox21.Text = "计量工装阻值(mΩ)";
             // 
             // txtIRSet_Metering
             // 
-            this.txtIRSet_Metering.Location = new System.Drawing.Point(35, 34);
-            this.txtIRSet_Metering.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.txtIRSet_Metering.Location = new System.Drawing.Point(26, 27);
             this.txtIRSet_Metering.Name = "txtIRSet_Metering";
-            this.txtIRSet_Metering.Size = new System.Drawing.Size(127, 29);
+            this.txtIRSet_Metering.Size = new System.Drawing.Size(96, 25);
             this.txtIRSet_Metering.TabIndex = 2;
             // 
             // btnIRMeteringAllStart
             // 
             this.btnIRMeteringAllStart.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.btnIRMeteringAllStart.Location = new System.Drawing.Point(27, 198);
-            this.btnIRMeteringAllStart.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.btnIRMeteringAllStart.Location = new System.Drawing.Point(20, 158);
             this.btnIRMeteringAllStart.Name = "btnIRMeteringAllStart";
-            this.btnIRMeteringAllStart.Size = new System.Drawing.Size(181, 44);
+            this.btnIRMeteringAllStart.Size = new System.Drawing.Size(136, 35);
             this.btnIRMeteringAllStart.TabIndex = 1;
             this.btnIRMeteringAllStart.Text = "所有通道计量";
             this.btnIRMeteringAllStart.UseVisualStyleBackColor = true;
@@ -784,10 +737,9 @@
             this.lblNote_IRMetering.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.lblNote_IRMetering.Font = new System.Drawing.Font("微软雅黑", 10F);
             this.lblNote_IRMetering.ForeColor = System.Drawing.SystemColors.Highlight;
-            this.lblNote_IRMetering.Location = new System.Drawing.Point(25, 369);
-            this.lblNote_IRMetering.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblNote_IRMetering.Location = new System.Drawing.Point(19, 295);
             this.lblNote_IRMetering.Name = "lblNote_IRMetering";
-            this.lblNote_IRMetering.Size = new System.Drawing.Size(181, 170);
+            this.lblNote_IRMetering.Size = new System.Drawing.Size(136, 136);
             this.lblNote_IRMetering.TabIndex = 2;
             // 
             // panel5
@@ -795,20 +747,18 @@
             this.panel5.Controls.Add(this.lblIRMeterVal2);
             this.panel5.Controls.Add(this.lblIRMeterVal1);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel5.Location = new System.Drawing.Point(3, 2);
-            this.panel5.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
+            this.panel5.Location = new System.Drawing.Point(2, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1447, 41);
+            this.panel5.Size = new System.Drawing.Size(1086, 33);
             this.panel5.TabIndex = 53;
             // 
             // lblIRMeterVal2
             // 
             this.lblIRMeterVal2.AutoSize = true;
             this.lblIRMeterVal2.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblIRMeterVal2.Location = new System.Drawing.Point(607, 9);
-            this.lblIRMeterVal2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIRMeterVal2.Location = new System.Drawing.Point(455, 7);
             this.lblIRMeterVal2.Name = "lblIRMeterVal2";
-            this.lblIRMeterVal2.Size = new System.Drawing.Size(61, 23);
+            this.lblIRMeterVal2.Size = new System.Drawing.Size(51, 20);
             this.lblIRMeterVal2.TabIndex = 6;
             this.lblIRMeterVal2.Text = "测试值";
             // 
@@ -816,22 +766,20 @@
             // 
             this.lblIRMeterVal1.AutoSize = true;
             this.lblIRMeterVal1.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.lblIRMeterVal1.Location = new System.Drawing.Point(181, 8);
-            this.lblIRMeterVal1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.lblIRMeterVal1.Location = new System.Drawing.Point(136, 6);
             this.lblIRMeterVal1.Name = "lblIRMeterVal1";
-            this.lblIRMeterVal1.Size = new System.Drawing.Size(61, 23);
+            this.lblIRMeterVal1.Size = new System.Drawing.Size(51, 20);
             this.lblIRMeterVal1.TabIndex = 5;
             this.lblIRMeterVal1.Text = "测试值";
             // 
             // FrmManualAdjust
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 15F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(1472, 750);
+            this.ClientSize = new System.Drawing.Size(1028, 599);
             this.Controls.Add(this.tabControl1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Margin = new System.Windows.Forms.Padding(4, 4, 4, 4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;
             this.Name = "FrmManualAdjust";

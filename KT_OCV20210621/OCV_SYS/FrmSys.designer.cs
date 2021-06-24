@@ -29,10 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FrmSys));
             this.tim_UI = new System.Windows.Forms.Timer(this.components);
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
@@ -56,6 +56,8 @@
             this.groupPanel3 = new DevComponents.DotNetBar.Controls.GroupPanel();
             this.textBox1 = new System.Windows.Forms.TextBox();
             this.groupPanel2 = new DevComponents.DotNetBar.Controls.GroupPanel();
+            this.lblFrOCVAllow = new ClsDeviceComm.Controls.UserLantern();
+            this.labelX47 = new DevComponents.DotNetBar.LabelX();
             this.btnHome = new CCWin.SkinControl.SkinButton();
             this.skinButton1 = new CCWin.SkinControl.SkinButton();
             this.skinButton2 = new CCWin.SkinControl.SkinButton();
@@ -128,8 +130,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.LB_DMM = new ClsDeviceComm.Controls.UserLantern();
             this.label1 = new System.Windows.Forms.Label();
-            this.lblFrOCVAllow = new ClsDeviceComm.Controls.UserLantern();
-            this.labelX47 = new DevComponents.DotNetBar.LabelX();
+            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
@@ -170,7 +171,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1331, 315);
+            this.splitContainer1.Size = new System.Drawing.Size(1331, 309);
             this.splitContainer1.SplitterDistance = 829;
             this.splitContainer1.TabIndex = 170;
             // 
@@ -180,14 +181,14 @@
             this.dgvTest.AllowUserToResizeColumns = false;
             this.dgvTest.AllowUserToResizeRows = false;
             this.dgvTest.BackgroundColor = System.Drawing.SystemColors.ButtonFace;
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle13.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle13.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle13.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle13.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle13.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTest.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
             this.dgvTest.ColumnHeadersHeight = 25;
             this.dgvTest.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dgvTest.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -200,38 +201,38 @@
             this.Col_TEMP_N,
             this.Col_CODE,
             this.Col_Des});
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle15.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgvTest.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle11.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgvTest.DefaultCellStyle = dataGridViewCellStyle11;
             this.dgvTest.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTest.Location = new System.Drawing.Point(0, 0);
             this.dgvTest.Name = "dgvTest";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle16.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgvTest.RowHeadersDefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgvTest.RowHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgvTest.RowHeadersVisible = false;
             this.dgvTest.RowHeadersWidth = 30;
             this.dgvTest.RowTemplate.DefaultCellStyle.Font = new System.Drawing.Font("微软雅黑", 9.75F);
             this.dgvTest.RowTemplate.Height = 17;
             this.dgvTest.RowTemplate.ReadOnly = true;
             this.dgvTest.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvTest.Size = new System.Drawing.Size(829, 315);
+            this.dgvTest.Size = new System.Drawing.Size(829, 309);
             this.dgvTest.TabIndex = 197;
             // 
             // Col_Num
             // 
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Col_Num.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle10.Font = new System.Drawing.Font("微软雅黑", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.Col_Num.DefaultCellStyle = dataGridViewCellStyle10;
             this.Col_Num.HeaderText = "N0.";
             this.Col_Num.Name = "Col_Num";
             this.Col_Num.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
@@ -302,7 +303,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(498, 315);
+            this.panel1.Size = new System.Drawing.Size(498, 309);
             this.panel1.TabIndex = 196;
             // 
             // txtInfoA
@@ -315,7 +316,7 @@
             this.txtInfoA.Name = "txtInfoA";
             this.txtInfoA.ReadOnly = true;
             this.txtInfoA.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtInfoA.Size = new System.Drawing.Size(496, 281);
+            this.txtInfoA.Size = new System.Drawing.Size(496, 275);
             this.txtInfoA.TabIndex = 178;
             // 
             // panel3
@@ -374,7 +375,7 @@
             this.sscMain.Panel2.Controls.Add(this.groupPanel1);
             this.sscMain.Panel2MinSize = 0;
             this.sscMain.Size = new System.Drawing.Size(1331, 639);
-            this.sscMain.SplitterDistance = 315;
+            this.sscMain.SplitterDistance = 309;
             this.sscMain.SplitterWidth = 10;
             this.sscMain.TabIndex = 199;
             this.sscMain.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.sscMain_SplitterMoved);
@@ -391,7 +392,7 @@
             this.groupPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(1);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(1331, 314);
+            this.groupPanel1.Size = new System.Drawing.Size(1331, 320);
             // 
             // 
             // 
@@ -424,7 +425,7 @@
             this.groupPanel3.Location = new System.Drawing.Point(665, 0);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(660, 308);
+            this.groupPanel3.Size = new System.Drawing.Size(660, 314);
             // 
             // 
             // 
@@ -459,7 +460,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(654, 282);
+            this.textBox1.Size = new System.Drawing.Size(654, 288);
             this.textBox1.TabIndex = 179;
             // 
             // groupPanel2
@@ -507,7 +508,7 @@
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.ShowFocusRectangle = true;
-            this.groupPanel2.Size = new System.Drawing.Size(665, 308);
+            this.groupPanel2.Size = new System.Drawing.Size(665, 314);
             // 
             // 
             // 
@@ -530,6 +531,30 @@
             this.groupPanel2.Style.TextLineAlignment = DevComponents.DotNetBar.eStyleTextAlignment.Near;
             this.groupPanel2.TabIndex = 257;
             this.groupPanel2.Text = "机械控制";
+            // 
+            // lblFrOCVAllow
+            // 
+            this.lblFrOCVAllow.AutoSize = true;
+            this.lblFrOCVAllow.BackColor = System.Drawing.Color.Transparent;
+            this.lblFrOCVAllow.LanternBackground = System.Drawing.Color.Gray;
+            this.lblFrOCVAllow.Location = new System.Drawing.Point(577, 80);
+            this.lblFrOCVAllow.Margin = new System.Windows.Forms.Padding(122, 1167, 122, 1167);
+            this.lblFrOCVAllow.Name = "lblFrOCVAllow";
+            this.lblFrOCVAllow.Size = new System.Drawing.Size(31, 27);
+            this.lblFrOCVAllow.TabIndex = 264;
+            this.lblFrOCVAllow.Visible = false;
+            // 
+            // labelX47
+            // 
+            this.labelX47.BackColor = System.Drawing.Color.Transparent;
+            this.labelX47.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX47.Location = new System.Drawing.Point(564, 58);
+            this.labelX47.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX47.Name = "labelX47";
+            this.labelX47.Size = new System.Drawing.Size(70, 18);
+            this.labelX47.TabIndex = 263;
+            this.labelX47.Text = "允许入料";
+            this.labelX47.Visible = false;
             // 
             // btnHome
             // 
@@ -973,6 +998,7 @@
             this.数据补传ToolStripMenuItem,
             this.toolStripMenuItem3,
             this.密码修改ToolStripMenuItem,
+            this.toolStripMenuItem1,
             this.关于ToolStripMenuItem,
             this.校准设置ToolStripMenuItem,
             this.型号设置ToolStripMenuItem});
@@ -1331,29 +1357,13 @@
             this.label1.TabIndex = 2;
             this.label1.Text = "PLC";
             // 
-            // lblFrOCVAllow
+            // toolStripMenuItem1
             // 
-            this.lblFrOCVAllow.AutoSize = true;
-            this.lblFrOCVAllow.BackColor = System.Drawing.Color.Transparent;
-            this.lblFrOCVAllow.LanternBackground = System.Drawing.Color.Gray;
-            this.lblFrOCVAllow.Location = new System.Drawing.Point(577, 80);
-            this.lblFrOCVAllow.Margin = new System.Windows.Forms.Padding(122, 1167, 122, 1167);
-            this.lblFrOCVAllow.Name = "lblFrOCVAllow";
-            this.lblFrOCVAllow.Size = new System.Drawing.Size(31, 27);
-            this.lblFrOCVAllow.TabIndex = 264;
-            this.lblFrOCVAllow.Visible = false;
-            // 
-            // labelX47
-            // 
-            this.labelX47.BackColor = System.Drawing.Color.Transparent;
-            this.labelX47.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX47.Location = new System.Drawing.Point(564, 58);
-            this.labelX47.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX47.Name = "labelX47";
-            this.labelX47.Size = new System.Drawing.Size(70, 18);
-            this.labelX47.TabIndex = 263;
-            this.labelX47.Text = "允许入料";
-            this.labelX47.Visible = false;
+            this.toolStripMenuItem1.Image = global::OCV.Properties.Resources.hammer;
+            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(184, 26);
+            this.toolStripMenuItem1.Text = "单机运行窗口";
+            this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
             // FrmSys
             // 
@@ -1363,8 +1373,6 @@
             this.CaptionBackColorBottom = System.Drawing.Color.Black;
             this.CaptionBackColorTop = System.Drawing.Color.SteelBlue;
             this.ClientSize = new System.Drawing.Size(1339, 732);
-            this.ControlBoxActive = System.Drawing.Color.SteelBlue;
-            this.ControlBoxDeactive = System.Drawing.Color.SteelBlue;
             this.Controls.Add(this.panel6);
             this.EffectBack = System.Drawing.Color.Transparent;
             this.Font = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -1511,5 +1519,6 @@
         private CCWin.SkinControl.SkinButton btnHome;
         private ClsDeviceComm.Controls.UserLantern lblFrOCVAllow;
         private DevComponents.DotNetBar.LabelX labelX47;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
     }
 }

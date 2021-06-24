@@ -918,7 +918,7 @@ namespace OCV
 
                         //保存到服务器的数据库
                         //包括本地服务器以及擎天服务器 20181018
-                        //Thread threadExportToServer = new Thread(new ThreadStart(ExportToServer));
+                        Thread threadExportToServer = new Thread(new ThreadStart(ExportToServer));
                         //threadExportToServer.IsBackground = true;
                         //threadExportToServer.Start();
 

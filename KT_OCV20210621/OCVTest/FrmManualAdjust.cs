@@ -978,7 +978,7 @@ namespace OCV
 
               
                 int ActualNum = 0;
-                if (Num < 38)
+                if (Num < 16)//38
                 {
                     //实际对应通道, 注:Num从零开始,ActualNum从1开始
                     ActualNum = Convert.ToUInt16(ClsGlobal.mSwitchCHTemp_P[Num]);
