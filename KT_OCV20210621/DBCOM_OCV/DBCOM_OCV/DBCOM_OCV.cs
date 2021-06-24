@@ -311,7 +311,7 @@ namespace DB_OCV.DAL
                 
                 string []model=Pallet_ID.Split('-');
 
-                for (int i = 1; i <= ClsGlobal.TrayType; i++)
+                for (int i = 1; i <= ClsGlobal.TrayType; i++)//trayType托盘电池数量 16
                 {
                     ET_CELL etCell = new ET_CELL();
                     etCell.Cell_ID = "ID" + i;

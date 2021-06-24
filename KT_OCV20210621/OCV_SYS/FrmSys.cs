@@ -695,7 +695,7 @@ namespace OCV
 
         }
 
-       public void Btn_A_stop_Click(object sender, EventArgs e)
+        public void Btn_A_stop_Click(object sender, EventArgs e)
         {
             if (mProc != null)
             {
@@ -741,7 +741,7 @@ namespace OCV
         private void 密码修改ToolStripMenuItem_Click(object sender, EventArgs e)
         {
             System.Windows.Forms.DialogResult result = MessageBox.Show("该功能未开发完毕", "权限管理", MessageBoxButtons.OK);
-            if (result==DialogResult.OK)
+            if (result == DialogResult.OK)
             {
                 return;
             }
@@ -917,6 +917,33 @@ namespace OCV
         {
             ManualRunMode manualRunMode = new ManualRunMode();
             manualRunMode.ShowDialog(this);
+        }
+
+        private void btnDBTest_Click(object sender, EventArgs e)
+        {
+            NgResult ng = new NgResult();
+            ClsGlobal.OCVType = 1;
+            ClsLogs.LogNet();
+            ClsGlobal.listETCELL = new List<ET_CELL>()
+            {
+                new ET_CELL(){Cell_ID="111",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} } ,
+                new ET_CELL(){Cell_ID="222",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="333",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="444",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="555",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="666",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="777",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="888",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="999",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="111111",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="111222",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="111333",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="111444",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="111555",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="1117788",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+                new ET_CELL(){Cell_ID="111123456",Pallet_ID="222222",Cell_Position=123,MODEL_NO="FD",NgState="ok",OCV_Now=98.555,PostiveTMP = 98.88,NegativeTMP = 99.99,Rev_OCV = 89.88,End_Write_Time = "2021",Test_NgResult=new NgResult(){ NgCode="555",NgState="555",NgDescribe="888"} },
+            };
+            ClsGlobal.mDBCOM_OCV_QT.InsertOCVACIRData(ClsGlobal.OCVType, ClsGlobal.listETCELL, 1);
         }
     }
 

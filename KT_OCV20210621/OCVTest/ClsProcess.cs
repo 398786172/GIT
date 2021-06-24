@@ -326,7 +326,7 @@ namespace OCV
                     {
                         Time1 = System.DateTime.Now;
                         mInfoSend("托盘已进入.");
-                        ClsGlobal.OCVTestContr.InitPara();
+                        ClsGlobal.OCVTestContr.InitPara();//表数据清空
                         mInfoSend("等待PLC发扫码请求信号...");
                         mStep = 2;
                     }
@@ -475,8 +475,8 @@ namespace OCV
                             //ClsGlobal.BattInfoReqFlag = -1;
 
                             mInfoSend("正在获取托盘[" + TrayCode + "] 当前的工序");
-                            //string nowstep = "";
-                            // ClsGlobal.OCVType= ClsGlobal.WCSCOM.Get_NowStepFormWCS(TrayCode,out  nowstep)
+                           // string nowstep = "";
+                           // ClsGlobal.OCVType = ClsGlobal.WCSCOM.Get_NowStepFormWCS(TrayCode, out nowstep);
                             int reTryTime = 3;
                             MesHelper mes = new MesHelper();
                             ClsGlobal.OCVType = mes.Get_PermissionFormMES(TrayCode, ClsGlobal.process_id);
@@ -589,7 +589,7 @@ namespace OCV
                 #endregion
                 case 8:
                     #region 获取工艺信息
-                    ClsGlobal.OCVTestContr.ShowCellid();
+                    ClsGlobal.OCVTestContr.ShowCellid();//页面展示CELLID
                     strMsn = "";
                     ClsGlobal.BattInfoReqFlag = -1;
                     strMsn = "正在获取托盘[" + TrayCode + "] 测试工艺";
