@@ -1,0 +1,489 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6E4170D8-0423-41A0-A723-34102CD1935D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OCV</RootNamespace>
+    <AssemblyName>KT_OCV</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\work\FX321\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+    <UseVSHostingProcess>false</UseVSHostingProcess>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E4CCA25246A6745547F28476140C597617D9DF27</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>OCV_DCR_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ClsDeviceComm, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\ClsDeviceComm.dll</HintPath>
+    </Reference>
+    <Reference Include="CSkin, Version=16.1.14.3, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\CSkin.dll</HintPath>
+    </Reference>
+    <Reference Include="DevComponents.DotNetBar2">
+      <HintPath>dll\DevComponents.DotNetBar2.dll</HintPath>
+    </Reference>
+    <Reference Include="MySql.Data, Version=8.0.20.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>dll\MySql.Data.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="Qwmind_TestReference, Version=1.0.7758.33854, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\Qwmind_TestReference.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>bin\Debug\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CellBindBLL.cs" />
+    <Compile Include="ChannelExpCountBLL.cs" />
+    <Compile Include="DBCOM_DevInfo\DAL\Channel_Info.cs" />
+    <Compile Include="DBCOM_DevInfo\DAL\SET_Info.cs" />
+    <Compile Include="DBCOM_DevInfo\DBCOM_DevInfo.cs" />
+    <Compile Include="DBCOM_DevInfo\Model\Channel_Info.cs" />
+    <Compile Include="DBCOM_WCS\StorageLoc.cs" />
+    <Compile Include="DBHelp\Helper.cs" />
+    <Compile Include="DevComm\ClsPLCContr\ClsPLCAddrCollection\ClsPLCAddr.cs" />
+    <Compile Include="DevComm\ClsPLCContr\ClsPLCModelCollection\ClsPLCModelMotor.cs" />
+    <Compile Include="EventLogBLL.cs" />
+    <Compile Include="MesHelper\MesHelper.cs" />
+    <Compile Include="Models\ChannelExpCount.cs" />
+    <Compile Include="Models\C_CellBindShow.cs" />
+    <Compile Include="Models\C_TrayCodeShow.cs" />
+    <Compile Include="Models\OCVLog.cs" />
+    <Compile Include="DBCOM_DevInfo\Model\SET_Info.cs" />
+    <Compile Include="DBCOM_OCV\DAL_OCVlocal\BatData.cs" />
+    <Compile Include="DBCOM_OCV\DBCOM_OCV\DBCOM_OCV.cs" />
+    <Compile Include="DBCOM_OCV\Model_OCV\BatInfo_Model.cs" />
+    <Compile Include="DBCOM_OCV\Model_OCV\ProcessInfo.cs" />
+    <Compile Include="DBHelp\ClsCommSqlliteDB.cs" />
+    <Compile Include="DBHelp\DBFHelp.cs" />
+    <Compile Include="DBHelp\DbHelperSQLite.cs" />
+    <Compile Include="DBHelp\MySqlHelp.cs" />
+    <Compile Include="DBHelp\MySqlHelper.cs" />
+    <Compile Include="DBHelp\SQLiteHelp.cs" />
+    <Compile Include="DBHelp\SQLiteHelper.cs" />
+    <Compile Include="DBHelp\SQLServerHelp.cs" />
+    <Compile Include="DevComm\ClsCodeScan\ClsCodeScan.cs" />
+    <Compile Include="DevComm\ClsInstrument\agvisa32.cs" />
+    <Compile Include="DevComm\ClsInstrument\ClsDMM_Ag344X.cs" />
+    <Compile Include="DevComm\ClsInstrument\ClsHIOKI356X.cs" />
+    <Compile Include="DevComm\ClsInstrument\ClsHIOKI4560.cs" />
+    <Compile Include="DevComm\ClsPLCContr\ClsPLCAddrCollection\ClsDevAddr.cs" />
+    <Compile Include="DevComm\ClsPLCContr\ClsPLCContr.cs" />
+    <Compile Include="DevComm\ClsPLCContr\ClsPLCValue.cs" />
+    <Compile Include="DevComm\ClsPLCContr\ClsPLCModelCollection\ClsPLCModel.cs" />
+    <Compile Include="DevComm\ClsPLCContr\PLCIOinfo\ClsPLCInfoModel.cs" />
+    <Compile Include="DevComm\ClsPLCContr\PLCIOinfo\ClsPLCInfoBLL.cs" />
+    <Compile Include="DevComm\ClsPLCContr\PLCIOinfo\ClsPLCInfoDAL.cs" />
+    <Compile Include="DevComm\ClsSWControl\ClsSWControl.cs" />
+    <Compile Include="DevComm\ClsSWControl\ClsSWDef.cs" />
+    <Compile Include="DevComm\ClsTempContr\ClsTempContrT2.cs" />
+    <Compile Include="Models\RetestData.cs" />
+    <Compile Include="Models\RetestTypeEnum.cs" />
+    <Compile Include="OCV_SYS\FrmExp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmExp.Designer.cs">
+      <DependentUpon>FrmExp.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmManualInput.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmManualInput.Designer.cs">
+      <DependentUpon>FrmManualInput.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmTopMessage.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmTopMessage.Designer.cs">
+      <DependentUpon>FrmTopMessage.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVINI\ClsIniParameter.cs" />
+    <Compile Include="OCVLogs\ClsLogs.cs" />
+    <Compile Include="OCVLogs\FormLogNetView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVLogs\FormLogNetView.designer.cs">
+      <DependentUpon>FormLogNetView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\AutoClearLogs.cs" />
+    <Compile Include="OCVTest\ClsGetConfigDetail.cs" />
+    <Compile Include="OCVTest\ClsTestAnalysis.cs" />
+    <Compile Include="OCVTest\FrmChannelInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmChannelInfo.designer.cs">
+      <DependentUpon>FrmChannelInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmCode.designer.cs">
+      <DependentUpon>FrmCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmManualAdjust.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmManualAdjust.designer.cs">
+      <DependentUpon>FrmManualAdjust.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmManualTest.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmManualTest.designer.cs">
+      <DependentUpon>FrmManualTest.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\OCVModel\ClsDataModel.cs" />
+    <Compile Include="OCVTest\OCVTestContr\ClsOCVTestData.cs" />
+    <Compile Include="OCVTest\OCVTestContr\ClsACIRTestData.cs" />
+    <Compile Include="OCV_SYS\FormIO.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FormIO.Designer.cs">
+      <DependentUpon>FormIO.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FormLoad.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FormLoad.Designer.cs">
+      <DependentUpon>FormLoad.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FormPopup.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FormPopup.designer.cs">
+      <DependentUpon>FormPopup.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FormSysSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FormSysSet.Designer.cs">
+      <DependentUpon>FormSysSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmManualUpload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmManualUpload.designer.cs">
+      <DependentUpon>FrmManualUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmNGexplain.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmNGexplain.Designer.cs">
+      <DependentUpon>FrmNGexplain.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmPorcessSet.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmPorcessSet.designer.cs">
+      <DependentUpon>FrmPorcessSet.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmAbout.designer.cs">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmSys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmSys.designer.cs">
+      <DependentUpon>FrmSys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\ET_CELL.cs" />
+    <Compile Include="OCV_SYS\FrmUserPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmUserPwd.Designer.cs">
+      <DependentUpon>FrmUserPwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\OCVTestContr\ClsContr.cs" />
+    <Compile Include="ClsGlobal.cs" />
+    <Compile Include="OCVTest\ClsProcess.cs" />
+    <Compile Include="DBCOM_WCS\ClsWCSCOM.cs" />
+    <Compile Include="OCV_SYS\UC_ManualMode.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\UC_ManualMode.Designer.cs">
+      <DependentUpon>UC_ManualMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Service References\ServiceOCV\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </Compile>
+    <Compile Include="Tools\FileHelper.cs" />
+    <EmbeddedResource Include="OCVLogs\FormLogNetView.resx">
+      <DependentUpon>FormLogNetView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmChannelInfo.resx">
+      <DependentUpon>FrmChannelInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmCode.resx">
+      <DependentUpon>FrmCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmManualAdjust.resx">
+      <DependentUpon>FrmManualAdjust.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmManualTest.resx">
+      <DependentUpon>FrmManualTest.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FormIO.resx">
+      <DependentUpon>FormIO.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FormLoad.resx">
+      <DependentUpon>FormLoad.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FormPopup.resx">
+      <DependentUpon>FormPopup.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FormSysSet.resx">
+      <DependentUpon>FormSysSet.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmExp.resx">
+      <DependentUpon>FrmExp.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmManualInput.resx">
+      <DependentUpon>FrmManualInput.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmManualUpload.resx">
+      <DependentUpon>FrmManualUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmNGexplain.resx">
+      <DependentUpon>FrmNGexplain.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmPorcessSet.resx">
+      <DependentUpon>FrmPorcessSet.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmAbout.resx">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmSys.resx">
+      <DependentUpon>FrmSys.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmTopMessage.resx">
+      <DependentUpon>FrmTopMessage.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmUserPwd.resx">
+      <DependentUpon>FrmUserPwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\UC_ManualMode.resx">
+      <DependentUpon>UC_ManualMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Service References\ServiceOCV\OCV.ServiceOCV.ConnectTestResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceOCV\OCV.ServiceOCV.getOCVTestResultByBarCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceOCV\OCV.ServiceOCV.getTechnologyInfoByBarCodeResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceOCV\OCV.ServiceOCV.RequestOutFeedResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceOCV\OCV.ServiceOCV.Result.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceOCV\OCV.ServiceOCV.TrayInfoOCV.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceOCV\OCV.ServiceOCV.UpdateOCVStatusResponse.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\ServiceOCV\OCVWebService.wsdl" />
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.4.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 4.0 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="2.ico" />
+    <None Include="Service References\ServiceOCV\Reference.svcmap">
+      <Generator>WCF Proxy Generator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+    <None Include="Service References\ServiceOCV\configuration.svcinfo" />
+    <None Include="Service References\ServiceOCV\configuration91.svcinfo" />
+    <None Include="Service References\ServiceOCV\OCVWebService.disco" />
+    <None Include="Resources\ControlsDesign.png" />
+    <None Include="Images\Ribbon_Save_16x16.png" />
+    <None Include="Images\Tasks_16x16.png" />
+    <None Include="Images\EditWorkflowTask.JPG" />
+    <None Include="Resources\162460175.jpg" />
+    <None Include="Resources\shenlantaikongbeijingdenglujiemian_5872294.jpg" />
+    <None Include="Resources\201003250855568881.jpg" />
+    <None Include="Resources\timg.jpg" />
+    <None Include="Images\Drafts_16x16.png" />
+    <None Include="Images\Inbox_16x16.png" />
+    <None Include="Images\Organizer_16x16.png" />
+    <None Include="Images\Calendar_16x16.png" />
+    <None Include="Images\Ribbon_Italic_16x16.png" />
+    <None Include="Images\Ribbon_Info_32x32.png" />
+    <None Include="Images\Ribbon_Info_16x16.png" />
+    <None Include="Images\Ribbon_Find_32x32.png" />
+    <None Include="Images\Ribbon_Close_32x32.png" />
+    <None Include="Images\tools.ico" />
+    <None Include="Images\options.ico" />
+    <None Include="Images\design.ico" />
+    <None Include="Images\hammer.ico" />
+    <None Include="Images\doc excel.ico" />
+    <None Include="Images\help-2.ico" />
+    <None Include="Images\Find32.ico" />
+    <None Include="Images\tips.ico" />
+    <None Include="Resources\Ribbon_AlignRight_16x16.png" />
+    <None Include="Resources\DistributionListAddNewMember.JPG" />
+    <None Include="Resources\DistributionListSelectMembers.JPG" />
+    <None Include="Resources\Inbox_16x16.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadataStorage Include="Service References\ServiceOCV\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\UserSetting\UserSetting.csproj">
+      <Project>{c3059d0b-cc7f-43d8-8c5f-42c70fa05b49}</Project>
+      <Name>UserSetting</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>
