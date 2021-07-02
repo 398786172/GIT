@@ -347,7 +347,7 @@ namespace OCV
                             lblPosCylDown.BackColor = Color.LightGray;
                         }
                         //Probe 出/回
-                        if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose == 1)
+                        if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose1 == 1)
                         {
                             lblProbeClose.BackColor = Color.LightGreen;
                         }
@@ -356,7 +356,7 @@ namespace OCV
                             lblProbeClose.BackColor = Color.LightGray;
                         }
 
-                        if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen == 1)
+                        if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen1 == 1)
                         {
                             lblProbeOpen.BackColor = Color.LightGreen;
                         }

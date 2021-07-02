@@ -289,10 +289,57 @@ namespace OCV
                 #endregion
 
                 #region 切换控制箱
+                //#region 切换控制箱
+                //try
+                //{
+                //    this.SWControl = new ClsSWControl[ClsGlobal.Switch_Count];
+                //    try
+                //    {
+                //        //切换控制初始化
+                //        try
+                //        {
+                //            SPort = new SerialPort(ClsGlobal.Switch_Port[0], 115200, Parity.None, 8, StopBits.One);
+                //            //SwitchCom.ReadTimeout = 500;    //设置超时读取时间 
+                //            //SwitchCom.DtrEnable = true;
+                //            SPort.Close();
+                //            if (SPort.IsOpen == false)
+                //            {
+                //                SPort.Open();
+                //            }
+                //        }
+                //        catch (Exception ex)
+                //        {
+                //            throw new Exception("万用表串口初始化失败");
 
+                //        }
+                //    }
+                //    catch (Exception ex)
+                //    {
+                //        throw new Exception("打开通道切换系统串口失败", ex);
+                //    }
+                //    for (int i = 0; i < ClsGlobal.Switch_Count; i++)
+                //    {
+                //        if (ClsGlobal.SwitchVersion[i] == 1)
+                //        {
+                //            this.SWControl[i] = new ClsSWControl(SPort, 1, 1);
+                //        }
+                //        else
+                //        {
+                //            this.SWControl[i] = new ClsSWControl(SPort, (byte)(i + 1), 2);
+                //        }
+                //        //切换板电池点位对应关系
+                //        //ClsGlobal.mSwitchCH = ClsGlobal.GetSwitchChannel(ClsGlobal.mSwitchPath);
+                //    }
+                //}
+                //catch (Exception ex)
+                //{
+                //    InfoHandleA(ex.Message);
+                //}
+                //#endregion
                 try
                 {
-                    this.SWControl = new ClsSWControl(ClsGlobal.Switch_Port, 1, 1);
+                    this.SWControl = new ClsSWControl(new SerialPort(ClsGlobal.Switch_Port[0],115200, Parity.None, 8, StopBits.One), 1);
+                    // this.SWControl = new ClsSWControl(ClsGlobal.Switch_Port[0], 1, 1);
                     //切换板电池点位对应关系
                     ClsGlobal.mSwitchCH = ClsGlobal.GetSwitchChannel(ClsGlobal.mSwitchPath);
                 }
@@ -331,7 +378,7 @@ namespace OCV
                 }
 
                 //温控板 暂时屏蔽  自动时请打开
-                //ClsGlobal.TempContr = new ClsTempContrT2(ClsGlobal.TempCom, 1);
+                ClsGlobal.TempContr = new ClsTempContrT2(ClsGlobal.TempCom, 1);
 
                 #endregion
 
@@ -1208,9 +1255,8 @@ namespace OCV
                 if (rbOCV3.Checked)
                 {
                     ClsGlobal.OCVType = 3;
-                    if (chbNShellVol.Checked && chbPShellVol.Checked)
-                        ClsGlobal.TestType = 3;
-                    else
+                    if (chbNShellVol.Checked )//&& chbPShellVol.Checked)
+                        //ClsGlobal.TestType = 3;
                         ClsGlobal.TestType = 2;
                     if (mProc == null)
                     {
@@ -1252,12 +1298,12 @@ namespace OCV
                 chbVol.Checked = true;
                 chbACIR.Checked = false;
                 chbNShellVol.Checked = false;
-                chbPShellVol.Checked = false;
+                //chbPShellVol.Checked = false;
 
                 chbVol.Enabled = false;
                 chbACIR.Enabled = false;
                 chbNShellVol.Enabled = false;
-                chbPShellVol.Enabled = false;
+                //chbPShellVol.Enabled = false;
             }
         }
 
@@ -1269,12 +1315,12 @@ namespace OCV
                 chbVol.Checked = true;
                 chbACIR.Checked = true;
                 chbNShellVol.Checked = true;
-                chbPShellVol.Checked = false;
+                //chbPShellVol.Checked = false;
 
                 chbVol.Enabled = false;
                 chbACIR.Enabled = false;
                 chbNShellVol.Enabled = false;
-                chbPShellVol.Enabled = true;
+                //chbPShellVol.Enabled = true;
             }
         }
 

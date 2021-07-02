@@ -181,6 +181,27 @@ namespace OCV.INI
                         Dictionary<string, object> dicControlObject = new Dictionary<string, object>();
                         if (strJson != "")
                         {
+                            dicControlObject = JsonConvert.DeserializeObject<Dictionary<string, object>>(strJson);
+                            ClsGlobal.Switch_Count = int.Parse(dicControlObject["ComCount"].ToString());
+                            ClsGlobal.Switch_Port = new string[ClsGlobal.Switch_Count];
+                            ClsGlobal.SwitchVersionStr = new string[ClsGlobal.Switch_Count];
+                            ClsGlobal.SwitchChNo = new string[ClsGlobal.Switch_Count];
+                            ClsGlobal.SwitchVersion = new int[ClsGlobal.Switch_Count];
+                            for (int j = 0; j < ClsGlobal.Switch_Count; j++)
+                            {
+
+                                ClsGlobal.Switch_Port[j] = dicControlObject["Port" + j].ToString();
+                                ClsGlobal.SwitchVersionStr[j] = dicControlObject["SwitchVersion" + j].ToString();
+                                if (ClsGlobal.SwitchVersionStr[j] == "新版本")
+                                {
+                                    ClsGlobal.SwitchVersion[j] = 2;
+                                }
+                                else
+                                {
+                                    ClsGlobal.SwitchVersion[j] = 1;
+                                }
+                                ClsGlobal.SwitchChNo[j] = dicControlObject["TestChNo" + j].ToString(); ;
+                            }
                             //dicControlObject = JsonConvert.DeserializeObject<Dictionary<string, object>>(strJson);
                             //ClsGlobal.Switch_Count = int.Parse(dicControlObject["ComCount"].ToString());
                             //ClsGlobal.Switch_Port = new string[1];

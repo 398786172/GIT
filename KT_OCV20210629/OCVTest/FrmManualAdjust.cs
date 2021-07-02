@@ -501,7 +501,8 @@ namespace OCV
             try
             {
                 Num = (int)theBtn.Tag + 1;
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, Num);   //正极对负极
+                ClsGlobal.OCVTestContr.SWControl.ChanndlVoltShellSwitchContr(1, Num);
+                // ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, Num);   //正极对负极
                 Thread.Sleep(50);
                 ClsGlobal.OCVTestContr.DMM_Ag344X.ReadVolt(out theVoltSample);
 
@@ -623,7 +624,8 @@ namespace OCV
               
                 //切换
                 Num = (int)theBtn.Tag + 1;
-                ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, Num);
+                // ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
                 //内阻采样
                 Thread.Sleep(100);
                 ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
@@ -673,7 +675,8 @@ namespace OCV
                     lblNote_IRAdjust.Text = ("[通道" + (Num) + "]:\r\n" + "请先填入正确的内阻基准值，再进行校准");
                     return;
                 }
-                ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, Num);
+                //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
              
                 Thread.Sleep(100);
                 ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
@@ -825,7 +828,8 @@ namespace OCV
                     lblNote_IRMetering.Text = ("请先填入正确的计量误差值，再进行计量");
                     return;
                 }
-                ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, Num);
+                //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
 
                 Thread.Sleep(100);
                 ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果

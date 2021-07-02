@@ -94,6 +94,7 @@
       <HintPath>dll\Qwmind_TestReference.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Data.SQLite">
       <HintPath>bin\Debug\System.Data.SQLite.dll</HintPath>
@@ -145,8 +146,6 @@
     <Compile Include="DevComm\ClsPLCContr\PLCIOinfo\ClsPLCInfoModel.cs" />
     <Compile Include="DevComm\ClsPLCContr\PLCIOinfo\ClsPLCInfoBLL.cs" />
     <Compile Include="DevComm\ClsPLCContr\PLCIOinfo\ClsPLCInfoDAL.cs" />
-    <Compile Include="DevComm\ClsSWControl\ClsSWControl.cs" />
-    <Compile Include="DevComm\ClsSWControl\ClsSWDef.cs" />
     <Compile Include="DevComm\ClsTempContr\ClsTempContrT2.cs" />
     <Compile Include="MESHelper\Data.cs" />
     <Compile Include="MESHelper\MesHelper.cs" />
@@ -276,6 +275,10 @@
     <Compile Include="DBCOM_WCS\ClsWCSCOM.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SocketHelper\SocketClientHelper.cs" />
+    <Compile Include="DevComm\ClsSWControl\ClsSWControl.cs" />
+    <Compile Include="DevComm\ClsSWControl\ClsSWDef.cs" />
+    <Compile Include="DevComm\ClsSWControl\CustomException.cs" />
     <EmbeddedResource Include="OCVLogs\FormLogNetView.resx">
       <DependentUpon>FormLogNetView.cs</DependentUpon>
     </EmbeddedResource>
@@ -422,6 +425,7 @@
       <Name>UserSetting</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <ProjectExtensions>
     <VisualStudio>

@@ -95,7 +95,7 @@ namespace OCV
         public static int TrayTypeFlag=1;               //托盘类型标志
         public static int Lastboard;                    //切换板个数
         public static bool mAlarmFlag = false;          //PLC是否报警
-        public static int CHCount = 19;                 //每个切换箱得通道数
+        public static int CHCount = 16;                 //每个切换箱的通道数
 
         //public static int StartA;                        //A单元开始的位置
         //public static int StartB;                        //B单元开始的位置
@@ -391,11 +391,11 @@ namespace OCV
         
 
         //切换箱控制
-        public static string  Switch_Port;       //Port口
-        public static int SwitchVersion;    //切换箱版本  1宝龙版本  2 C42最新版
-        public static string SwitchVersionStr;    //切换箱版本  1宝龙版本  2 C42最新版
+        public static string[]  Switch_Port;       //Port口
+        public static int[] SwitchVersion;    //切换箱版本  1宝龙版本  2 C42最新版
+        public static string[] SwitchVersionStr;    //切换箱版本  1宝龙版本  2 C42最新版
         public static int Switch_Count;       //切换系统数量
-        public static string SwitchChNo;
+        public static string[] SwitchChNo;
 
         public static int ACIRAddr = 0;        //ACIR切换基板有关
         public static int OCVAddr = 0;         //OCV切换基板有关

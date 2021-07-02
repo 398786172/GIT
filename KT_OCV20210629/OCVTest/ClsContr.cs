@@ -145,7 +145,7 @@ namespace OCV
         {
             ManualTest = MuTest;
             ThreadTestAction = new Thread(new ParameterizedThreadStart(ManualTestVolt));
-            ThreadTestAction.Start(1);
+            ThreadTestAction.Start(2);
         }
 
         ////手动电压清零
@@ -204,7 +204,7 @@ namespace OCV
                             mStep_TestReq = 2;
                             break;
                         case 2:
-                            if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen == 1 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose == 0)
+                            if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen1 == 1 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose1 == 0)
                             {
                                 if (pos >= 8)
                                 {
@@ -249,7 +249,7 @@ namespace OCV
                             mStep_TestReq = 5;
                             break;
                         case 5:
-                            if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen == 0 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose == 1)
+                            if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen1 == 0 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose1 == 1)
                             {
                                 mInfoSend("开始测试位置：" + pos + "...");
                                 mStep_TestReq = 6;
@@ -264,7 +264,7 @@ namespace OCV
                             }
                             break;
                         case 6:
-                            switch (ClsGlobal.TestType)   //电压:0   电压壳压:1   电压 壳压 内阻 2
+                            switch (ClsGlobal.TestType)   //电压+温度:0   电压+壳压+温度:1   电压+壳压+内阻++温度:2
                             {
                                 case 0:
                                     #region 测正负极 
@@ -307,49 +307,49 @@ namespace OCV
                                     this.NGStateOutput();
                                     this.CheckSVNG();
                                     break;
-                                case 3:
-                                    #region 测正负极
-                                    this.TestVoltForProc(pos);
-                                    #endregion
-                                    #region 测壳体电压
-                                    this.TestShellVoltForProc(pos);
-                                    #endregion
-                                    #region 测内阻
-                                    this.TestACIRForProc(pos);
-                                    #endregion
-                                    #region 测试温度
-                                    TestTemp(pos);
-                                    #endregion
-                                    this.CalVoltDrop();
-                                    this.NGStateOutput();
-                                    this.CheckSVNG();
-                                    this.CalDROPRange();
-                                    break;
+                                //case 3:
+                                //    #region 测正负极
+                                //    this.TestVoltForProc(pos);
+                                //    #endregion
+                                //    #region 测壳体电压
+                                //    this.TestShellVoltForProc(pos);
+                                //    #endregion
+                                //    #region 测内阻
+                                //    this.TestACIRForProc(pos);
+                                //    #endregion
+                                //    #region 测试温度
+                                //    TestTemp(pos);
+                                //    #endregion
+                                //    this.CalVoltDrop();
+                                //    this.NGStateOutput();
+                                //    this.CheckSVNG();
+                                //    this.CalDROPRange();
+                                //    break;
 
-                                    //#region 测正负极 
-                                    //this.TestVoltForProc(pos);
-                                    //#endregion
+                                //#region 测正负极 
+                                //this.TestVoltForProc(pos);
+                                //#endregion
 
-                                    //#region 测壳体电压
-                                    ////TestShellVoltForProc_Postive();
-                                    //this.TestShellVoltForProc(pos);
-                                    //#endregion
+                                //#region 测壳体电压
+                                ////TestShellVoltForProc_Postive();
+                                //this.TestShellVoltForProc(pos);
+                                //#endregion
 
-                                    //#region 测内阻 
-                                    //this.TestACIRForProc(pos);
-                                    //#endregion
-                                    //#region 测试温度
-                                    //TestTemp(pos);
-                                    //this.CalVoltDrop();
-                                    //this.NGStateOutput();
-                                    //this.CheckSVNG();
-                                    ////this.CheckSVNG_Postive();
-                                    //this.CalDROPRange();
+                                //#region 测内阻 
+                                //this.TestACIRForProc(pos);
+                                //#endregion
+                                //#region 测试温度
+                                //TestTemp(pos);
+                                //this.CalVoltDrop();
+                                //this.NGStateOutput();
+                                //this.CheckSVNG();
+                                ////this.CheckSVNG_Postive();
+                                //this.CalDROPRange();
                                 //if (ClsGlobal.IS_Enable_ACIRRange == "Y")
-                                    //{
-                                    //    this.CalACIRRange();
-                                    //}
-                                    //break;
+                                //{
+                                //    this.CalACIRRange();
+                                //}
+                                //break;
                                 default:
                                     break;
                             }
@@ -558,10 +558,12 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
+                        this.SWControl.ChanndlVoltShellSwitchContr(1, 0);//结束,通道全部关断
+                        //this.SWControl.ChannelVoltSwitch(1, 0); //结束,通道全部关断
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltSwitch(1, i);  //单通道测电压
+                    this.SWControl.ChanndlVoltShellSwitchContr(1, i); //单通道测电压
+                    //this.SWControl.ChannelVoltSwitch(1, i);  //单通道测电压
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
                     int index = 2 * (pos - 1) + i;
@@ -585,7 +587,8 @@ namespace OCV
                     }
                     #endregion
                 }
-                this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
+                this.SWControl.ChanndlVoltShellSwitchContr(1, 0);//结束,通道全部关断
+                //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
             }
             catch (Exception ex)
             {
@@ -607,10 +610,10 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltIRSwitchContr(2, 0, 0);      //结束,通道全部关断   
+                        this.SWControl.ChannelVoltIRSwitchContr(1, 0, 0);      //结束,通道全部关断   //
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltIRSwitchContr(2, 1, i);  //单通道测内阻
+                    this.SWControl.ChannelVoltIRSwitchContr(1, 2, i);  //单通道测内阻
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     this.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
 
@@ -640,7 +643,7 @@ namespace OCV
                     #endregion
                 }
 
-                this.SWControl.ChannelVoltIRSwitchContr(2, 0, 0);      //结束,通道全部关断   
+                this.SWControl.ChannelVoltIRSwitchContr(1, 0, 0);      //结束,通道全部关断   
             }
             catch (Exception ex)
             {
@@ -661,10 +664,11 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
+                        this.SWControl.ChanndlVoltShellSwitchContr(2, 0);      //结束,通道全部关断   //this.SWControl.ChannelVoltSwitch(2, 0); 
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltSwitch(2, i);  //单通道测电压
+                    this.SWControl.ChanndlVoltShellSwitchContr(2, i);  //单通道测电压
+                    //this.SWControl.ChannelVoltSwitch(2, 0);
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
                     int index = 2 * (pos - 1) + i;
@@ -688,7 +692,8 @@ namespace OCV
                     }
                     #endregion
                 }
-                this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
+                this.SWControl.ChanndlVoltShellSwitchContr(2, 0);      //结束,通道全部关断   
+                //this.SWControl.ChannelVoltSwitch(2, 0);
             }
             catch (Exception ex)
             {
@@ -724,6 +729,7 @@ namespace OCV
                         mForm.Invoke(new EventHandler(delegate
                         {
                             mForm.dgvTest.Rows[i].Cells["Col_TEMP_P"].Value = ClsGlobal.listETCELL[ActualNum].PostiveTMP;
+                            //mForm.dgvTest.Rows[i].Cells["Col_TEMP_N"].Value = ClsGlobal.listETCELL[ActualNum].NegativeTMP;
                             //mForm.dgvTest.Rows[i].Cells["Col_TEMP_N"].Value = ClsGlobal.listETCELL[i].NegativeTMP;
                         }
                         ));
@@ -1400,7 +1406,7 @@ namespace OCV
                             mStep_TestReq = 2;
                             break;
                         case 2:
-                            if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen == 1 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose == 0)
+                            if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen1 == 1 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose1 == 0)
                             {
                                 if (pos >= 8)
                                 {
@@ -1445,7 +1451,7 @@ namespace OCV
                             mStep_TestReq = 5;
                             break;
                         case 5:
-                            if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen == 0 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose == 1)
+                            if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen1 == 0 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose1 == 1)
                             {
                                 ClsGlobal.ManualMessInfo = "开始测试位置：" + pos + "...";
                                 mStep_TestReq = 6;
@@ -1504,6 +1510,7 @@ namespace OCV
                     }
                 }
                 mManualTestFinish = true;
+                MessageBox.Show("多通道手动正负极电压测试结束");
             }
             catch (Exception ex)
             {
@@ -1521,18 +1528,20 @@ namespace OCV
                 this.ClearDgv(1);
                 mManualTestFinish = false;
                 mManualTestStop = false;
-                SWControl.ChannelVoltSwitch(1, 0);        //正极对负极
-
+                //SWControl.ChannelVoltSwitch(1, 0);        //正极对负极
+                SWControl.ChanndlVoltShellSwitchContr(1, 0);//正极对负极
                 double theDMMVolt = 0;
                 int iSW;
                 for (int i = 1; i <= 2; i++)
                 {
                     if (mManualTestStop == true)
                     {
-                        this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
+                        SWControl.ChanndlVoltShellSwitchContr(1, 0);//结束,通道全部关断   
+                        //  this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltSwitch(1, i);  //单通道测电压
+                    SWControl.ChanndlVoltShellSwitchContr(1, i);
+                    //this.SWControl.ChannelVoltSwitch(1, i);  //单通道测电压
 
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
@@ -1546,7 +1555,8 @@ namespace OCV
                         }));
                     }
                 }
-                this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
+                SWControl.ChanndlVoltShellSwitchContr(1, 0);
+                //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
 
                 mManualTestFinish = true;
             }
@@ -1564,7 +1574,8 @@ namespace OCV
                 this.ClearDgv(2);
                 mManualTestFinish = false;
                 mManualTestStop = false;
-                SWControl.ChannelVoltSwitch(2, 0);        //正极对负极
+                SWControl.ChanndlVoltShellSwitchContr(2, 0);
+                //SWControl.ChannelVoltSwitch(2, 0);        //正极对负极
 
                 double theDMMVolt = 0;
                 int iSW;
@@ -1572,10 +1583,12 @@ namespace OCV
                 {
                     if (mManualTestStop == true)
                     {
-                        this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
+                        SWControl.ChanndlVoltShellSwitchContr(2, 0);
+                        //this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltSwitch(2, i);  //单通道测电压
+                    SWControl.ChanndlVoltShellSwitchContr(2, i);
+                    //this.SWControl.ChannelVoltSwitch(2, i);  //单通道测电压
 
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
@@ -1589,9 +1602,11 @@ namespace OCV
                         }));
                     }
                 }
-                this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
+                SWControl.ChanndlVoltShellSwitchContr(2, 0);
+                //this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
 
                 mManualTestFinish = true;
+                MessageBox.Show("多通道手动负极对壳体电压测试结束");
             }
             catch (Exception ex)
             {
@@ -1615,10 +1630,10 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltIRSwitchContr(2, 0, 0);      //结束,通道全部关断   
+                        this.SWControl.ChannelVoltIRSwitchContr(1, 0, 0);      //结束,通道全部关断   
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltIRSwitchContr(2, 1, i);  //单通道测内阻
+                    this.SWControl.ChannelVoltIRSwitchContr(1, 2, i);  //单通道测内阻
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     this.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
                     int index = 2 * (pos - 1) + i;
@@ -1633,8 +1648,9 @@ namespace OCV
                     }
                 }
 
-                this.SWControl.ChannelVoltIRSwitchContr(2, 0, 0);      //结束,通道全部关断   
+                this.SWControl.ChannelVoltIRSwitchContr(1, 0, 0);      //结束,通道全部关断   
                 mManualTestFinish = true;
+                MessageBox.Show("多通道手动内阻测试结束");
             }
             catch (Exception ex)
             {

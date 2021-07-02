@@ -112,13 +112,13 @@ namespace OCV
                 cmbCOM_RT.Items.Add("COM" + i);
                 cmbScan_Port.Items.Add("COM" + i);
             }
-         
+
             cmbCOM_Tmp.Text = ClsGlobal.Temp_Port;
             cmbCOM_DMT.Text = ClsGlobal.DMT_Port;
             cmbCOM_RT.Text = ClsGlobal.RT_Port;
             cmbScan_Port.Text = ClsGlobal.Scan_Port;
 
-            if (ClsGlobal.DMTComMode  == 1)
+            if (ClsGlobal.DMTComMode == 1)
             {
                 rdoSerialCom.Checked = true;
                 cmbCOM_DMT.Enabled = true;
@@ -130,9 +130,9 @@ namespace OCV
             }
             //USB地址
             txtUSBAddr.Text = ClsGlobal.DMT_USBAddr;
-            txtPLCIP.Text= ClsGlobal.PLCAddr ;
+            txtPLCIP.Text = ClsGlobal.PLCAddr;
             txtPLCPort.Text = ClsGlobal.PLCPort.ToString();
-           
+
             this.cmb_SwitchCount.Text = ClsGlobal.Switch_Count.ToString();
             for (int i = 0; i < ClsGlobal.Switch_Count; i++)
             {
@@ -173,7 +173,7 @@ namespace OCV
             {
                 rdoTray1_38CH.Checked = false;
             }
-            if(ClsGlobal.OCV_RunMode == eRunMode.NormalTest)
+            if (ClsGlobal.OCV_RunMode == eRunMode.NormalTest)
             {
                 rb_Inte.Checked = (int)eRunMode.NormalTest == 1;
             }
@@ -186,7 +186,7 @@ namespace OCV
                 rb_GoAhead.Checked = (int)eRunMode.GoAhead == 2;
             }
 
-            if (ClsGlobal.EN_TestTemp==0)
+            if (ClsGlobal.EN_TestTemp == 0)
             {
                 chkNoTemp.Checked = true;
             }
@@ -204,7 +204,7 @@ namespace OCV
             {
                 cmbCellCodeLen.Items.Add(ClsGlobal.lstBatSet[i].P_CellCodeLength);
             }
-            if (cmbCellCodeLen.Items.Count>0)
+            if (cmbCellCodeLen.Items.Count > 0)
             {
                 cmbCellCodeLen.SelectedIndex = 0;
             }
@@ -213,8 +213,8 @@ namespace OCV
             txt_JT.Text = ClsGlobal.JT_NO;
             txtOPEATION_ID.Text = ClsGlobal.OPEATION_ID;
             tb_MESpcid.Text = ClsGlobal.PCID;
-            tbTrayCode.Text=ClsGlobal.TrayCodeRegEx;
-            tbCellCode.Text=ClsGlobal.CellCodeRegEx;
+            tbTrayCode.Text = ClsGlobal.TrayCodeRegEx;
+            tbCellCode.Text = ClsGlobal.CellCodeRegEx;
             timer_SysSet.Interval = 500;
             timer_SysSet.Start();
             Loadflag = true;
@@ -227,7 +227,7 @@ namespace OCV
             {
                 return;
             }
-            int Value=0;
+            int Value = 0;
             if (int.TryParse(cmbOCVNum.Text, out Value))
             {
                 SQLiteDataReader reader = null;
@@ -235,8 +235,8 @@ namespace OCV
                 int count = reader.RecordsAffected;
                 if (count > 0)
                 {
-                   // ClsGlobal.OCVType = Value;
-                    ClsLogs.INIlogNet.WriteInfo("参数设置", "设置OCV测试工序：OCV" + Value  +"成功");
+                    // ClsGlobal.OCVType = Value;
+                    ClsLogs.INIlogNet.WriteInfo("参数设置", "设置OCV测试工序：OCV" + Value + "成功");
                     //INIAPI.INIWriteValue(ClsGlobal.SZBPath, "OPEATION_ID", "opeation_id", "OCV" );
                     ClsGlobal.SetParflag = true;
                     MessageBox.Show("设置成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -262,7 +262,7 @@ namespace OCV
                 return;
             }
             int Value = 0;
-            if (rdoPNVolt.Checked==true)
+            if (rdoPNVolt.Checked == true)
             {
                 Value = 0;
             }
@@ -270,7 +270,7 @@ namespace OCV
             {
                 Value = 1;
             }
-            else 
+            else
             {
                 Value = 2;
             }
@@ -279,7 +279,7 @@ namespace OCV
             int count = reader.RecordsAffected;
             if (count > 0)
             {
-               // ClsGlobal.TestType = Value;
+                // ClsGlobal.TestType = Value;
                 ClsLogs.INIlogNet.WriteInfo("参数设置", "设置测量类型:" + Value + "成功");
                 ClsGlobal.SetParflag = true;
                 MessageBox.Show("设置成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -290,7 +290,7 @@ namespace OCV
                 MessageBox.Show("设置失败！", "错误", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-         
+
         private void button2_Click_1(object sender, EventArgs e)
         {
 
@@ -301,7 +301,7 @@ namespace OCV
             }
             SQLiteDataReader reader = null;
             int count = 0;
-         
+
             if (txtPLCIP.Text != "")
             {
                 reader = ClsGlobal.sql.UpdateValues("System", new string[] { "Value" }, new string[] { txtPLCIP.Text }, "Parameter", "PLC_PIAddr", "=");
@@ -317,7 +317,7 @@ namespace OCV
                     ClsLogs.INIlogNet.WriteFatal("通信设置", "PLCip设置:" + txtPLCIP.Text + "失败");
                     MessageBox.Show("PLCip设置异常", "异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
-               }
+                }
 
             }
             else
@@ -328,7 +328,7 @@ namespace OCV
             }
 
             int Value = 0;
-            if (int.TryParse(txtPLCPort.Text,out Value))
+            if (int.TryParse(txtPLCPort.Text, out Value))
             {
                 reader = ClsGlobal.sql.UpdateValues("System", new string[] { "Value" }, new string[] { txtPLCPort.Text }, "Parameter", "PLC_Port", "=");
                 count = reader.RecordsAffected;
@@ -403,7 +403,7 @@ namespace OCV
             int count = reader.RecordsAffected;
             if (count > 0)
             {
-                
+
                 //TrayBattType托盘类型 
                 if (rdoTray1_38CH.Checked == true)
                 {
@@ -444,13 +444,13 @@ namespace OCV
             {
                 Value = 2;
             }
-            
+
             SQLiteDataReader reader = null;
             reader = ClsGlobal.sql.UpdateValues("TestSeting", new string[] { "Value" }, new string[] { Value.ToString() }, "SetType", "Run_Mode", "=");
             int count = reader.RecordsAffected;
             if (count > 0)
             {
-               // ClsGlobal.OCV_RunMode = (eRunMode)int.Parse(Value.ToString());
+                // ClsGlobal.OCV_RunMode = (eRunMode)int.Parse(Value.ToString());
                 ClsLogs.INIlogNet.WriteInfo("系统参数设置", "运行模式设置:" + Value + "成功");
                 ClsGlobal.SetParflag = true;
                 MessageBox.Show("设置成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -463,7 +463,7 @@ namespace OCV
             }
 
 
-           
+
         }
         private void button7_Click(object sender, EventArgs e)
         {
@@ -531,8 +531,8 @@ namespace OCV
                 ClsLogs.INIlogNet.WriteFatal("系统参数设置", "托盘条码长度数据类型异常");
                 MessageBox.Show("托盘条码长度数据类型异常！", "异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
-                
-            } 
+
+            }
         }
         private void button21_Click(object sender, EventArgs e)
         {
@@ -542,10 +542,10 @@ namespace OCV
                 return;
             }
             SQLiteDataReader reader = null;
-            int Value,Value1,Value2;
-            if (int.TryParse(cmbCellCodeLen.Text, out Value)&& int.TryParse(txtKeyStart.Text, out Value1)&& int.TryParse(txtModelLength.Text, out Value2))
+            int Value, Value1, Value2;
+            if (int.TryParse(cmbCellCodeLen.Text, out Value) && int.TryParse(txtKeyStart.Text, out Value1) && int.TryParse(txtModelLength.Text, out Value2))
             {
-                ClsGlobal.sql.InsertValues("batSeting", new string[] { Value.ToString(), Value1.ToString(),Value2.ToString() });
+                ClsGlobal.sql.InsertValues("batSeting", new string[] { Value.ToString(), Value1.ToString(), Value2.ToString() });
 
                 reader = ClsGlobal.sql.UpdateValues("batSeting", new string[] { "KeyStart", "ModelLenth" }, new string[] { Value1.ToString(), Value2.ToString() }, "CellCodeLen", Value.ToString(), "=");
                 int count = reader.RecordsAffected;
@@ -564,7 +564,7 @@ namespace OCV
                     ClsLogs.INIlogNet.WriteInfo("系统参数设置", "电池型号起始位置设置:" + Value1 + "失败");
                     ClsLogs.INIlogNet.WriteInfo("系统参数设置", "电池型号长度设置:" + Value1 + "失败");
                     MessageBox.Show("托盘条码设置异常", "异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    
+
                 }
             }
             else
@@ -578,14 +578,14 @@ namespace OCV
 
         private void btnChannelCountSet_Click(object sender, EventArgs e)
         {
-            
+
             frmUserPwd frmPwd = new frmUserPwd(PwdType.ADVCMD, "系统参数设置", "岗位条码设置");
             if (frmPwd.ShowDialog() != DialogResult.OK)
             {
                 return;
             }
             SQLiteDataReader reader = null;
-            if (texResrce.Text !="")
+            if (texResrce.Text != "")
             {
                 reader = ClsGlobal.sql.UpdateValues("TestSeting", new string[] { "Value" }, new string[] { texResrce.Text.Trim() }, "SetType", "DeviceCode", "=");
                 int count = reader.RecordsAffected;
@@ -615,7 +615,7 @@ namespace OCV
 
         private void timer_SysSet_Tick(object sender, EventArgs e)
         {
-            if (ClsGlobal.IsAWorking == true )
+            if (ClsGlobal.IsAWorking == true)
             {
                 this.tabSysSet.Enabled = false;
             }
@@ -703,7 +703,7 @@ namespace OCV
             {
                 MessageBox.Show("设置过的参数重启生效", "提示", MessageBoxButtons.OK);
             }
-          
+
         }
 
         private void button5_Click(object sender, EventArgs e)
@@ -848,7 +848,7 @@ namespace OCV
                 count = reader.RecordsAffected;
                 if (count > 0)
                 {
-                    //ClsGlobal.DMT_USBAddr = txtUSBAddr.Text;
+                   // ClsGlobal.DMT_USBAddr = txtUSBAddr.Text;
                     ClsLogs.INIlogNet.WriteInfo("通信设置", "万用表端口设置:" + txtUSBAddr.Text + "成功");
                     ClsGlobal.SetParflag = true;
                 }
@@ -970,8 +970,8 @@ namespace OCV
                 MessageBox.Show("扫码器端口设置不能为空！", "异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
-            
+
+
             MessageBox.Show("设置成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1042,7 +1042,7 @@ namespace OCV
                 MessageBox.Show("切换系统参数设置不能为空！", "异常", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-         
+
             MessageBox.Show("设置成功!", "提示", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
@@ -1140,17 +1140,17 @@ namespace OCV
         private void cmbCellCodeLen_SelectedIndexChanged(object sender, EventArgs e)
         {
             string theSel = cmbCellCodeLen.SelectedItem.ToString();
-          
+
             if (theSel == "" || theSel == null)
             {
-               
+
                 return;
             }
             try
             {
                 //读取电池条码参数
                 DataSet BatdDs = ClsGlobal.sql.ConvertDataReaderToDataSet("batSeting");
-                int Value=0;
+                int Value = 0;
                 for (int i = 0; i < BatdDs.Tables[0].Rows.Count; i++)
                 {
                     if (int.TryParse(BatdDs.Tables[0].Rows[i][0].ToString(), out Value))
@@ -1174,7 +1174,7 @@ namespace OCV
             {
 
             }
-          
+
         }
 
         private void cmbCellCodeLen_TextChanged(object sender, EventArgs e)
@@ -1359,7 +1359,7 @@ namespace OCV
             if (count > 0)
             {
                 ClsGlobal.SetParflag = true;
-                ClsLogs.INIlogNet.WriteInfo("系统参数设置", "条码规则设置:" + trayCodeRegEx.Trim() + "成功"); 
+                ClsLogs.INIlogNet.WriteInfo("系统参数设置", "条码规则设置:" + trayCodeRegEx.Trim() + "成功");
             }
             else
             {
@@ -1373,7 +1373,7 @@ namespace OCV
             {
 
                 ClsGlobal.SetParflag = true;
-                ClsLogs.INIlogNet.WriteInfo("系统参数设置", "条码规则设置:" + cellCodeRegEx.Trim() + "成功");       
+                ClsLogs.INIlogNet.WriteInfo("系统参数设置", "条码规则设置:" + cellCodeRegEx.Trim() + "成功");
             }
             else
             {
@@ -1384,7 +1384,7 @@ namespace OCV
             MessageBox.Show("条码规则设置成功", "成功", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }
 
-   
+
         private void cmb_SwitchCount_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -1423,6 +1423,8 @@ namespace OCV
 
             }
         }
+
+
     }
 }
 
