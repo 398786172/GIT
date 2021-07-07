@@ -119,6 +119,49 @@ namespace FakeXiecheng.API.Services
         {
             await _context.ShoppingCarts.AddAsync(shoppingCart);
         }
+        public async Task AddShoppingCartItem(LineItem lineItem)
+        {
+            await _context.LineItems.AddAsync(lineItem);
+        }
+        public async Task<LineItem> GetShoppingCartItemByItemId(int lineItemId)
+        {
+            return await _context.LineItems
+                .Where(li => li.Id == lineItemId)
+                .FirstOrDefaultAsync();
+        }
+
+        public async void DeleteShoppingCartItem(LineItem lineItem)
+        {
+            _context.LineItems.Remove(lineItem);
+        }
+
+        public async Task<IEnumerable<LineItem>> GeshoppingCartsByIdListAsync(
+            IEnumerable<int> ids)
+        {
+            return await _context.LineItems
+                .Where(li => ids.Contains(li.Id)).ToListAsync();
+
+        }
+
+        public void DeleteShoppingCartItems(IEnumerable<LineItem> lineItems)
+        {
+            _context.LineItems.RemoveRange(lineItems);
+        }
+        public async Task AddOrderAsync(Order order)
+        {
+            await _context.Orders.AddAsync(order);
+        }
+        public async Task<IEnumerable<Order>> GetOrdersByUserId(string userId)
+        {
+            return await _context.Orders.Where(o => o.UserId == userId).ToListAsync();
+        }
+        public async Task<Order> GetOrderById(Guid orderId)
+        {
+            return await _context.Orders
+                .Include(o => o.OrderItems).ThenInclude(oi => oi.TouristRoute)
+                .Where(o => o.Id == orderId)
+                .FirstOrDefaultAsync();
+        }
         public async Task<bool> SaveAsync()
         {
             return  (await _context.SaveChangesAsync() >= 0);

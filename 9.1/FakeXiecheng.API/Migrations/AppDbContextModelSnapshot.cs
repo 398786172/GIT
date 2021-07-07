@@ -91,16 +91,16 @@ namespace FakeXiecheng.API.Migrations
                         {
                             Id = "90184155-dee0-40c9-bb1e-b5ed07afc04e",
                             AccessFailedCount = 0,
-                            ConcurrencyStamp = "baeeeec0-05d4-4559-9135-3f0a59a6e5ee",
+                            ConcurrencyStamp = "b56434b7-00e6-481a-9b9d-4cc6d77fd2e8",
                             Email = "admin@fakexiecheng.com",
                             EmailConfirmed = true,
                             LockoutEnabled = false,
                             NormalizedEmail = "ADMIN@FAKEXIECHENG.COM",
                             NormalizedUserName = "ADMIN@FAKEXIECHENG.COM",
-                            PasswordHash = "AQAAAAEAACcQAAAAEIaa6L1GzuEdCmB2r94tNG8ixTkbFLO4O94PHzV92wDiWWeNy25Ct76/IkLwjMu/JQ==",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEnmNK12OMYBtkrQXW/k1B7gkUSjjxSoBmzb3+Lpsi7SesJrty7o58dYCp+/Xf5GVg==",
                             PhoneNumber = "123456789",
                             PhoneNumberConfirmed = false,
-                            SecurityStamp = "45601bb1-2118-4a02-b96b-1021621954d4",
+                            SecurityStamp = "2e23280c-3e4d-482f-810f-bcb9fd064ccc",
                             TwoFactorEnabled = false,
                             UserName = "admin@fakexiecheng.com"
                         });
@@ -116,6 +116,9 @@ namespace FakeXiecheng.API.Migrations
                     b.Property<double?>("DiscountPresent")
                         .HasColumnType("float");
 
+                    b.Property<Guid?>("OrderId")
+                        .HasColumnType("uniqueidentifier");
+
                     b.Property<decimal>("OriginalPrice")
                         .HasColumnType("decimal(18, 2)");
 
@@ -127,11 +130,38 @@ namespace FakeXiecheng.API.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("OrderId");
+
                     b.HasIndex("ShoppingCartId");
 
                     b.HasIndex("TouristRouteId");
 
                     b.ToTable("LineItems");
+                });
+
+            modelBuilder.Entity("FakeXiecheng.API.Models.Order", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<DateTime>("CreateDateUTC")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int>("State")
+                        .HasColumnType("int");
+
+                    b.Property<string>("TransactionMetadata")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Orders");
                 });
 
             modelBuilder.Entity("FakeXiecheng.API.Models.ShoppingCart", b =>
@@ -913,7 +943,7 @@ namespace FakeXiecheng.API.Migrations
                         new
                         {
                             Id = "308660dc-ae51-480f-824d-7dca6714c3e2",
-                            ConcurrencyStamp = "7febae01-edde-4a50-a609-6433c56cac3f",
+                            ConcurrencyStamp = "6337404d-d825-4862-958d-88dd29096284",
                             Name = "Admin",
                             NormalizedName = "ADMIN"
                         });
@@ -1037,6 +1067,10 @@ namespace FakeXiecheng.API.Migrations
 
             modelBuilder.Entity("FakeXiecheng.API.Models.LineItem", b =>
                 {
+                    b.HasOne("FakeXiecheng.API.Models.Order", null)
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId");
+
                     b.HasOne("FakeXiecheng.API.Models.ShoppingCart", null)
                         .WithMany("ShoppingCartItems")
                         .HasForeignKey("ShoppingCartId");
@@ -1046,6 +1080,13 @@ namespace FakeXiecheng.API.Migrations
                         .HasForeignKey("TouristRouteId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
+                });
+
+            modelBuilder.Entity("FakeXiecheng.API.Models.Order", b =>
+                {
+                    b.HasOne("FakeXiecheng.API.Models.ApplicationUser", "User")
+                        .WithMany("Orders")
+                        .HasForeignKey("UserId");
                 });
 
             modelBuilder.Entity("FakeXiecheng.API.Models.ShoppingCart", b =>

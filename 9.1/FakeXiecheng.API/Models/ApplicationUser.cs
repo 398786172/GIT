@@ -12,7 +12,7 @@ namespace FakeXiecheng.API.Models
         // ShoppingCart
         public ShoppingCart ShoppingCart { get; set; }
         // Order
-
+        public ICollection<Order> Orders { get; set; }
         public virtual ICollection<IdentityUserRole<string>> UserRoles { get; set; }
         //public virtual ICollection<IdentityUserClaim<string>> Claims { get; set; }
         //public virtual ICollection<IdentityUserLogin<string>> Logins { get; set; }
