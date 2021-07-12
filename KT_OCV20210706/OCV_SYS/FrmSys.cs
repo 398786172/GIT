@@ -74,7 +74,6 @@ namespace OCV
             dic.Add(0, "探针缩未到位不允许下降");
             dic.Add(1, "进料超时");
             dic.Add(2, "出料超时");
-
             return dic;
         }
 
@@ -279,7 +278,6 @@ namespace OCV
                     //获取内阻校准参数
                     ClsGlobal.mIRAdjustVal = ClsGlobal.GetAdjustVal_ACIR(ClsGlobal.mIRAdjustPath);
                     this.HIOKI365X = new ClsHIOKI365X(ClsGlobal.RT_Port);
-                    //this.HIOKI365X.InitControl_IMM(2);
                     this.HIOKI365X.InitControl_IMM(2);
                 }
                 catch (Exception ex)
@@ -340,7 +338,7 @@ namespace OCV
                 try
                 {
                     this.SWControl = new ClsSWControl(new SerialPort(ClsGlobal.Switch_Port[0], 115200, Parity.None, 8, StopBits.One), 1);
-                    // this.SWControl = new ClsSWControl(ClsGlobal.Switch_Port[0], 1, 1);
+                    //this.SWControl = new ClsSWControl(ClsGlobal.Switch_Port[0], 1, 1);
                     //切换板电池点位对应关系
                     ClsGlobal.mSwitchCH = ClsGlobal.GetSwitchChannel(ClsGlobal.mSwitchPath);
                 }
@@ -378,18 +376,15 @@ namespace OCV
                     throw ex;
                 }
                 //温控板 暂时屏蔽  自动时请打开
-                ClsGlobal.TempContr = new ClsTempContrT2(ClsGlobal.TempCom, 1);
-
+                //ClsGlobal.TempContr = new ClsTempContrT2(ClsGlobal.TempCom, 1);
                 #endregion
 
                 #region 扫码枪
-
                 try
                 {
                     if (ClsGlobal.CodeScanMode == 1)
                     {
                         ClsGlobal.CodeScan = new ClsSocketCodeScan(ClsGlobal.CodeScanIP, int.Parse(ClsGlobal.CodeScanPort));
-                        //
                     }
                     else
                     {
@@ -687,8 +682,6 @@ namespace OCV
         {
             FormPopup popup = new FormPopup(Message, mColor);
             popup.Show();
-
-
         }
 
         private void 系统设置ToolStripMenuItem_Click(object sender, EventArgs e)
@@ -698,7 +691,6 @@ namespace OCV
                 MessageBox.Show("测试状态无法设置系统参数");
                 return;
             }
-
             frmUserPwd fuserpwd = new frmUserPwd(PwdType.USER, "系统设置");
             //PubClass.sWinTextInfo = "用户密码确认";
             if (fuserpwd.ShowDialog() == DialogResult.OK)
@@ -742,7 +734,7 @@ namespace OCV
         {
             try
             {
-                if (ClsGlobal.CodeScan!=null)
+                if (ClsGlobal.CodeScan != null)
                 {
                     ClsGlobal.CodeScan.DisConnectServer();
                 }
@@ -1038,6 +1030,7 @@ namespace OCV
                 // ClsGlobal.mPLCContr.WriteDB("W150", 0);
                 // ClsGlobal.mPLCContr.WriteDB("W151", 0);
                 ClsGlobal.mPLCContr.WriteDB(ClsGlobal.mPLCContr.mPlcAddr.PC_手自动模式, 2);
+                ClsGlobal.mPLCContr.WriteDB(ClsGlobal.mPLCContr.mPlcAddr.PC_自动流程启动, 0);
                 gbManual.Visible = true;
             }
         }
@@ -1048,7 +1041,7 @@ namespace OCV
         {
 
             ////实现复位
-            ShowInfo("清除报警");
+            ShowInfo("清除报警" + Environment.NewLine);
             ClsGlobal.mPLCContr.WriteDB(ClsGlobal.mPLCContr.mPlcAddr.PC_指示清除报警, 1);
             Thread.Sleep(500);
             ClsGlobal.mPLCContr.WriteDB(ClsGlobal.mPLCContr.mPlcAddr.PC_指示清除报警, 0);

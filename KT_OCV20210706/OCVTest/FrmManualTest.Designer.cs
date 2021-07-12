@@ -200,6 +200,7 @@
             this.btnStartTempTest.TabIndex = 53;
             this.btnStartTempTest.Text = "测温度";
             this.btnStartTempTest.UseVisualStyleBackColor = true;
+            this.btnStartTempTest.Visible = false;
             this.btnStartTempTest.Click += new System.EventHandler(this.btnStartTempTest_Click_1);
             // 
             // btnSaveTest

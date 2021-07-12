@@ -192,7 +192,7 @@ namespace OCV
                     arrBtn_TempAdjustClr[i].Text = "清0";
                     arrBtn_TempAdjustClr[i].Click += new EventHandler(btnClearTempAdjust_Single_Click);
                     panelTEMP.Controls.Add(arrBtn_TempAdjustClr[i]);
-
+                    this.groupBoxTEMP.Visible = false;
                 }
 
 
@@ -498,11 +498,13 @@ namespace OCV
             int Num;
             double theVoltSample;
             double theAdjusVolt;
+            int chNum;
             try
             {
                 Num = (int)theBtn.Tag + 1;
-                ClsGlobal.OCVTestContr.SWControl.ChanndlVoltShellSwitchContr(1, Num);
-                // ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, Num);   //正极对负极
+                chNum = ((int)theBtn.Tag + 1) % 2 == 0 ? 2 : 1;
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(1, chNum);
+                //ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, Num);   //正极对负极
                 Thread.Sleep(50);
                 ClsGlobal.OCVTestContr.DMM_Ag344X.ReadVolt(out theVoltSample);
 
@@ -510,12 +512,12 @@ namespace OCV
                 theAdjusVolt = 0 - theVoltSample * 1000;
 
                 //值显示
-                arrTxt_VoltZeroSampleShow[Num-1].Text = (theAdjusVolt).ToString("F4");
+                arrTxt_VoltZeroSampleShow[Num - 1].Text = (theAdjusVolt).ToString("F4");
 
                 //更改和保存校准值
                 INIAPI.INIWriteValue(ClsGlobal.mVoltAdjustPath, "VoltAdjust", "CH" + (Num), theAdjusVolt.ToString("F4"));
-                ClsGlobal.ArrVoltAdjustPara[Num - 1] = theAdjusVolt.ToString("F4");
-                lblNote_VoltZero.Text = ("[通道" + (Num ) + "]:\r\n" + "完成电压校准");
+                //ClsGlobal.ArrVoltAdjustPara[Num - 1] = theAdjusVolt.ToString("F4");
+                lblNote_VoltZero.Text = ("[通道" + (Num) + "]:\r\n" + "完成电压校准");
             }
             catch (Exception ex)
             {
@@ -532,17 +534,13 @@ namespace OCV
             {
                 btnVoltZeroAllStart.Text = "电压清零中...";
 
-                //ClsGlobal.OCVTestContr.StartManualVoltZero_Action(this);
-
-                lblNote_VoltZero.Text = ("全部通道电压清零完成!");
+                ClsGlobal.OCVTestContr.StartManualVoltZero_Action(this);
 
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
         //停止所有点电压清零
@@ -610,7 +608,7 @@ namespace OCV
 
         #region 内阻校准处理
 
-     
+
 
         //单点内阻测试功能
         private void btnTestIR_Single_Click(object sender, EventArgs e)
@@ -618,33 +616,30 @@ namespace OCV
             Button theBtn = (Button)sender;
             int Num;
             double theIRSample;
-
+            int chNum;
             try
             {
-              
                 //切换
                 Num = (int)theBtn.Tag + 1;
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRSwitchContr(1, 2, Num);
-                //ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, Num);
-                // ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
-                //内阻采样
+                chNum = ((int)theBtn.Tag + 1) % 2 == 0 ? 2 : 1;
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, chNum);//内阻采样
+                //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
                 Thread.Sleep(100);
-                ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
-
+                ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);//获取内阻结果
 
                 //显示阻值
-                arrTxt_IRSampleShow[Num].Text = (theIRSample * 1000).ToString("F3") + "/" +
+                arrTxt_IRSampleShow[Num-1].Text = (theIRSample * 1000).ToString("F3") + "/" +
                     (theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[Num - 1])).ToString("F3");
 
                 if (double.Parse(ClsGlobal.mIRAdjustVal[Num - 1]) != 0)
                 {
-                    arrTxt_IRSampleShow[Num-1].BackColor = Color.LightGreen;
-                    mToolTip_IRAdjust.SetToolTip(arrTxt_IRSampleShow[Num-1], "该采样值经过校准");
+                    arrTxt_IRSampleShow[Num - 1].BackColor = Color.LightGreen;
+                    mToolTip_IRAdjust.SetToolTip(arrTxt_IRSampleShow[Num - 1], "该采样值经过校准");
                 }
                 else
                 {
-                    arrTxt_IRSampleShow[Num-1].BackColor = Color.LightGray;
-                    mToolTip_IRAdjust.SetToolTip(arrTxt_IRSampleShow[Num-1], "该采样值没有经过校准");
+                    arrTxt_IRSampleShow[Num - 1].BackColor = Color.LightGray;
+                    mToolTip_IRAdjust.SetToolTip(arrTxt_IRSampleShow[Num - 1], "该采样值没有经过校准");
                 }
 
 
@@ -666,22 +661,24 @@ namespace OCV
             double theBaseVal;
             double theAdjust;
             double theIRSample;
+            int chNum;
 
             try
             {
                 //得到用户输入的基准值
                 Num = (int)theBtn.Tag + 1;
+                chNum = ((int)theBtn.Tag + 1) % 2 == 0 ? 2 : 1;
                 if (double.TryParse(arrTxt_IRAdjustBase[Num - 1].Text, out theBaseVal) == false)
                 {
                     lblNote_IRAdjust.Text = ("[通道" + (Num) + "]:\r\n" + "请先填入正确的内阻基准值，再进行校准");
                     return;
                 }
-                //ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, Num);
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRSwitchContr(1, 2, Num);
+
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, chNum);
                 //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
 
                 Thread.Sleep(100);
-                ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
+                ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample); //获取内阻结果
                 if (theIRSample > 100)
                 {
                     lblNote_IRAdjust.Text = ("[通道" + (Num) + "]:\r\n" + "测得阻值>100mΩ,校准失败!");
@@ -694,13 +691,13 @@ namespace OCV
                 //更改和保存校准值
                 INIAPI.INIWriteValue(ClsGlobal.mIRAdjustPath, "ACIRAdjust", "CH" + (Num), theAdjust.ToString("F3"));
                 ClsGlobal.mIRAdjustVal[Num - 1] = theAdjust.ToString();
-                lblNote_IRAdjust.Text = ("[通道" + (Num ) + "]:\r\n" + "完成内阻校准");
+                lblNote_IRAdjust.Text = ("[通道" + (Num) + "]:\r\n" + "完成内阻校准");
 
                 //显示校准后的阻值
-                arrTxt_IRSampleShow[Num-1].BackColor = Color.LightGreen;
+                arrTxt_IRSampleShow[Num - 1].BackColor = Color.LightGreen;
                 //arrTxt_IRSampleShow[Num].Text = (theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[ActualNum - 1])).ToString("F3");
 
-                arrTxt_IRSampleShow[Num-1].Text = (theIRSample * 1000).ToString("F3") + "/" +
+                arrTxt_IRSampleShow[Num - 1].Text = (theIRSample * 1000).ToString("F3") + "/" +
                     (theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[Num - 1])).ToString("F3");
 
             }
@@ -721,7 +718,7 @@ namespace OCV
             try
             {
                 //实际对应通道
-                Num = (int)theBtn.Tag+1;
+                Num = (int)theBtn.Tag + 1;
 
                 //更改和清0校准值
                 INIAPI.INIWriteValue(ClsGlobal.mTempAdjustPath, "ACIRAdjust", "CH" + (Num), "0");
@@ -744,9 +741,8 @@ namespace OCV
             {
                 btnIRAdjustSampleAllStart.Text = "测试中...";
 
-                //ClsGlobal.OCVTestContr.StartManualIRAdjust_Test_Action(this);
-
-                lblNote_IRAdjust.Text = ("全部通道测试完成!");
+                ClsGlobal.OCVTestContr.StartManualIRAdjust_Test_Action(this, () => UpdateUIText(btnIRAdjustSampleAllStart, "所有通道测试"));
+                
 
             }
             catch (Exception ex)
@@ -764,9 +760,8 @@ namespace OCV
             {
                 btnIRAdjustAllStart.Text = "内阻校准中...";
 
-                //ClsGlobal.OCVTestContr.StartManualIRAdjust_Action(this);
-
-                lblNote_IRAdjust.Text = ("全部通道内阻校准完成!");
+                ClsGlobal.OCVTestContr.StartManualIRAdjust_Action(this, () => UpdateUIText(btnIRAdjustAllStart, "所有通道校准"));
+               
 
             }
             catch (Exception ex)
@@ -812,12 +807,13 @@ namespace OCV
             double MeterErrRange;
             double theIRSample;
             double theIR;
+            int chNum;
 
 
             try
             {
-                Num = (int)theBtn.Tag+1;
-
+                Num = (int)theBtn.Tag + 1;
+                chNum = ((int)theBtn.Tag + 1) % 2 == 0 ? 2 : 1;
                 //已输入计量值
                 if (double.TryParse(txtIRSet_Metering.Text, out theMeterVal) == false)
                 {
@@ -831,27 +827,26 @@ namespace OCV
                     return;
                 }
 
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRSwitchContr(1, 2, Num);
-                //ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, Num);
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, chNum);
                 //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
 
                 Thread.Sleep(100);
-                ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
+                ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);//获取内阻结果
 
-               
+
                 theIR = theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[Num - 1]);  //经过adjust
 
                 //计量测试
                 if (Math.Abs(theMeterVal - theIR) <= MeterErrRange)
                 {
-                    arrTxt_IRMeterShow[Num-1].Text = theIR.ToString("F3");
-                    arrTxt_IRMeterShow[Num-1].BackColor = Color.LightGreen;
+                    arrTxt_IRMeterShow[Num - 1].Text = theIR.ToString("F3");
+                    arrTxt_IRMeterShow[Num - 1].BackColor = Color.LightGreen;
                     lblNote_IRMetering.Text = ("[通道" + (Num) + "]:\r\n" + "计量通过");
                 }
                 else
                 {
-                    arrTxt_IRMeterShow[Num-1].Text = theIR.ToString("F3");
-                    arrTxt_IRMeterShow[Num-1].BackColor = Color.Red;
+                    arrTxt_IRMeterShow[Num - 1].Text = theIR.ToString("F3");
+                    arrTxt_IRMeterShow[Num - 1].BackColor = Color.Red;
                     lblNote_IRMetering.Text = ("[通道" + (Num) + "]:\r\n" + "计量不通过!");
                 }
 
@@ -860,8 +855,6 @@ namespace OCV
             {
                 MessageBox.Show(ex.Message);
             }
-
-
         }
 
         //所有点进行内阻计量
@@ -870,11 +863,8 @@ namespace OCV
             try
             {
                 btnIRMeteringAllStart.Text = "内阻计量中...";
-
+                ClsGlobal.OCVTestContr.StartManualIRMetering_Action(this, () => UpdateUIText(btnIRMeteringAllStart, "所有通道计量"));
                 //ClsGlobal.OCVTestContr.StartManualIRMetering_Action(this);
-
-                lblNote_IRMetering.Text = ("全部通道内阻计量完成!");
-
             }
             catch (Exception ex)
             {
@@ -883,6 +873,21 @@ namespace OCV
 
         }
 
+        private void UpdateUIText(Button btn, string text)
+        {
+            Action act = () =>
+            {
+                btn.Text = text;
+            };
+            if (this.InvokeRequired)
+            {
+                Invoke(act);
+            }
+            else
+            {
+                act();
+            }
+        }
         //停止所有点进行内阻计量
         private void btnIRMeteringAllStop_Click(object sender, EventArgs e)
         {
@@ -903,7 +908,7 @@ namespace OCV
             SWR.WriteLine("通道号, 计量内阻值(mΩ),结果");
 
             //写入数据            
-            for (int Num = 0; Num < ClsGlobal.TrayType; Num++)
+            for (int Num = 0; Num < 2; Num++)
             {
                 SWR.WriteLine((Num + 1).ToString() + "," + arrTxt_VoltZeroSampleShow[Num].Text.ToString() + "," +
                     arrLbl_IRMeterJudge[Num].Text.ToString());
@@ -984,14 +989,14 @@ namespace OCV
                     return;
                 }
 
-              
+
                 int ActualNum = 0;
                 if (Num < 16)//38
                 {
                     //实际对应通道, 注:Num从零开始,ActualNum从1开始
                     ActualNum = Convert.ToUInt16(ClsGlobal.mSwitchCHTemp_P[Num]);
                     theAdjust = theBaseVal - ClsGlobal.TempContr.Anodetemperature[ActualNum - 1];
-                      //更改和保存校准值
+                    //更改和保存校准值
                     INIAPI.INIWriteValue(ClsGlobal.mTempAdjustPath, "TempAdjust_P", "CH" + (ActualNum), theAdjust.ToString("F1"));
                     ClsGlobal.mTempAdjustVal_P[ActualNum - 1] = theAdjust.ToString();
 
@@ -1006,11 +1011,11 @@ namespace OCV
                     ClsGlobal.mTempAdjustVal_N[ActualNum - 1] = theAdjust.ToString();
                 }
 
-                
 
-              
 
-              
+
+
+
                 lblNote_TEMP.Text = ("[通道" + (Num + 1) + "]:\r\n" + "完成温度校准");
             }
             catch (Exception ex)
@@ -1032,7 +1037,7 @@ namespace OCV
                     //实际对应通道
                     int ActualNum = Convert.ToUInt16(ClsGlobal.mSwitchCHTemp_P[Num]);
                     //更改和清0校准值
-                    INIAPI.INIWriteValue(ClsGlobal.mTempAdjustPath, "TempAdjust_P", "CH" + (Num+1), "0");
+                    INIAPI.INIWriteValue(ClsGlobal.mTempAdjustPath, "TempAdjust_P", "CH" + (Num + 1), "0");
                     ClsGlobal.mTempAdjustVal_P[ActualNum - 1] = "0";
                     lblNote_TEMP.Text = ("[通道" + (Num + 1) + "]:\r\n" + "温度校准值已清0");
                 }
@@ -1079,12 +1084,12 @@ namespace OCV
                         arrTxt_TempSampleShow[i].BackColor = Color.LightGray;
                         mToolTip_Temp.SetToolTip(arrTxt_TempSampleShow[i], "该采样值没有经过校准");
                     }
-              
+
                     //负极
                     ActualNum = Convert.ToUInt16(ClsGlobal.mSwitchCHTemp_N[i]);       //实际对应通道
-                    arrTxt_TempSampleShow[i+ 38 ].Text = (ClsGlobal.TempContr.Poletemperature[ActualNum - 1] + double.Parse(ClsGlobal.mTempAdjustVal_N[ActualNum - 1])).ToString();
+                    arrTxt_TempSampleShow[i + 38].Text = (ClsGlobal.TempContr.Poletemperature[ActualNum - 1] + double.Parse(ClsGlobal.mTempAdjustVal_N[ActualNum - 1])).ToString();
 
-                    if (double.Parse(ClsGlobal.mTempAdjustVal_N[ActualNum - 1 ]) != 0)
+                    if (double.Parse(ClsGlobal.mTempAdjustVal_N[ActualNum - 1]) != 0)
                     {
                         arrTxt_TempSampleShow[i + 38].BackColor = Color.LightGreen;
                         mToolTip_Temp.SetToolTip(arrTxt_TempSampleShow[i], "该采样值经过校准");
@@ -1133,7 +1138,7 @@ namespace OCV
             double[] theTEMPSample;
             double[] ArrTempAdjust = new double[88];
 
-          
+
 
             //输出校准值
             for (int i = 0; i < ClsGlobal.TrayType; i++)
@@ -1142,7 +1147,7 @@ namespace OCV
                 ArrTempAdjust[i] = (ClsGlobal.TempBase - ClsGlobal.TempContr.Anodetemperature[i]);        //计算方法
                 INIAPI.INIWriteValue(Path, "TempAdjust_P", "CH" + (i + 1).ToString(), ArrTempAdjust[i].ToString("F1"));
                 ClsGlobal.mTempAdjustVal_P[i] = ArrTempAdjust[i].ToString();
-                
+
                 //负极
                 ArrTempAdjust[i] = (ClsGlobal.TempBase - ClsGlobal.TempContr.Poletemperature[i]);        //计算方法
                 INIAPI.INIWriteValue(Path, "TempAdjust_N", "CH" + (i + 1).ToString(), ArrTempAdjust[i].ToString("F1"));

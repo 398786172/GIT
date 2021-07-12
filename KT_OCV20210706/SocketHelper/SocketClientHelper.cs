@@ -48,7 +48,6 @@ namespace OCV.SocketHelper
                         clientSocket.Close();
                         clientSocket.Dispose();
                     }
-
                     string ip = _serverIP;
                     int port = Convert.ToInt32(_serverPort);
                     IPEndPoint ipep = new IPEndPoint(IPAddress.Parse(ip), port);
@@ -64,7 +63,6 @@ namespace OCV.SocketHelper
                     catch (Exception ex)
                     {
                         throw new Exception(ex.Message);
-                     
                     }
                 }
 
@@ -73,7 +71,6 @@ namespace OCV.SocketHelper
             catch (Exception ex)
             {
                 throw new Exception(ex.Message);
-       
             }
         }
 
@@ -121,7 +118,7 @@ namespace OCV.SocketHelper
                     //发送消息
                     int sendDataLength = clientSocket.Send(bs, bs.Length, 0);
                     //接收消息
-                    byte[] receivedDataBytes = new byte[1024];
+                    byte[] receivedDataBytes = new byte[10240];
                     int receivedDataLength=clientSocket.Receive(receivedDataBytes);
                     //转换编码
                     string receivedData = Encoding.UTF8.GetString(receivedDataBytes,0, receivedDataLength);

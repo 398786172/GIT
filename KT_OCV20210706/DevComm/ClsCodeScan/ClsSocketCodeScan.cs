@@ -75,12 +75,15 @@ namespace OCV
         public string SocketReadCode()
         {
             string resultCode;
+            string result;
             if (this.mSocketClientHelper != null)
             {
                 try
                 {
                     resultCode = mSocketClientHelper.send("LON"+Environment.NewLine);
-                    return resultCode;
+                    result=resultCode.Split('\n')[0];
+                    result = result.Substring(0,result.Length - 1);
+                    return result;
                 }
                 catch (Exception ex)
                 {
@@ -103,7 +106,7 @@ namespace OCV
             {
                 try
                 {
-                    mSocketClientHelper.send("LOF\r\n");
+                    mSocketClientHelper.send("LOFF" + Environment.NewLine);
                 }
                 catch (Exception ex)
                 {

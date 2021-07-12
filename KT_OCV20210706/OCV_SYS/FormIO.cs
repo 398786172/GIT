@@ -493,6 +493,7 @@ namespace OCV
         {
             if (ClsGlobal.CodeScanMode == 1)
             {
+                labReadCode.Text = null;
                 labReadCode.Text = ClsGlobal.CodeScan.SocketReadCode();
             }
             else
@@ -1151,15 +1152,15 @@ namespace OCV
             dic.Add(lblHomeIng, HomeIng);
 
             //正限位
-            var PosLimit = ClsGlobal.mPLCContr.GetState_PosLimit() ? Color.Red : Color.Lime;
+            var PosLimit = ClsGlobal.mPLCContr.GetState_PosLimit() ? Color.Lime:Color.Red;
             dic.Add(lblPosLimit, PosLimit);
 
             //原点
-            var Home = ClsGlobal.mPLCContr.GetState_HomeLimit() ? Color.LightGray : Color.Lime;
+            var Home = ClsGlobal.mPLCContr.GetState_HomeLimit() ? Color.Lime : Color.LightGray;
             dic.Add(lblHome, Home);
 
             //负限位
-            var NegLimit = ClsGlobal.mPLCContr.GetState_NegLimit() ? Color.Red : Color.Lime;
+            var NegLimit = ClsGlobal.mPLCContr.GetState_NegLimit() ? Color.Lime : Color.Red;
             dic.Add(lblNegLimit, NegLimit);
             return dic;
         }
@@ -1188,9 +1189,9 @@ namespace OCV
                 txtPosNO.Text = "";
                 return;
             }
-            if (val > 8 || val < 1)
+            if (val > 9 || val < 1)
             {
-                MessageBox.Show("输入数字只能在1~8");
+                MessageBox.Show("输入数字只能在1~9");
                 txtPosNO.Text = "";
                 return;
             }
@@ -1416,5 +1417,9 @@ namespace OCV
             }
         }
 
+        private void button5_Click(object sender, EventArgs e)
+        {
+          ClsGlobal. mPLCContr.WriteDB(ClsGlobal.mPLCContr.mPlcAddr.PC_指示上位机有报警, 1);
+        }
     }
 }

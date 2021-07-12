@@ -13,6 +13,8 @@ using FakeXiecheng.API.Models;
 using Microsoft.AspNetCore.JsonPatch;
 using FakeXiecheng.API.Helper;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Infrastructure;
+using Microsoft.AspNetCore.Mvc.Routing;
 
 namespace FakeXiecheng.API.Controllers
 {
@@ -22,31 +24,106 @@ namespace FakeXiecheng.API.Controllers
     {
         private ITouristRouteRepository _touristRouteRepository;
         private readonly IMapper _mapper;
+        private readonly IUrlHelper _urlHelper;
 
         public TouristRoutesController(
             ITouristRouteRepository touristRouteRepository,
-            IMapper mapper
+            IMapper mapper,
+            IUrlHelperFactory urlHelperFactory,
+            IActionContextAccessor actionContextAccessor
         )
         {
             _touristRouteRepository = touristRouteRepository;
             _mapper = mapper;
+            _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
         }
+        private string GenerateTouristRouteResourceURL(
+            TouristRouteResourceParamaters paramaters,
+            PaginationResourceParamaters paramaters2,
+            ResourceUriType type
+        )
+        {
+            string result;
+            switch (type)
+            {
 
+                case ResourceUriType.PreviousPage:
+                    result = _urlHelper.Link("GetTouristRoutes",
+new
+{
+    keyword = paramaters.Keyword,
+    rating = paramaters.Rating,
+    pageNumber = paramaters2.PageNumber - 1,
+    pageSize = paramaters2.PageSize
+});
+                    break;
+                case ResourceUriType.NextPage:
+                    result = _urlHelper.Link("GetTouristRoutes",
+new
+{
+    keyword = paramaters.Keyword,
+    rating = paramaters.Rating,
+    pageNumber = paramaters2.PageNumber + 1,
+    pageSize = paramaters2.PageSize
+});
+                    break;
+                default:
+                    result = _urlHelper.Link("GetTouristRoutes",
+                new
+                {
+                    keyword = paramaters.Keyword,
+                    rating = paramaters.Rating,
+                    pageNumber = paramaters2.PageNumber,
+                    pageSize = paramaters2.PageSize
+                });
+                    break;
+            }
+            return result;
+        }
         // api/touristRoutes?keyword=传入的参数
-        [HttpGet]
+        [HttpGet(Name = "GetTouristRoutes")]
         [HttpHead]
         public async Task<IActionResult> GerTouristRoutes(
-            [FromQuery] TouristRouteResourceParamaters paramaters
+            [FromQuery] TouristRouteResourceParamaters paramaters,
+            [FromQuery] PaginationResourceParamaters paramaters2
         //[FromQuery] string keyword,
         //string rating // 小于lessThan, 大于largerThan, 等于equalTo lessThan3, largerThan2, equalTo5 
         )// FromQuery vs FromBody
         {
-            var touristRoutesFromRepo = await _touristRouteRepository.GetTouristRoutesAsync(paramaters.Keyword, paramaters.RatingOperator, paramaters.RatingValue);
+            var touristRoutesFromRepo = await _touristRouteRepository.GetTouristRoutesAsync(
+                paramaters.Keyword,
+                paramaters.RatingOperator,
+                paramaters.RatingValue,
+                paramaters2.PageSize,
+                    paramaters2.PageNumber);
             if (touristRoutesFromRepo == null || touristRoutesFromRepo.Count() <= 0)
             {
                 return NotFound("没有旅游路线");
             }
             var touristRoutesDto = _mapper.Map<IEnumerable<TouristRouteDto>>(touristRoutesFromRepo);
+            var previousPageLink = touristRoutesFromRepo.HasPrevious
+                ? GenerateTouristRouteResourceURL(
+                    paramaters, paramaters2, ResourceUriType.PreviousPage)
+                : null;
+
+            var nextPageLink = touristRoutesFromRepo.HasNext
+                ? GenerateTouristRouteResourceURL(
+                    paramaters, paramaters2, ResourceUriType.NextPage)
+                : null;
+
+            // x-pagination
+            var paginationMetadata = new
+            {
+                previousPageLink,
+                nextPageLink,
+                totalCount = touristRoutesFromRepo.TotalCount,
+                pageSize = touristRoutesFromRepo.PageSize,
+                currentPage = touristRoutesFromRepo.CurrentPage,
+                totalPages = touristRoutesFromRepo.TotalPages
+            };
+
+            Response.Headers.Add("x-pagination",
+                Newtonsoft.Json.JsonConvert.SerializeObject(paginationMetadata));
             return Ok(touristRoutesDto);
         }
 
@@ -103,7 +180,7 @@ namespace FakeXiecheng.API.Controllers
             [FromBody] TouristRouteForUpdateDto touristRouteForUpdateDto
         )
         {
-            if (!(await  _touristRouteRepository.TouristRouteExistsAsync(touristRouteId)))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(touristRouteId)))
             {
                 return NotFound("旅游路线找不到");
             }
@@ -114,7 +191,7 @@ namespace FakeXiecheng.API.Controllers
             // 3. 映射model
             _mapper.Map(touristRouteForUpdateDto, touristRouteFromRepo);
 
-         await   _touristRouteRepository.SaveAsync();
+            await _touristRouteRepository.SaveAsync();
 
             return NoContent();
         }
@@ -122,17 +199,17 @@ namespace FakeXiecheng.API.Controllers
         [HttpPatch("{touristRouteId}")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
-        public async  Task<IActionResult> PartiallyUpdateTouristRoute(
+        public async Task<IActionResult> PartiallyUpdateTouristRoute(
             [FromRoute] Guid touristRouteId,
             [FromBody] JsonPatchDocument<TouristRouteForUpdateDto> patchDocument
         )
         {
-            if (!(await  _touristRouteRepository.TouristRouteExistsAsync(touristRouteId)))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(touristRouteId)))
             {
                 return NotFound("旅游路线找不到");
             }
 
-            var touristRouteFromRepo =await _touristRouteRepository.GetTouristRouteAsync(touristRouteId);
+            var touristRouteFromRepo = await _touristRouteRepository.GetTouristRouteAsync(touristRouteId);
             var touristRouteToPatch = _mapper.Map<TouristRouteForUpdateDto>(touristRouteFromRepo);
             patchDocument.ApplyTo(touristRouteToPatch, ModelState);
             if (!TryValidateModel(touristRouteToPatch))
@@ -140,7 +217,7 @@ namespace FakeXiecheng.API.Controllers
                 return ValidationProblem(ModelState);
             }
             _mapper.Map(touristRouteToPatch, touristRouteFromRepo);
-           await _touristRouteRepository.SaveAsync();
+            await _touristRouteRepository.SaveAsync();
 
             return NoContent();
         }
@@ -150,14 +227,14 @@ namespace FakeXiecheng.API.Controllers
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteTouristRoute([FromRoute] Guid touristRouteId)
         {
-            if (!(await  _touristRouteRepository.TouristRouteExistsAsync(touristRouteId)))
+            if (!(await _touristRouteRepository.TouristRouteExistsAsync(touristRouteId)))
             {
                 return NotFound("旅游路线找不到");
             }
 
-            var touristRoute =await _touristRouteRepository.GetTouristRouteAsync(touristRouteId);
+            var touristRoute = await _touristRouteRepository.GetTouristRouteAsync(touristRouteId);
             _touristRouteRepository.DeleteTouristRoute(touristRoute);
-           await _touristRouteRepository.SaveAsync();
+            await _touristRouteRepository.SaveAsync();
 
             return NoContent();
         }
@@ -172,7 +249,7 @@ namespace FakeXiecheng.API.Controllers
                 return BadRequest();
             }
 
-            var touristRoutesFromRepo =await _touristRouteRepository.GetTouristRoutesByIDListAsync(touristIDs);
+            var touristRoutesFromRepo = await _touristRouteRepository.GetTouristRoutesByIDListAsync(touristIDs);
             _touristRouteRepository.DeleteTouristRoutes(touristRoutesFromRepo);
             await _touristRouteRepository.SaveAsync();
 

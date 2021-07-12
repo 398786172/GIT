@@ -116,7 +116,7 @@ namespace OCV
                     viError = AgVisa32.viPrintf(session, "VOLT:DC:NPLC 10\n");
 
                     viError = AgVisa32.viPrintf(session, "TRIG:SOUR IMM\n");
-
+                    viError = AgVisa32.viPrintf(session, "VOLT:IMP:AUTO ON\n");//新添加壳压命令
                     AgVisa32.viClose(session);
                     AgVisa32.viClose(resourceManager);
                 }

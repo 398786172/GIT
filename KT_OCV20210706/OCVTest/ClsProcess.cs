@@ -119,7 +119,6 @@ namespace OCV
                 mPauseFlag = false;
                 mAlarmFlag = false;
                 myThread.Start();
-                mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_自动流程启动, 0);
             }
             catch (Exception ex)
             {
@@ -300,9 +299,10 @@ namespace OCV
                     {
                         //mInfoSend("设备复位");
                         //标识清0
-                        mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_启动, 1);
-                        mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_应答扫码请求, 0);
-                        mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_扫码完成, 0);
+                        mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_启动, 1);//回初始位置
+                        //mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_应答扫码请求, 0);
+                        //mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_扫码完成, 0);
+                        //mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_自动流程启动, 1);
                         mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_应答检测请求, 0);
                         mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_指示测定结束, 0);
                         mStep = 3;
@@ -390,7 +390,7 @@ namespace OCV
                     if (ClsPLCValue.PlcValue.Plc_RequestTest_A == 1)
                     {
                         mInfoSend("PLC请求扫描托盘条码");
-                        mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_应答扫码请求, 1);
+                        mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_应答检测请求, 1);
                         mInfoSend("PC应答测试请求");
                         mStep = 3;
                         Time1 = System.DateTime.Now;
@@ -400,7 +400,7 @@ namespace OCV
                 case 3: //是否有测试请求
                     if (ClsPLCValue.PlcValue.Plc_RequestTest_A == 0)
                     {
-                        mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_应答扫码请求, 0);
+                        mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_应答检测请求, 0);
                         mInfoSend("开始扫码...");
                         if (ClsGlobal.OCV_RunMode == eRunMode.GoAhead)
                         {
@@ -457,11 +457,11 @@ namespace OCV
                                 }
                                 else
                                 {
-                                        Thread.Sleep(100);
-                                }
+                                    Thread.Sleep(100);
                                 }
                             }
-                       if (temp == "NG" || temp == "ERROR")
+                        }
+                        if (temp == "NG" || temp == "ERROR")
                         {
                             mInfoSend("测试时,托盘条码扫描异常:" + temp + "! ,设备暂停");
                             mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_指示上位机有报警, 1);
@@ -910,7 +910,7 @@ namespace OCV
                 case 11:
                     break;
                 case 12: //直接排出去
-                    //  mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_扫码完成, 2);
+                    //mPLCContr.WriteDB(mPLCContr.mPlcAddr.PC_扫码完成, 2);
                     Time1 = System.DateTime.Now;
                     mStateFlag = eTransState.TestWork;
                     mStep = 13;

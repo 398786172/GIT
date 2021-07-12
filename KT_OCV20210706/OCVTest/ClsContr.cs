@@ -12,6 +12,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Windows.Forms.VisualStyles;
 
 
 namespace OCV
@@ -37,6 +38,7 @@ namespace OCV
         //手动测试
         private bool mManualTestStop;
         private bool mManualTestFinish;
+        private int SWCount = 1;
         public bool ManualTestFinish { get { return mManualTestFinish; } set { mManualTestFinish = value; } }
 
         //电压清0 
@@ -193,8 +195,11 @@ namespace OCV
                 mAutoTestStop = false;
                 mStep_TestReq = 1;
                 short pos = 0;
-                for (int i = 0; i < 100; i++) //ClsGlobal.TestType / 2
+                int j = 0;
+                while (true)
                 {
+                    //for (int i = 0; i < 100; i++) //ClsGlobal.TestType / 2
+                    //{
                     switch (mStep_TestReq)
                     {
                         case 1:
@@ -212,7 +217,7 @@ namespace OCV
                                 }
                                 else
                                 {
-                                    pos = (short)(i + 1);
+                                    pos = (short)(j + 1);
                                     ClsGlobal.mPLCContr.DevMove_AbsNO(0, pos);
                                     mInfoSend("PC指示X轴移动至位置：" + pos);
                                     mStep_TestReq = 3;
@@ -271,7 +276,7 @@ namespace OCV
                                     this.TestVoltForProc(pos);
                                     #endregion
                                     #region 测试温度
-                                    TestTemp(pos);
+                                    //TestTemp(pos);
                                     #endregion
                                     this.CalVoltDrop();
                                     this.NGStateOutput();
@@ -284,7 +289,7 @@ namespace OCV
                                     this.TestShellVoltForProc(pos);
                                     #endregion
                                     #region 测试温度
-                                    TestTemp(pos);
+                                    //TestTemp(pos);
                                     #endregion
                                     this.CalVoltDrop();
                                     this.NGStateOutput();
@@ -301,59 +306,17 @@ namespace OCV
                                     this.TestACIRForProc(pos);
                                     #endregion
                                     #region 测试温度
-                                    TestTemp(pos);
+                                    //TestTemp(pos);
                                     #endregion
                                     this.CalVoltDrop();
                                     this.NGStateOutput();
                                     this.CheckSVNG();
                                     break;
-                                //case 3:
-                                //    #region 测正负极
-                                //    this.TestVoltForProc(pos);
-                                //    #endregion
-                                //    #region 测壳体电压
-                                //    this.TestShellVoltForProc(pos);
-                                //    #endregion
-                                //    #region 测内阻
-                                //    this.TestACIRForProc(pos);
-                                //    #endregion
-                                //    #region 测试温度
-                                //    TestTemp(pos);
-                                //    #endregion
-                                //    this.CalVoltDrop();
-                                //    this.NGStateOutput();
-                                //    this.CheckSVNG();
-                                //    this.CalDROPRange();
-                                //    break;
-
-                                //#region 测正负极 
-                                //this.TestVoltForProc(pos);
-                                //#endregion
-
-                                //#region 测壳体电压
-                                ////TestShellVoltForProc_Postive();
-                                //this.TestShellVoltForProc(pos);
-                                //#endregion
-
-                                //#region 测内阻 
-                                //this.TestACIRForProc(pos);
-                                //#endregion
-                                //#region 测试温度
-                                //TestTemp(pos);
-                                //this.CalVoltDrop();
-                                //this.NGStateOutput();
-                                //this.CheckSVNG();
-                                ////this.CheckSVNG_Postive();
-                                //this.CalDROPRange();
-                                //if (ClsGlobal.IS_Enable_ACIRRange == "Y")
-                                //{
-                                //    this.CalACIRRange();
-                                //}
-                                //break;
                                 default:
                                     break;
                             }
                             mInfoSend("位置：" + pos + "测试完成");
+                            j = j + 1;
                             mStep_TestReq = 1;
                             break;
                         case 7:
@@ -362,6 +325,11 @@ namespace OCV
                             mStep_TestReq = 0;
                             break;
                     }
+                    if (mStep_TestReq == 7)
+                    {
+                        break;
+                    }
+                    // }
                 }
                 this.CalDROPRange();
                 if (ClsGlobal.IS_Enable_ACIRRange == "Y" && ClsGlobal.TestType == 2)
@@ -558,11 +526,11 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChanndlVoltShellSwitchContr(1, 0);//结束,通道全部关断
+                        this.SWControl.ChannelVoltIRShellNegSwitchContr(1, 0); //结束,通道全部关断
                         //this.SWControl.ChannelVoltSwitch(1, 0); //结束,通道全部关断
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChanndlVoltShellSwitchContr(1, i); //单通道测电压
+                    this.SWControl.ChannelVoltIRShellNegSwitchContr(1, i); //单通道测电压
                     //this.SWControl.ChannelVoltSwitch(1, i);  //单通道测电压
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
@@ -587,7 +555,7 @@ namespace OCV
                     }
                     #endregion
                 }
-                this.SWControl.ChanndlVoltShellSwitchContr(1, 0);//结束,通道全部关断
+                this.SWControl.ChannelVoltIRShellNegSwitchContr(1, 0); //结束,通道全部关断
                 //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
             }
             catch (Exception ex)
@@ -610,10 +578,10 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltIRSwitchContr(1, 0, 0);      //结束,通道全部关断   //
+                        this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);//结束,通道全部关断  
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltIRSwitchContr(1, 2, i);  //单通道测内阻
+                    this.SWControl.ChannelVoltIRShellNegSwitchContr(2, i);  //单通道测内阻
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     this.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
 
@@ -643,7 +611,7 @@ namespace OCV
                     #endregion
                 }
 
-                this.SWControl.ChannelVoltIRSwitchContr(1, 0, 0);      //结束,通道全部关断   
+                this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);      //结束,通道全部关断   
             }
             catch (Exception ex)
             {
@@ -664,10 +632,12 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChanndlVoltShellSwitchContr(2, 0);      //结束,通道全部关断   //this.SWControl.ChannelVoltSwitch(2, 0); 
+                        this.SWControl.ChannelVoltIRShellNegSwitchContr(3, 0); //结束,通道全部关断
+                        //this.SWControl.ChannelVoltSwitch(2, 0); 
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChanndlVoltShellSwitchContr(2, i);  //单通道测电压
+
+                    this.SWControl.ChannelVoltIRShellNegSwitchContr(3, i); //单通道测电压
                     //this.SWControl.ChannelVoltSwitch(2, 0);
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
@@ -692,7 +662,7 @@ namespace OCV
                     }
                     #endregion
                 }
-                this.SWControl.ChanndlVoltShellSwitchContr(2, 0);      //结束,通道全部关断   
+                this.SWControl.ChannelVoltIRShellNegSwitchContr(3, 0); //结束,通道全部关断   
                 //this.SWControl.ChannelVoltSwitch(2, 0);
             }
             catch (Exception ex)
@@ -1395,8 +1365,11 @@ namespace OCV
                 int TestType = int.Parse(mTestType.ToString());
                 mStep_TestReq = 1;
                 short pos = 0;
-                for (int i = 0; i < 100; i++)//ClsGlobal.TestType / 2
+                int j = 0;
+                while (true)
                 {
+                    //for (int i = 0; i < 100; i++)//ClsGlobal.TestType / 2
+                    //{
                     switch (mStep_TestReq)
                     {
                         case 1:
@@ -1414,7 +1387,7 @@ namespace OCV
                                 }
                                 else
                                 {
-                                    pos = (short)(i + 1);
+                                    pos = (short)(j + 1);
                                     ClsGlobal.mPLCContr.DevMove_AbsNO(0, pos);
                                     ClsGlobal.ManualMessInfo = "PC指示X轴移动至位置：" + pos;
                                     mStep_TestReq = 3;
@@ -1500,6 +1473,7 @@ namespace OCV
                                     break;
                             }
                             ClsGlobal.ManualMessInfo = "位置：" + pos + "测试完成";
+                            j = j + 1;
                             mStep_TestReq = 1;
                             break;
                         case 7:
@@ -1529,18 +1503,18 @@ namespace OCV
                 mManualTestFinish = false;
                 mManualTestStop = false;
                 //SWControl.ChannelVoltSwitch(1, 0);        //正极对负极
-                SWControl.ChanndlVoltShellSwitchContr(1, 0);//正极对负极
+                SWControl.ChannelVoltIRShellNegSwitchContr(1, 0); //正极对负极
                 double theDMMVolt = 0;
                 int iSW;
                 for (int i = 1; i <= 2; i++)
                 {
                     if (mManualTestStop == true)
                     {
-                        SWControl.ChanndlVoltShellSwitchContr(1, 0);//结束,通道全部关断   
-                        //  this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
+                        SWControl.ChannelVoltIRShellNegSwitchContr(1, 0); //结束,通道全部关断   
+                        //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
                         throw new Exception("测试被终止");
                     }
-                    SWControl.ChanndlVoltShellSwitchContr(1, i);
+                    SWControl.ChannelVoltIRShellNegSwitchContr(1, i);
                     //this.SWControl.ChannelVoltSwitch(1, i);  //单通道测电压
 
                     Thread.Sleep(ClsGlobal.SWDelayTime);
@@ -1555,7 +1529,7 @@ namespace OCV
                         }));
                     }
                 }
-                SWControl.ChanndlVoltShellSwitchContr(1, 0);
+                SWControl.ChannelVoltIRShellNegSwitchContr(1, 0);
                 //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
 
                 mManualTestFinish = true;
@@ -1574,8 +1548,8 @@ namespace OCV
                 this.ClearDgv(2);
                 mManualTestFinish = false;
                 mManualTestStop = false;
-                SWControl.ChanndlVoltShellSwitchContr(2, 0);
-                //SWControl.ChannelVoltSwitch(2, 0);        //正极对负极
+                SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
+                //SWControl.ChannelVoltSwitch(2, 0);//正极对负极
 
                 double theDMMVolt = 0;
                 int iSW;
@@ -1583,11 +1557,11 @@ namespace OCV
                 {
                     if (mManualTestStop == true)
                     {
-                        SWControl.ChanndlVoltShellSwitchContr(2, 0);
+                        SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
                         //this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
                         throw new Exception("测试被终止");
                     }
-                    SWControl.ChanndlVoltShellSwitchContr(2, i);
+                    SWControl.ChannelVoltIRShellNegSwitchContr(3, i);
                     //this.SWControl.ChannelVoltSwitch(2, i);  //单通道测电压
 
                     Thread.Sleep(ClsGlobal.SWDelayTime);
@@ -1602,7 +1576,7 @@ namespace OCV
                         }));
                     }
                 }
-                SWControl.ChanndlVoltShellSwitchContr(2, 0);
+                SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
                 //this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
 
                 mManualTestFinish = true;
@@ -1630,10 +1604,10 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltIRSwitchContr(1, 0, 0);      //结束,通道全部关断   
+                        this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);//结束,通道全部关断  
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltIRSwitchContr(1, 2, i);  //单通道测内阻
+                    this.SWControl.ChannelVoltIRShellNegSwitchContr(2, i); //单通道测内阻
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     this.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
                     int index = 2 * (pos - 1) + i;
@@ -1648,7 +1622,7 @@ namespace OCV
                     }
                 }
 
-                this.SWControl.ChannelVoltIRSwitchContr(1, 0, 0);      //结束,通道全部关断   
+                this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);      //结束,通道全部关断   
                 mManualTestFinish = true;
                 MessageBox.Show("多通道手动内阻测试结束");
             }
@@ -1658,12 +1632,10 @@ namespace OCV
                 ClsGlobal.OCV_TestState = eTestState.ErrOCVTest;
                 MessageBox.Show(ex.Message.ToString());
             }
-
         }
 
         public void ClearDgv(int index)
         {
-
             ManualTest.Invoke(new EventHandler(delegate
             {
                 //界面处理->表格数据清空
@@ -1675,305 +1647,381 @@ namespace OCV
 
                 }
                 //this.mForm.dgvTest.Rows.Clear();
-
             }));
         }
+        //手动电压清零
+        public void StartManualVoltZero_Action(FrmManualAdjust MauAdjust)
+        {
+            ManualAdjust = MauAdjust;
+            ThreadTestAction = new Thread(new ThreadStart(ManualVoltZero));
+            ThreadTestAction.Start();
+        }
+        //手动电压清0
+        private void ManualVoltZero()
+        {
+            int theCHCount = 2;
+            double theVoltSample = 0;
+            double theAdjusVolt = 0;
+            try
+            {
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    ManualAdjust.panelVoltZero.Enabled = false;
+                    ManualAdjust.btnVoltZeroAllStart.Enabled = false;
+                }));
 
-        ////手动电压清0
-        //private void ManualVoltZero()
-        //{
-        //    int theCHCount = ClsGlobal.TrayType / 2;
-        //    double theVoltSample = 0;
-        //    double theAdjusVolt = 0;
-        //    try
-        //    {
-        //        ManualAdjust.Invoke(new EventHandler(delegate
-        //        {
-        //            ManualAdjust.panelVoltZero.Enabled = false;
-        //            ManualAdjust.btnVoltZeroAllStart.Enabled = false;
-        //        }));
+                mManualVoltZeroFinish = false;
+                mManualVoltZeroStop = false;
 
-        //        mManualVoltZeroFinish = false;
-        //        mManualVoltZeroStop = false;
+                //值清空
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    for (int Num = 0; Num <ClsGlobal.TrayType; Num++)
+                    {
+                        ManualAdjust.arrTxt_VoltZeroSampleShow[Num].Text = "";
+                    }
+                }));
+              
+                    for (int Num = 0; Num < theCHCount; Num++)
+                    {
+                        if (mManualVoltZeroStop == true)
+                        {
+                            Thread.Sleep(50);
+                            SWControl.ChannelVoltIRShellNegSwitchContr(1, 0);
+                            break;
+                        }
+                        SWControl.ChannelVoltIRShellNegSwitchContr(1, Num + 1);//电压切换
+                        Thread.Sleep(200);
+                        DMM_Ag344X.ReadVolt(out theVoltSample);   //电压值
+                        theAdjusVolt = 0 - theVoltSample * 1000; //计算得到校准值
+                                                                 //更改和保存校准值
+                        for (int loopIndex = 0; loopIndex < ClsGlobal.TrayType; loopIndex+=2)
+                        {
+                        INIAPI.INIWriteValue(ClsGlobal.mVoltAdjustPath, "VoltAdjust", "CH" + (Num + 1+ loopIndex), theAdjusVolt.ToString("F4"));
+                        //ClsGlobal.ArrVoltAdjustPara[Num - 1+ loopIndex] = theAdjusVolt.ToString("F4");
+                        //值显示
+                        ManualAdjust.Invoke(new EventHandler(delegate
+                        {
+                            ManualAdjust.arrTxt_VoltZeroSampleShow[Num+ loopIndex].Text = (theAdjusVolt).ToString("F4");
+                        }));
+                    }
+                    }
+                    mManualVoltZeroFinish = true;
+                    ManualAdjust.Invoke(new EventHandler(delegate
+                    {
+                        ManualAdjust.panelVoltZero.Enabled = true;
+                        ManualAdjust.btnVoltZeroAllStart.Enabled = true;
+                        ManualAdjust.lblNote_VoltZero.Text = ("全部通道电压清零完成!");
+                        ManualAdjust.btnVoltZeroAllStart.Text = "所有通道电压清零";
+                    }));
+            }
+            catch (Exception ex)
+            {
+                mManualVoltZeroFinish = true;
+                MessageBox.Show(ex.Message);
+            }
+        }
+        //手动内阻测试(真实值和已校准的内阻值)
+        public void StartManualIRAdjust_Test_Action(FrmManualAdjust MauAdjust, Action act)
+        {
+            ManualAdjust = MauAdjust;
+            Action actAdjust = () =>
+            {
+                ManualIRAdjust_Test();
+            };
+            actAdjust.BeginInvoke((iar) => { if (act != null) act(); }, null);
 
-        //        //值清空
-        //        ManualAdjust.Invoke(new EventHandler(delegate
-        //        {
-        //            for (int Num = 0; Num < ClsGlobal.TrayType; Num++)
-        //            {
-        //                ManualAdjust.arrTxt_VoltZeroSampleShow[Num].Text = "";
-        //            }
-        //        }));
-        //        for (int i = 0; i < this.SWCount; i++)
-        //        {
-        //            for (int Num = 0; Num < theCHCount; Num++)
-        //            {
-        //                if (mManualVoltZeroStop == true)
-        //                {
-        //                    Thread.Sleep(50);
-        //                    SWControl[i].ChannelVoltSwitch(1, 0);
-        //                    break;
-        //                }
+        }
+        //手动内阻校准界面的测试 ( 用短路块工装 )
+        private void ManualIRAdjust_Test()
+        {
+            double theIRSample = 0;
 
-        //                SWControl[i].ChannelVoltSwitch(1, Num + 1);         //电压切换
-        //                Thread.Sleep(200);
-        //                DMM_Ag344X.ReadVolt(out theVoltSample);       //电压值
+            int theCHCount = ClsGlobal.TrayType;
 
-        //                theAdjusVolt = 0 - theVoltSample * 1000; //计算得到校准值
-        //                                                         //更改和保存校准值
-        //                INIAPI.INIWriteValue(ClsGlobal.mVoltAdjustPath, "VoltAdjust", "CH" + (Num + 1 + i * 19), theAdjusVolt.ToString("F4"));
-        //                ClsGlobal.ArrVoltAdjustPara[Num - 1] = theAdjusVolt.ToString("F4");
-        //                //值显示
-        //                ManualAdjust.Invoke(new EventHandler(delegate
-        //                {
-        //                    ManualAdjust.arrTxt_VoltZeroSampleShow[Num].Text = (theAdjusVolt).ToString("F4");
-        //                }));
-        //            }
-        //        }
+            try
+            {
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    ManualAdjust.panelIRAdjust.Enabled = false;
+                    ManualAdjust.btnIRAdjustSampleAllStart.Enabled = false;
+                    ManualAdjust.btnIRAdjustAllStart.Enabled = false;
+                    ManualAdjust.btnIRAdjustAllValClr.Enabled = false;
+                }));
 
-        //        mManualVoltZeroFinish = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        mManualVoltZeroFinish = true;
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+                mManualIRAdjustFinish = false;
+                mManualIRAdjustStop = false;
+                for (int i = 0; i < this.SWCount; i++)
+                {
+                    for (int Num = 0; Num < 2; Num++)
+                    {
+                        if (mManualIRAdjustStop == true)
+                        {
+                            Thread.Sleep(50);
+                            this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);
+                            //.ChannelAcirSwitchContr(2, 0);
+                            break;
+                        }
+                        this.SWControl.ChannelVoltIRShellNegSwitchContr(2, Num + 1);//内阻通道选择   
+                        //SWControl.ChannelAcirSwitchContr(2, Num + 1);                    
+                        Thread.Sleep(300);
+                        HIOKI365X.ReadData(out theIRSample);//内阻采样
+                        for (int loopIndex = 0; loopIndex < ClsGlobal.TrayType; loopIndex+=2)
+                        {
+                            //显示阻值
+                            ManualAdjust.Invoke(new EventHandler(delegate
+                            {
+                                if (theIRSample > 100)
+                                {
+                                    ManualAdjust.arrTxt_IRSampleShow[Num+ loopIndex].BackColor = Color.Red;
+                                }
+                                else
+                                {
+                                    ManualAdjust.arrTxt_IRSampleShow[Num + loopIndex].BackColor = Color.LightGreen;
+                                }
 
-        ////手动内阻校准界面的测试 ( 用短路块工装 )
-        //private void ManualIRAdjust_Test()
-        //{
-        //    double theIRSample = 0;
+                                ManualAdjust.arrTxt_IRSampleShow[Num + loopIndex].Text = (theIRSample * 1000).ToString("F3") + "/" +
+                                                                             (theIRSample * 1000+ double.Parse(ClsGlobal.mIRAdjustVal[(Num + i * 8)+ loopIndex])).ToString("F3")/* double.Parse(ClsGlobal.mIRAdjustVal[Num + i * 19])).ToString("F3")*/;
+                            }));
+                        }
+                    }
+                }
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    ManualAdjust.panelIRAdjust.Enabled = true;
+                    ManualAdjust.btnIRAdjustSampleAllStart.Enabled = true;
+                    ManualAdjust.btnIRAdjustAllStart.Enabled = true;
+                    ManualAdjust.btnIRAdjustAllValClr.Enabled = true;
+                    ManualAdjust.lblNote_IRAdjust.Text = ("全部通道测试完成!");
+                }));
+               
+                mManualIRAdjustFinish = true;
+            }
+            catch (Exception ex)
+            {
+                mManualIRAdjustFinish = true;
+                MessageBox.Show(ex.Message);
+            }
 
-        //    int theCHCount = ClsGlobal.TrayType / 2;
+        }
+        //手动内阻校准
+        public void StartManualIRAdjust_Action(FrmManualAdjust MauAdjust, Action callBack)
+        {
+            ManualAdjust = MauAdjust;
+            Action actIRAdjust = () =>
+            {
+                ManualIRAdjust();
+            };
+            actIRAdjust.BeginInvoke(iar => { if (callBack != null) callBack(); }, null);
+        }
+        //手动内阻校准( 用短路块工装 )
+        private void ManualIRAdjust()
+        {
+            double theBaseVal;
+            double theAdjust;
+            double theIRSample;
+            int theCHCount = 2;//ClsGlobal.TrayType / 2;
 
-        //    try
-        //    {
-        //        ManualAdjust.Invoke(new EventHandler(delegate
-        //        {
-        //            ManualAdjust.panelIRAdjust.Enabled = false;
-        //            ManualAdjust.btnIRAdjustSampleAllStart.Enabled = false;
-        //            ManualAdjust.btnIRAdjustAllStart.Enabled = false;
-        //            ManualAdjust.btnIRAdjustAllValClr.Enabled = false;
-        //        }));
+            try
+            {
+                //得到基准值
+                if (double.TryParse(ManualAdjust.txtIRBase_Adjust.Text, out theBaseVal) == false)
+                {
+                    ManualAdjust.lblNote_IRAdjust.Text = "请先填入正确的内阻基准值，再进行校准";
+                    return;
+                }
 
-        //        mManualIRAdjustFinish = false;
-        //        mManualIRAdjustStop = false;
-        //        for (int i = 0; i < this.SWCount; i++)
-        //        {
-        //            for (int Num = 0; Num < theCHCount; Num++)
-        //            {
-        //                if (mManualIRAdjustStop == true)
-        //                {
-        //                    Thread.Sleep(50);
-        //                    SWControl[i].ChannelAcirSwitchContr(2, 0);
-        //                    break;
-        //                }
-        //                SWControl[i].ChannelAcirSwitchContr(2, Num +1 );             //内阻通道选择          
-        //                Thread.Sleep(300);
-        //                HIOKI4560[i].ReadRData(out theIRSample);                //内阻采样
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    ManualAdjust.panelIRAdjust.Enabled = false;
+                    ManualAdjust.btnIRAdjustSampleAllStart.Enabled = false;
+                    ManualAdjust.btnIRAdjustAllStart.Enabled = false;
+                    ManualAdjust.btnIRAdjustAllValClr.Enabled = false;
+                }));
 
-        //                //显示阻值
-        //                ManualAdjust.Invoke(new EventHandler(delegate
-        //                {
-        //                    if (theIRSample > 100)
-        //                    {
-        //                        ManualAdjust.arrTxt_IRSampleShow[Num].BackColor = Color.Red;
-        //                    }
-        //                    else
-        //                    {
-        //                        ManualAdjust.arrTxt_IRSampleShow[Num].BackColor = Color.LightGreen;
-        //                    }
+                mManualIRAdjustFinish = false;
+                mManualIRAdjustStop = false;
 
-        //                    ManualAdjust.arrTxt_IRSampleShow[Num].Text = (theIRSample * 1000).ToString("F3") + "/" +
-        //                    (theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[Num + i * 19])).ToString("F3");
-        //                }));
-        //            }
-        //        }
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    for (int Num = 0; Num < ClsGlobal.TrayType; Num++)
+                    {
+                        ManualAdjust.arrTxt_IRSampleShow[Num].Text = "";
+                    }
+                }));
 
-        //        mManualIRAdjustFinish = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        mManualIRAdjustFinish = true;
-        //        MessageBox.Show(ex.Message);
-        //    }
+                for (int i = 0; i < this.SWCount; i++)
+                {
+                    for (int Num = 0; Num < theCHCount; Num++)
+                    {
+                        if (mManualIRAdjustStop == true)
+                        {
+                            Thread.Sleep(50);
+                            SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);
+                            //SWControl.ChannelAcirSwitchContr(2, 0);
+                            break;
+                        }
+                        SWControl.ChannelVoltIRShellNegSwitchContr(2, Num + 1);//内阻通道选择 
+                        //SWControl.ChannelAcirSwitchContr(2, Num + 1);                      
+                        Thread.Sleep(300);
+                        HIOKI365X.ReadData(out theIRSample);//内阻采样
+                        if (theIRSample * 1000 > 100)
+                        {
+                            ManualAdjust.Invoke(new EventHandler(delegate
+                            {
+                                ManualAdjust.lblNote_IRAdjust.Text = ("[通道" + ((Num + 1) /*+ this.SWCount * theCHCount*/) + "]:\r\n" + "测得阻值>100mΩ,校准失败!");
+                            }));
+                            break;
+                        }
+                        //计算得到校准值
+                        theAdjust = theBaseVal - theIRSample * 1000;
+                        for (int loopIndex = 0; loopIndex < ClsGlobal.TrayType; loopIndex += 2)
+                        {
+                            //更改和保存校准值
+                            INIAPI.INIWriteValue(ClsGlobal.mIRAdjustPath, "ACIRAdjust",
+                                "CH" + ((Num + 1+ loopIndex) /*+ this.SWCount * theCHCount*/), theAdjust.ToString("F3"));
+                            // ClsGlobal.mIRAdjustVal[((Num + 1+ loopIndex) + this.SWCount * theCHCount) - 1] = theAdjust.ToString();
+                            // ClsGlobal.mIRAdjustVal[Num + 1 + loopIndex] = theAdjust.ToString();
+                            ClsGlobal.mIRAdjustVal[Num + loopIndex] = theAdjust.ToString();
+                            //显示阻值
+                            if (ManualAdjust.IsHandleCreated == true && mManualIRAdjustStop == false)
+                            {
+                                ManualAdjust.Invoke(new EventHandler(delegate
+                                {
+                                    ManualAdjust.arrTxt_IRSampleShow[Num+ loopIndex/* + this.SWCount * theCHCount*/].BackColor =
+                                        Color.LightGreen;
+                                    ManualAdjust.arrTxt_IRSampleShow[Num + loopIndex/* + this.SWCount * theCHCount*/].Text =
+                                        (theIRSample * 1000 +
+                                         double.Parse(
+                                         //  ClsGlobal.mIRAdjustVal[((Num + 1+ loopIndex) /*+ this.SWCount * theCHCount)- 1*/ )]))
+                                         //.ToString("F3");
+                                         ClsGlobal.mIRAdjustVal[(Num  + loopIndex)]))
+                                    .ToString("F3");
+                                }));
+                            }
+                        }
+                    }
+                }
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    ManualAdjust.panelIRAdjust.Enabled = true;
+                    ManualAdjust.btnIRAdjustSampleAllStart.Enabled = true;
+                    ManualAdjust.btnIRAdjustAllStart.Enabled = true;
+                    ManualAdjust.btnIRAdjustAllValClr.Enabled = true;
+                    ManualAdjust.lblNote_IRAdjust.Text = ("全部通道内阻校准完成!");
+                }));
+                mManualIRAdjustFinish = true;
+            }
+            catch (Exception ex)
+            {
+                mManualIRAdjustFinish = true;
+                MessageBox.Show(ex.Message);
+            }
+        }
+        //手动内阻计量
+        public void StartManualIRMetering_Action(FrmManualAdjust MauAdjust, Action callback)
+        {
+            ManualAdjust = MauAdjust;
+            Action actadjust = () =>
+            {
+                ManualIRMetering();
+            };
+            actadjust.BeginInvoke(iar => { if (callback != null) callback(); }, null);
 
-        //}
+        }
+        //手动内阻计量( 用标准电阻工装)
+        private void ManualIRMetering()
+        {
+            double theMeterVal = 0;
+            double MeterErrRange = 0;
+            double theIRSample;
+            double theIR;       //毫欧单位
+            int theCHCount =2;
+            try
+            {
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    //已输入计量值
+                    if (double.TryParse(ManualAdjust.txtIRSet_Metering.Text, out theMeterVal) == false)
+                    {
+                        ManualAdjust.lblNote_IRMetering.Text = ("请先填入正确的计量值，再进行计量");
+                        return;
+                    }
 
-        ////手动内阻校准( 用短路块工装 )
-        //private void ManualIRAdjust()
-        //{
-        //    double theBaseVal;
-        //    double theAdjust;
-        //    double theIRSample;
-        //    int theCHCount = ClsGlobal.TrayType / 2;
+                    if (double.TryParse(ManualAdjust.txtIRMeterErrRange.Text, out MeterErrRange) == false)
+                    {
+                        ManualAdjust.lblNote_IRMetering.Text = ("请先填入正确的计量误差值，再进行计量");
+                        return;
+                    }
+                }));
 
-        //    try
-        //    {
-        //        //得到基准值
-        //        if (double.TryParse(ManualAdjust.txtIRBase_Adjust.Text, out theBaseVal) == false)
-        //        {
-        //            ManualAdjust.lblNote_IRAdjust.Text = "请先填入正确的内阻基准值，再进行校准";
-        //            return;
-        //        }
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    ManualAdjust.panelIRMetering.Enabled = false;
+                    ManualAdjust.btnIRMeteringAllStart.Enabled = false;
+                }));
 
-        //        ManualAdjust.Invoke(new EventHandler(delegate
-        //        {
-        //            ManualAdjust.panelIRAdjust.Enabled = false;
-        //            ManualAdjust.btnIRAdjustSampleAllStart.Enabled = false;
-        //            ManualAdjust.btnIRAdjustAllStart.Enabled = false;
-        //            ManualAdjust.btnIRAdjustAllValClr.Enabled = false;
-        //        }));
+                mManualIRMeterFinish = false;
+                mManualIRMeterStop = false;
 
-        //        mManualIRAdjustFinish = false;
-        //        mManualIRAdjustStop = false;
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    for (int Num = 0; Num < ClsGlobal.TrayType; Num++)
+                    {
+                        ManualAdjust.arrTxt_IRMeterShow[Num].Text = "";
+                    }
+                }));
 
-        //        ManualAdjust.Invoke(new EventHandler(delegate
-        //        {
-        //            for (int Num = 0; Num < ClsGlobal.TrayType; Num++)
-        //            {
-        //                ManualAdjust.arrTxt_IRSampleShow[Num].Text = "";
-        //            }
-        //        }));
-
-        //        for (int i = 0; i < this.SWCount; i++)
-        //        {
-        //            for (int Num = 0; Num < theCHCount; Num++)
-        //            {
-        //                if (mManualIRAdjustStop == true)
-        //                {
-        //                    Thread.Sleep(50);
-        //                    SWControl[i].ChannelAcirSwitchContr(2, 0);
-        //                    break;
-        //                }
-        //                SWControl[i].ChannelAcirSwitchContr(2, Num + 1);             //内阻通道选择          
-        //                Thread.Sleep(300);
-        //                HIOKI4560[i].ReadRData(out theIRSample);                //内阻采样
-
-        //                if (theIRSample * 1000 > 100)
-        //                {
-        //                    ManualAdjust.Invoke(new EventHandler(delegate
-        //                    {
-        //                        ManualAdjust.lblNote_IRAdjust.Text = ("[通道" + ((Num + 1) + this.SWCount * theCHCount) + "]:\r\n" + "测得阻值>100mΩ,校准失败!");
-        //                    }));
-        //                    break;
-        //                }
-
-        //                //计算得到校准值
-        //                theAdjust = theBaseVal - theIRSample * 1000;
-
-        //                //更改和保存校准值
-        //                INIAPI.INIWriteValue(ClsGlobal.mIRAdjustPath, "ACIRAdjust", "CH" + ((Num + 1) + this.SWCount * theCHCount), theAdjust.ToString("F3"));
-        //                ClsGlobal.mIRAdjustVal[((Num + 1) + this.SWCount * theCHCount) - 1] = theAdjust.ToString();
-
-        //                //显示阻值
-        //                if (ManualAdjust.IsHandleCreated == true && mManualIRAdjustStop == false)
-        //                {
-        //                    ManualAdjust.Invoke(new EventHandler(delegate
-        //                    {
-        //                        ManualAdjust.arrTxt_IRSampleShow[Num + this.SWCount * theCHCount].BackColor = Color.LightGreen;
-        //                        ManualAdjust.arrTxt_IRSampleShow[Num + this.SWCount * theCHCount].Text = (theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[((Num + 1) + this.SWCount * theCHCount) - 1])).ToString("F3");
-
-        //                    }));
-        //                }
-        //            }
-        //        }
-
-        //        mManualIRAdjustFinish = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        mManualIRAdjustFinish = true;
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
-
-        ////手动内阻计量( 用标准电阻工装)
-        //private void ManualIRMetering()
-        //{
-        //    double theMeterVal = 0;
-        //    double MeterErrRange = 0;
-        //    double theIRSample;
-        //    double theIR;       //毫欧单位
-        //    int theCHCount = ClsGlobal.TrayType / 2;
-        //    try
-        //    {
-        //        ManualAdjust.Invoke(new EventHandler(delegate
-        //        {
-        //            //已输入计量值
-        //            if (double.TryParse(ManualAdjust.txtIRSet_Metering.Text, out theMeterVal) == false)
-        //            {
-        //                ManualAdjust.lblNote_IRMetering.Text = ("请先填入正确的计量值，再进行计量");
-        //                return;
-        //            }
-
-        //            if (double.TryParse(ManualAdjust.txtIRMeterErrRange.Text, out MeterErrRange) == false)
-        //            {
-        //                ManualAdjust.lblNote_IRMetering.Text = ("请先填入正确的计量误差值，再进行计量");
-        //                return;
-        //            }
-        //        }));
-
-        //        ManualAdjust.Invoke(new EventHandler(delegate
-        //        {
-        //            ManualAdjust.panelIRMetering.Enabled = false;
-        //            ManualAdjust.btnIRMeteringAllStart.Enabled = false;
-        //        }));
-
-        //        mManualIRMeterFinish = false;
-        //        mManualIRMeterStop = false;
-
-        //        ManualAdjust.Invoke(new EventHandler(delegate
-        //        {
-        //            for (int Num = 0; Num < ClsGlobal.TrayType; Num++)
-        //            {
-        //                ManualAdjust.arrTxt_IRMeterShow[Num].Text = "";
-        //            }
-        //        }));
-
-        //        for (int i = 0; i < this.SWCount; i++)
-        //        {
-        //            for (int Num = 0; Num < theCHCount; Num++)
-        //            {
-        //                if (mManualIRAdjustStop == true)
-        //                {
-        //                    Thread.Sleep(50);
-        //                    SWControl[i].ChannelAcirSwitchContr(2, 0);
-        //                    break;
-        //                }
-        //                SWControl[i].ChannelAcirSwitchContr(2, Num + 1);             //内阻通道选择          
-        //                Thread.Sleep(300);
-        //                HIOKI4560[i].ReadRData(out theIRSample);                //内阻采样
-
-        //                theIR = theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[(Num + 1) + this.SWCount * theCHCount - 1]);  //经过adjust
-        //                                                                                                                               //计量测试
-        //                ManualAdjust.Invoke(new EventHandler(delegate
-        //                {
-        //                    ManualAdjust.arrTxt_IRMeterShow[Num + this.SWCount * theCHCount].Text = theIR.ToString("F3");
-        //                    if (Math.Abs(theMeterVal - theIR) <= MeterErrRange)
-        //                    {
-        //                        ManualAdjust.arrTxt_IRMeterShow[Num + this.SWCount * theCHCount].BackColor = Color.LightGreen;
-        //                        ManualAdjust.mToolTip_IRMeter.SetToolTip(ManualAdjust.arrTxt_IRMeterShow[Num + this.SWCount * theCHCount], "计量通过");
-        //                        ManualAdjust.arrLbl_IRMeterJudge[Num + this.SWCount * theCHCount].Text = "OK";
-        //                    }
-        //                    else
-        //                    {
-        //                        ManualAdjust.arrTxt_IRMeterShow[Num + this.SWCount * theCHCount].BackColor = Color.Red;
-        //                        ManualAdjust.mToolTip_IRMeter.SetToolTip(ManualAdjust.arrTxt_IRMeterShow[Num + this.SWCount * theCHCount], "计量不通过");
-        //                        ManualAdjust.arrLbl_IRMeterJudge[Num + this.SWCount * theCHCount].Text = "NG";
-        //                    }
-        //                }));
-        //            }
-        //        }
-
-        //        mManualIRMeterFinish = true;
-        //    }
-        //    catch (Exception ex)
-        //    {
-        //        mManualIRMeterFinish = true;
-        //        MessageBox.Show(ex.Message);
-        //    }
-        //}
+                for (int i = 0; i < this.SWCount; i++)
+                {
+                    for (int Num = 0; Num < theCHCount; Num++)
+                    {
+                        if (mManualIRAdjustStop == true)
+                        {
+                            Thread.Sleep(50);
+                            SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);
+                            break;
+                        }
+                        SWControl.ChannelVoltIRShellNegSwitchContr(2, Num + 1); //内阻通道选择          
+                        Thread.Sleep(300);
+                        HIOKI365X.ReadData(out theIRSample);//内阻采样
+                        for (int loopIndex = 0; loopIndex < ClsGlobal.TrayType; loopIndex += 2)
+                        {
+                            theIR = theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[(Num+ loopIndex)]/*+ 1) + this.SWCount * theCHCount - 1]*/);  //经过adjust
+                            //计量测试
+                            ManualAdjust.Invoke(new EventHandler(delegate
+                            {
+                                ManualAdjust.arrTxt_IRMeterShow[Num+loopIndex/* + this.SWCount * theCHCount*/].Text = theIR.ToString("F3");
+                                if (Math.Abs(theMeterVal - theIR) <= MeterErrRange)
+                                {
+                                    ManualAdjust.arrTxt_IRMeterShow[Num + loopIndex /*+ this.SWCount * theCHCount*/].BackColor = Color.LightGreen;
+                                    ManualAdjust.mToolTip_IRMeter.SetToolTip(ManualAdjust.arrTxt_IRMeterShow[Num + loopIndex/* +this.SWCount * theCHCount*/], "计量通过");
+                                    ManualAdjust.arrLbl_IRMeterJudge[Num + loopIndex/* this.SWCount * theCHCount*/].Text = "OK";
+                                }
+                                else
+                                {
+                                    ManualAdjust.arrTxt_IRMeterShow[Num + loopIndex/* + this.SWCount * theCHCount*/].BackColor = Color.Red;
+                                    ManualAdjust.mToolTip_IRMeter.SetToolTip(ManualAdjust.arrTxt_IRMeterShow[Num + loopIndex /*+ this.SWCount * theCHCount*/], "计量不通过");
+                                    ManualAdjust.arrLbl_IRMeterJudge[Num +loopIndex /*this.SWCount * theCHCount*/].Text = "NG";
+                                }
+                            }));
+                        }
+                        
+                    }
+                }
+                ManualAdjust.Invoke(new EventHandler(delegate
+                {
+                    ManualAdjust.panelIRMetering.Enabled = true;
+                    ManualAdjust.btnIRMeteringAllStart.Enabled = true;
+                    ManualAdjust.lblNote_IRMetering.Text = ("全部通道内阻计量完成!");
+                }));
+                mManualIRMeterFinish = true;
+            }
+            catch (Exception ex)
+            {
+                mManualIRMeterFinish = true;
+                MessageBox.Show(ex.Message);
+            }
+        }
     }
 }

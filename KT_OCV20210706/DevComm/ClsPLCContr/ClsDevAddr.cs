@@ -182,10 +182,10 @@ namespace OCV
             PC_POS3 = "W44";
             PC_POS4 = "W46";
             PC_POS5 = "W48";
-            PC_POS6 = "W50";
-            PC_POS7 = "W52";
-            PC_POS8 = "W54";
-            PC_POS8 = "W56";
+            PC_POS6 = "W4A";
+            PC_POS7 = "W4C";
+            PC_POS8 = "W4E";
+            PC_POS9 = "W50";
 
             PC_1POS1 = "D4000";
             PC_1POS2 = "D4002";
@@ -195,7 +195,7 @@ namespace OCV
             PC_1POS6 = "D4010";
             PC_1POS7 = "D4012";
             PC_1POS8 = "D4014";
-            PC_1POS8 = "D4016";
+            PC_1POS9 = "D4016";
 
             //PLC Register
             PLC_初始化完成 = "W107";

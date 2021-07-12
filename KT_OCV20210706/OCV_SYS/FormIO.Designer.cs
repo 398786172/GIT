@@ -33,6 +33,7 @@ namespace OCV
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormIO));
             this.tabControl3 = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel5 = new DevComponents.DotNetBar.TabControlPanel();
+            this.button5 = new System.Windows.Forms.Button();
             this.label46 = new System.Windows.Forms.Label();
             this.label44 = new System.Windows.Forms.Label();
             this.groupBox5 = new System.Windows.Forms.GroupBox();
@@ -106,11 +107,6 @@ namespace OCV
             this.lblProbeOpen = new System.Windows.Forms.Label();
             this.lblProbeClose = new System.Windows.Forms.Label();
             this.tabItem5 = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
-            this.tabControlIO = new CCWin.SkinControl.SkinTabControl();
-            this.stpIOX = new CCWin.SkinControl.SkinTabPage();
-            this.stpIOY = new CCWin.SkinControl.SkinTabPage();
-            this.tabItem3 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.label43 = new System.Windows.Forms.Label();
             this.groupBox10 = new System.Windows.Forms.GroupBox();
@@ -192,6 +188,11 @@ namespace OCV
             this.label32 = new System.Windows.Forms.Label();
             this.txtCurrPos1 = new System.Windows.Forms.TextBox();
             this.tabItem1 = new DevComponents.DotNetBar.TabItem(this.components);
+            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
+            this.tabControlIO = new CCWin.SkinControl.SkinTabControl();
+            this.stpIOX = new CCWin.SkinControl.SkinTabPage();
+            this.stpIOY = new CCWin.SkinControl.SkinTabPage();
+            this.tabItem3 = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel4 = new DevComponents.DotNetBar.TabControlPanel();
             this.label4 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
@@ -226,12 +227,12 @@ namespace OCV
             this.grpCV.SuspendLayout();
             this.grpCylPos.SuspendLayout();
             this.grpProbe.SuspendLayout();
-            this.tabControlPanel3.SuspendLayout();
-            this.tabControlIO.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
             this.groupBox10.SuspendLayout();
             this.groupBox9.SuspendLayout();
             this.groupBox11.SuspendLayout();
+            this.tabControlPanel3.SuspendLayout();
+            this.tabControlIO.SuspendLayout();
             this.tabControlPanel4.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
@@ -242,8 +243,8 @@ namespace OCV
             this.tabControl3.BackColor = System.Drawing.Color.Transparent;
             this.tabControl3.CanReorderTabs = true;
             this.tabControl3.Controls.Add(this.tabControlPanel5);
-            this.tabControl3.Controls.Add(this.tabControlPanel3);
             this.tabControl3.Controls.Add(this.tabControlPanel1);
+            this.tabControl3.Controls.Add(this.tabControlPanel3);
             this.tabControl3.Controls.Add(this.tabControlPanel4);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
@@ -263,6 +264,7 @@ namespace OCV
             // 
             // tabControlPanel5
             // 
+            this.tabControlPanel5.Controls.Add(this.button5);
             this.tabControlPanel5.Controls.Add(this.label46);
             this.tabControlPanel5.Controls.Add(this.label44);
             this.tabControlPanel5.Controls.Add(this.groupBox5);
@@ -294,6 +296,17 @@ namespace OCV
             this.tabControlPanel5.Style.GradientAngle = 90;
             this.tabControlPanel5.TabIndex = 3;
             this.tabControlPanel5.TabItem = this.tabItem5;
+            // 
+            // button5
+            // 
+            this.button5.Location = new System.Drawing.Point(37, 436);
+            this.button5.Name = "button5";
+            this.button5.Size = new System.Drawing.Size(75, 23);
+            this.button5.TabIndex = 236;
+            this.button5.Text = "报警测试";
+            this.button5.UseVisualStyleBackColor = true;
+            this.button5.Visible = false;
+            this.button5.Click += new System.EventHandler(this.button5_Click);
             // 
             // label46
             // 
@@ -1052,80 +1065,6 @@ namespace OCV
             this.tabItem5.AttachedControl = this.tabControlPanel5;
             this.tabItem5.Name = "tabItem5";
             this.tabItem5.Text = "机械控制";
-            // 
-            // tabControlPanel3
-            // 
-            this.tabControlPanel3.Controls.Add(this.tabControlIO);
-            this.tabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel3.Location = new System.Drawing.Point(0, 28);
-            this.tabControlPanel3.Margin = new System.Windows.Forms.Padding(2);
-            this.tabControlPanel3.Name = "tabControlPanel3";
-            this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel3.Size = new System.Drawing.Size(828, 560);
-            this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
-            this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
-            this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
-            this.tabControlPanel3.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
-            | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel3.Style.GradientAngle = 90;
-            this.tabControlPanel3.TabIndex = 1;
-            this.tabControlPanel3.TabItem = this.tabItem3;
-            // 
-            // tabControlIO
-            // 
-            this.tabControlIO.AnimatorType = CCWin.SkinControl.AnimationType.HorizSlide;
-            this.tabControlIO.CloseRect = new System.Drawing.Rectangle(2, 2, 12, 12);
-            this.tabControlIO.Controls.Add(this.stpIOX);
-            this.tabControlIO.Controls.Add(this.stpIOY);
-            this.tabControlIO.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlIO.HeadBack = null;
-            this.tabControlIO.ImgTxtOffset = new System.Drawing.Point(0, 0);
-            this.tabControlIO.ItemSize = new System.Drawing.Size(100, 36);
-            this.tabControlIO.Location = new System.Drawing.Point(1, 1);
-            this.tabControlIO.Multiline = true;
-            this.tabControlIO.Name = "tabControlIO";
-            this.tabControlIO.PageArrowDown = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageArrowDown")));
-            this.tabControlIO.PageArrowHover = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageArrowHover")));
-            this.tabControlIO.PageCloseHover = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageCloseHover")));
-            this.tabControlIO.PageCloseNormal = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageCloseNormal")));
-            this.tabControlIO.PageDown = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageDown")));
-            this.tabControlIO.PageHover = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageHover")));
-            this.tabControlIO.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Top;
-            this.tabControlIO.PageNorml = null;
-            this.tabControlIO.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.tabControlIO.SelectedIndex = 1;
-            this.tabControlIO.Size = new System.Drawing.Size(826, 558);
-            this.tabControlIO.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
-            this.tabControlIO.TabIndex = 200;
-            // 
-            // stpIOX
-            // 
-            this.stpIOX.BackColor = System.Drawing.SystemColors.Menu;
-            this.stpIOX.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stpIOX.Location = new System.Drawing.Point(0, 36);
-            this.stpIOX.Name = "stpIOX";
-            this.stpIOX.Size = new System.Drawing.Size(826, 522);
-            this.stpIOX.TabIndex = 2;
-            this.stpIOX.TabItemImage = null;
-            this.stpIOX.Text = "IO (X)";
-            // 
-            // stpIOY
-            // 
-            this.stpIOY.BackColor = System.Drawing.SystemColors.Menu;
-            this.stpIOY.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.stpIOY.Location = new System.Drawing.Point(0, 36);
-            this.stpIOY.Name = "stpIOY";
-            this.stpIOY.Size = new System.Drawing.Size(826, 522);
-            this.stpIOY.TabIndex = 1;
-            this.stpIOY.TabItemImage = null;
-            this.stpIOY.Text = "IO (Y)";
-            // 
-            // tabItem3
-            // 
-            this.tabItem3.AttachedControl = this.tabControlPanel3;
-            this.tabItem3.Name = "tabItem3";
-            this.tabItem3.Text = "IO信号";
             // 
             // tabControlPanel1
             // 
@@ -2023,6 +1962,80 @@ namespace OCV
             this.tabItem1.Name = "tabItem1";
             this.tabItem1.Text = "轴调试";
             // 
+            // tabControlPanel3
+            // 
+            this.tabControlPanel3.Controls.Add(this.tabControlIO);
+            this.tabControlPanel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel3.Location = new System.Drawing.Point(0, 28);
+            this.tabControlPanel3.Margin = new System.Windows.Forms.Padding(2);
+            this.tabControlPanel3.Name = "tabControlPanel3";
+            this.tabControlPanel3.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel3.Size = new System.Drawing.Size(828, 560);
+            this.tabControlPanel3.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
+            this.tabControlPanel3.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
+            this.tabControlPanel3.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel3.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(59)))), ((int)(((byte)(97)))), ((int)(((byte)(156)))));
+            this.tabControlPanel3.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right) 
+            | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel3.Style.GradientAngle = 90;
+            this.tabControlPanel3.TabIndex = 1;
+            this.tabControlPanel3.TabItem = this.tabItem3;
+            // 
+            // tabControlIO
+            // 
+            this.tabControlIO.AnimatorType = CCWin.SkinControl.AnimationType.HorizSlide;
+            this.tabControlIO.CloseRect = new System.Drawing.Rectangle(2, 2, 12, 12);
+            this.tabControlIO.Controls.Add(this.stpIOX);
+            this.tabControlIO.Controls.Add(this.stpIOY);
+            this.tabControlIO.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlIO.HeadBack = null;
+            this.tabControlIO.ImgTxtOffset = new System.Drawing.Point(0, 0);
+            this.tabControlIO.ItemSize = new System.Drawing.Size(100, 36);
+            this.tabControlIO.Location = new System.Drawing.Point(1, 1);
+            this.tabControlIO.Multiline = true;
+            this.tabControlIO.Name = "tabControlIO";
+            this.tabControlIO.PageArrowDown = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageArrowDown")));
+            this.tabControlIO.PageArrowHover = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageArrowHover")));
+            this.tabControlIO.PageCloseHover = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageCloseHover")));
+            this.tabControlIO.PageCloseNormal = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageCloseNormal")));
+            this.tabControlIO.PageDown = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageDown")));
+            this.tabControlIO.PageHover = ((System.Drawing.Image)(resources.GetObject("tabControlIO.PageHover")));
+            this.tabControlIO.PageImagePosition = CCWin.SkinControl.SkinTabControl.ePageImagePosition.Top;
+            this.tabControlIO.PageNorml = null;
+            this.tabControlIO.RightToLeft = System.Windows.Forms.RightToLeft.No;
+            this.tabControlIO.SelectedIndex = 1;
+            this.tabControlIO.Size = new System.Drawing.Size(826, 558);
+            this.tabControlIO.SizeMode = System.Windows.Forms.TabSizeMode.Fixed;
+            this.tabControlIO.TabIndex = 200;
+            // 
+            // stpIOX
+            // 
+            this.stpIOX.BackColor = System.Drawing.SystemColors.Menu;
+            this.stpIOX.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stpIOX.Location = new System.Drawing.Point(0, 36);
+            this.stpIOX.Name = "stpIOX";
+            this.stpIOX.Size = new System.Drawing.Size(826, 522);
+            this.stpIOX.TabIndex = 2;
+            this.stpIOX.TabItemImage = null;
+            this.stpIOX.Text = "IO (X)";
+            // 
+            // stpIOY
+            // 
+            this.stpIOY.BackColor = System.Drawing.SystemColors.Menu;
+            this.stpIOY.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.stpIOY.Location = new System.Drawing.Point(0, 36);
+            this.stpIOY.Name = "stpIOY";
+            this.stpIOY.Size = new System.Drawing.Size(826, 522);
+            this.stpIOY.TabIndex = 1;
+            this.stpIOY.TabItemImage = null;
+            this.stpIOY.Text = "IO (Y)";
+            // 
+            // tabItem3
+            // 
+            this.tabItem3.AttachedControl = this.tabControlPanel3;
+            this.tabItem3.Name = "tabItem3";
+            this.tabItem3.Text = "IO信号";
+            // 
             // tabControlPanel4
             // 
             this.tabControlPanel4.Controls.Add(this.label4);
@@ -2261,14 +2274,14 @@ namespace OCV
             this.grpCV.ResumeLayout(false);
             this.grpCylPos.ResumeLayout(false);
             this.grpProbe.ResumeLayout(false);
-            this.tabControlPanel3.ResumeLayout(false);
-            this.tabControlIO.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
             this.groupBox10.ResumeLayout(false);
             this.groupBox9.ResumeLayout(false);
             this.groupBox9.PerformLayout();
             this.groupBox11.ResumeLayout(false);
             this.groupBox11.PerformLayout();
+            this.tabControlPanel3.ResumeLayout(false);
+            this.tabControlIO.ResumeLayout(false);
             this.tabControlPanel4.ResumeLayout(false);
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
@@ -2457,5 +2470,6 @@ namespace OCV
         private System.Windows.Forms.Button button3;
         private System.Windows.Forms.Button button4;
         private System.Windows.Forms.Label label49;
+        private System.Windows.Forms.Button button5;
     }
 }

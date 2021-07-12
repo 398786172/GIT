@@ -159,7 +159,7 @@
             this.panelTEMP.AutoScroll = true;
             this.panelTEMP.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelTEMP.Location = new System.Drawing.Point(3, 65);
-            this.panelTEMP.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelTEMP.Margin = new System.Windows.Forms.Padding(2);
             this.panelTEMP.Name = "panelTEMP";
             this.panelTEMP.Size = new System.Drawing.Size(817, 497);
             this.panelTEMP.TabIndex = 56;
@@ -173,7 +173,7 @@
             this.panel8.Controls.Add(this.groupBox14);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel8.Location = new System.Drawing.Point(820, 65);
-            this.panel8.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel8.Margin = new System.Windows.Forms.Padding(2);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(197, 497);
             this.panel8.TabIndex = 55;
@@ -312,7 +312,7 @@
             this.tab_VoltZero.BackColor = System.Drawing.SystemColors.Control;
             this.tab_VoltZero.Controls.Add(this.grpBoxVoltAZero);
             this.tab_VoltZero.Location = new System.Drawing.Point(4, 30);
-            this.tab_VoltZero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tab_VoltZero.Margin = new System.Windows.Forms.Padding(2);
             this.tab_VoltZero.Name = "tab_VoltZero";
             this.tab_VoltZero.Size = new System.Drawing.Size(1020, 565);
             this.tab_VoltZero.TabIndex = 6;
@@ -336,7 +336,7 @@
             this.panelVoltZero.AutoScroll = true;
             this.panelVoltZero.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelVoltZero.Location = new System.Drawing.Point(3, 63);
-            this.panelVoltZero.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelVoltZero.Margin = new System.Windows.Forms.Padding(2);
             this.panelVoltZero.Name = "panelVoltZero";
             this.panelVoltZero.Size = new System.Drawing.Size(847, 499);
             this.panelVoltZero.TabIndex = 57;
@@ -350,7 +350,7 @@
             this.panel4.Controls.Add(this.lblNote_VoltZero);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel4.Location = new System.Drawing.Point(850, 63);
-            this.panel4.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel4.Margin = new System.Windows.Forms.Padding(2);
             this.panel4.Name = "panel4";
             this.panel4.Size = new System.Drawing.Size(167, 499);
             this.panel4.TabIndex = 56;
@@ -442,7 +442,7 @@
             this.tab_IRAdjust_Meterage.BackColor = System.Drawing.SystemColors.Control;
             this.tab_IRAdjust_Meterage.Controls.Add(this.tabContrIR);
             this.tab_IRAdjust_Meterage.Location = new System.Drawing.Point(4, 30);
-            this.tab_IRAdjust_Meterage.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tab_IRAdjust_Meterage.Margin = new System.Windows.Forms.Padding(2);
             this.tab_IRAdjust_Meterage.Name = "tab_IRAdjust_Meterage";
             this.tab_IRAdjust_Meterage.Size = new System.Drawing.Size(1020, 565);
             this.tab_IRAdjust_Meterage.TabIndex = 7;
@@ -454,7 +454,7 @@
             this.tabContrIR.Controls.Add(this.tabPage2);
             this.tabContrIR.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabContrIR.Location = new System.Drawing.Point(0, 0);
-            this.tabContrIR.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabContrIR.Margin = new System.Windows.Forms.Padding(2);
             this.tabContrIR.Name = "tabContrIR";
             this.tabContrIR.SelectedIndex = 0;
             this.tabContrIR.Size = new System.Drawing.Size(1020, 565);
@@ -467,9 +467,9 @@
             this.tabPage1.Controls.Add(this.panel7);
             this.tabPage1.Controls.Add(this.panel6);
             this.tabPage1.Location = new System.Drawing.Point(4, 30);
-            this.tabPage1.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage1.Name = "tabPage1";
-            this.tabPage1.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage1.Padding = new System.Windows.Forms.Padding(2);
             this.tabPage1.Size = new System.Drawing.Size(1012, 531);
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "内阻校准";
@@ -479,7 +479,7 @@
             this.panelIRAdjust.AutoScroll = true;
             this.panelIRAdjust.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelIRAdjust.Location = new System.Drawing.Point(2, 36);
-            this.panelIRAdjust.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelIRAdjust.Margin = new System.Windows.Forms.Padding(2);
             this.panelIRAdjust.Name = "panelIRAdjust";
             this.panelIRAdjust.Size = new System.Drawing.Size(835, 493);
             this.panelIRAdjust.TabIndex = 61;
@@ -495,7 +495,7 @@
             this.panel7.Controls.Add(this.btnIRAdjustAllStop);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel7.Location = new System.Drawing.Point(837, 36);
-            this.panel7.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel7.Margin = new System.Windows.Forms.Padding(2);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(173, 493);
             this.panel7.TabIndex = 60;
@@ -631,10 +631,10 @@
             this.tabPage2.Controls.Add(this.panel9);
             this.tabPage2.Controls.Add(this.panel5);
             this.tabPage2.Location = new System.Drawing.Point(4, 30);
-            this.tabPage2.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.tabPage2.Margin = new System.Windows.Forms.Padding(2);
             this.tabPage2.Name = "tabPage2";
-            this.tabPage2.Padding = new System.Windows.Forms.Padding(2, 2, 2, 2);
-            this.tabPage2.Size = new System.Drawing.Size(1090, 534);
+            this.tabPage2.Padding = new System.Windows.Forms.Padding(2);
+            this.tabPage2.Size = new System.Drawing.Size(1012, 531);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "内阻计量";
             // 
@@ -643,9 +643,9 @@
             this.panelIRMetering.AutoScroll = true;
             this.panelIRMetering.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panelIRMetering.Location = new System.Drawing.Point(2, 35);
-            this.panelIRMetering.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panelIRMetering.Margin = new System.Windows.Forms.Padding(2);
             this.panelIRMetering.Name = "panelIRMetering";
-            this.panelIRMetering.Size = new System.Drawing.Size(916, 497);
+            this.panelIRMetering.Size = new System.Drawing.Size(838, 494);
             this.panelIRMetering.TabIndex = 57;
             // 
             // panel9
@@ -657,10 +657,10 @@
             this.panel9.Controls.Add(this.btnIRMeteringAllStart);
             this.panel9.Controls.Add(this.lblNote_IRMetering);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel9.Location = new System.Drawing.Point(918, 35);
-            this.panel9.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.panel9.Location = new System.Drawing.Point(840, 35);
+            this.panel9.Margin = new System.Windows.Forms.Padding(2);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(170, 497);
+            this.panel9.Size = new System.Drawing.Size(170, 494);
             this.panel9.TabIndex = 55;
             // 
             // btnIRMeteringSave
@@ -749,7 +749,7 @@
             this.panel5.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel5.Location = new System.Drawing.Point(2, 2);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(1086, 33);
+            this.panel5.Size = new System.Drawing.Size(1008, 33);
             this.panel5.TabIndex = 53;
             // 
             // lblIRMeterVal2
@@ -847,7 +847,7 @@
         private System.Windows.Forms.Button btnSaveVoltZeroResult;
         private System.Windows.Forms.Button btnVoltZeroAllStop;
         public System.Windows.Forms.Button btnVoltZeroAllStart;
-        private System.Windows.Forms.Label lblNote_VoltZero;
+        public System.Windows.Forms.Label lblNote_VoltZero;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Label lblVoltZeroVal2;
         private System.Windows.Forms.Label lblVoltZeroVal1;

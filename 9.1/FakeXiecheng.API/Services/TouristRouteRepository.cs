@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using FakeXiecheng.API.Helper;
 
 namespace FakeXiecheng.API.Services
 {
@@ -22,10 +23,12 @@ namespace FakeXiecheng.API.Services
             return  await _context.TouristRoutes.Include(t => t.TouristRoutePictures).FirstOrDefaultAsync(n => n.Id == touristRouteId);
         }
 
-        public async Task<IEnumerable<TouristRoute>> GetTouristRoutesAsync(
+        public async Task<PaginationList<TouristRoute>> GetTouristRoutesAsync(
             string keyword, 
             string ratingOperator, 
-            int? ratingValue
+            int? ratingValue,
+            int pageSize,
+            int pageNumber
         )
         {
             IQueryable<TouristRoute> result = _context
@@ -46,7 +49,7 @@ namespace FakeXiecheng.API.Services
                 };
             }
             // include vs join
-            return await result.ToListAsync();
+            return await PaginationList<TouristRoute>.CreateAsync(pageNumber,pageSize,result);
         }
 
         public async Task<bool> TouristRouteExistsAsync(Guid touristRouteId)
@@ -151,9 +154,11 @@ namespace FakeXiecheng.API.Services
         {
             await _context.Orders.AddAsync(order);
         }
-        public async Task<IEnumerable<Order>> GetOrdersByUserId(string userId)
+        public async Task<PaginationList<Order>> GetOrdersByUserId(string userId, int pageSize, int pageNumber)
         {
-            return await _context.Orders.Where(o => o.UserId == userId).ToListAsync();
+           // return await _context.Orders.Where(o => o.UserId == userId).ToListAsync();
+           var result = _context.Orders.Where(o => o.UserId == userId);
+           return await PaginationList<Order>.CreateAsync(pageNumber, pageSize, result);
         }
         public async Task<Order> GetOrderById(Guid orderId)
         {

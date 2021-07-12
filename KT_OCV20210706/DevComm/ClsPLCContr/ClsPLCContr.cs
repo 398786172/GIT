@@ -106,8 +106,8 @@ namespace OCV
                             ClsPLCValue.PlcValue.Plc_TestFinshReply_A = opr.Content[4];   //PLC_测定结束应答
                             ClsPLCValue.PlcValue.Plc_InitReply = opr.Content[7];  //PLC_初始化完成
                             ClsPLCValue.PlcValue.Plc_EmergencyStop = opr.Content[10];     //PLC_急停信号
-                            ClsPLCValue.PlcValue.Plc_AutoStepNO = opr.Content[12];   //初始化工步
                             ClsPLCValue.PlcValue.Plc_HaveTray = opr.Content[11];
+                            ClsPLCValue.PlcValue.Plc_AutoStepNO = opr.Content[12];   //初始化工步
                             ClsPLCValue.PlcValue.Plc_ResetStepNO = opr.Content[13];
                             ClsPLCValue.PlcValue.Plc_IO_ZeroIng = opr.Content[16]; //X轴回零中？
                             ClsPLCValue.PlcValue.Plc_StartReply = opr.Content[17]; // PLC启动应答
@@ -1044,7 +1044,6 @@ namespace OCV
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -1055,14 +1054,12 @@ namespace OCV
         /// <param name="speed">速度值,单位: pps</param>
         public void DevMove_ReSetHome()
         {
-
             try
             {
                 PlcTcpNet.Write(mPlcAddr.PC_初始化, mReSet);
             }
             catch (Exception ex)
             {
-
                 throw ex;
             }
         }
@@ -1080,7 +1077,7 @@ namespace OCV
             i = speed;
             try
             {
-                // HslCommunication.
+                //HslCommunication.
                 OperateResult<short> read = PlcTcpNet.ReadInt16(mPlcAddr.PC_速度);
                 tempVal = read.Content;
                 if (i != tempVal)
@@ -1240,7 +1237,7 @@ namespace OCV
         {
             try
             {
-                if (pos < -1000 || pos > 300000 || num < 1 || num > 8)
+                if (pos < -1000 || pos > 300000 || num < 1 || num > 9)
                 {
                     return;
                 }
@@ -1304,7 +1301,7 @@ namespace OCV
                 //HslCommunication.
                 OperateResult<short[]> read = null;
 
-                if (num < 1 || num > 8)
+                if (num < 1 || num > 9)
                 {
                     return 0;
                 }
@@ -1410,7 +1407,6 @@ namespace OCV
         //PLC不复位
         public void ReSet_PLCReset()
         {
-
             PlcTcpNet.Write(mPlcAddr.PC_报警复位, mReSet);
         }
         /// <summary>
@@ -1426,7 +1422,6 @@ namespace OCV
             {
                 return;
             }
-
             i = speed;
             try
             {
@@ -1438,7 +1433,6 @@ namespace OCV
                     PlcTcpNet.Write(mPlcAddr.PC_速度, i);
                     Thread.Sleep(10);
                 }
-
                 j = position;
                 read = PlcTcpNet.ReadInt16(mPlcAddr.PC_运动值);
                 tempVal = read.Content;
@@ -1467,7 +1461,7 @@ namespace OCV
         {
             short i, tempVal, j;
 
-            if (speed < 0 || speed > MaxSpeed || posNO < 0 || posNO > 8)
+            if (speed < 0 || speed > MaxSpeed || posNO < 0 || posNO > 9)
             {
                 return;
             }
