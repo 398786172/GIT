@@ -18,23 +18,24 @@ namespace FakeXiecheng.API.Services
             _context = appDbContext;
         }
 
-        public async  Task<TouristRoute>   GetTouristRouteAsync(Guid touristRouteId)
+        public async Task<TouristRoute> GetTouristRouteAsync(Guid touristRouteId)
         {
-            return  await _context.TouristRoutes.Include(t => t.TouristRoutePictures).FirstOrDefaultAsync(n => n.Id == touristRouteId);
+            return await _context.TouristRoutes.Include(t => t.TouristRoutePictures).FirstOrDefaultAsync(n => n.Id == touristRouteId);
         }
 
         public async Task<PaginationList<TouristRoute>> GetTouristRoutesAsync(
-            string keyword, 
-            string ratingOperator, 
+            string keyword,
+            string ratingOperator,
             int? ratingValue,
             int pageSize,
-            int pageNumber
+            int pageNumber,
+            string orderBy
         )
         {
             IQueryable<TouristRoute> result = _context
                 .TouristRoutes
                 .Include(t => t.TouristRoutePictures);
-            if(!string.IsNullOrWhiteSpace(keyword))
+            if (!string.IsNullOrWhiteSpace(keyword))
             {
                 keyword = keyword.Trim();
                 result = result.Where(t => t.Title.Contains(keyword));
@@ -48,8 +49,19 @@ namespace FakeXiecheng.API.Services
                     _ => result.Where(t => t.Rating == ratingValue),
                 };
             }
+            if (!string.IsNullOrWhiteSpace(orderBy))
+            {
+                if (orderBy.ToLowerInvariant() == "originalprice")
+                {
+                    result = result.OrderBy(t => t.OriginalPrice);
+                }
+                //result.ApplySort(orderBy, _mappingDictionary);
+            }
+
+
             // include vs join
-            return await PaginationList<TouristRoute>.CreateAsync(pageNumber,pageSize,result);
+
+            return await PaginationList<TouristRoute>.CreateAsync(pageNumber, pageSize, result);
         }
 
         public async Task<bool> TouristRouteExistsAsync(Guid touristRouteId)
@@ -57,24 +69,24 @@ namespace FakeXiecheng.API.Services
             return await _context.TouristRoutes.AnyAsync(t => t.Id == touristRouteId);
         }
 
-        public async Task< IEnumerable<TouristRoutePicture>> GetPicturesByTouristRouteIdAsync(Guid touristRouteId)
+        public async Task<IEnumerable<TouristRoutePicture>> GetPicturesByTouristRouteIdAsync(Guid touristRouteId)
         {
-            return await  _context.TouristRoutePictures
+            return await _context.TouristRoutePictures
                 .Where(p => p.TouristRouteId == touristRouteId).ToListAsync();
         }
 
         public async Task<TouristRoutePicture> GetPictureAsync(int pictureId)
         {
-            return  await _context.TouristRoutePictures.Where(p => p.Id == pictureId).FirstOrDefaultAsync();
+            return await _context.TouristRoutePictures.Where(p => p.Id == pictureId).FirstOrDefaultAsync();
         }
         public async Task<IEnumerable<TouristRoute>> GetTouristRoutesByIDListAsync(IEnumerable<Guid> ids)
         {
-            return  await  _context.TouristRoutes.Where(t => ids.Contains(t.Id)).ToListAsync();
+            return await _context.TouristRoutes.Where(t => ids.Contains(t.Id)).ToListAsync();
         }
 
         public void AddTouristRoute(TouristRoute touristRoute)
         {
-            if(touristRoute==null)
+            if (touristRoute == null)
             {
                 throw new ArgumentNullException(nameof(touristRoute));
             }
@@ -105,7 +117,7 @@ namespace FakeXiecheng.API.Services
             _context.TouristRoutePictures.Remove(picture);
         }
 
-    
+
         public void DeleteTouristRoutes(IEnumerable<TouristRoute> touristRoutes)
         {
             _context.TouristRoutes.RemoveRange(touristRoutes);
@@ -156,9 +168,9 @@ namespace FakeXiecheng.API.Services
         }
         public async Task<PaginationList<Order>> GetOrdersByUserId(string userId, int pageSize, int pageNumber)
         {
-           // return await _context.Orders.Where(o => o.UserId == userId).ToListAsync();
-           var result = _context.Orders.Where(o => o.UserId == userId);
-           return await PaginationList<Order>.CreateAsync(pageNumber, pageSize, result);
+            // return await _context.Orders.Where(o => o.UserId == userId).ToListAsync();
+            var result = _context.Orders.Where(o => o.UserId == userId);
+            return await PaginationList<Order>.CreateAsync(pageNumber, pageSize, result);
         }
         public async Task<Order> GetOrderById(Guid orderId)
         {
@@ -169,7 +181,7 @@ namespace FakeXiecheng.API.Services
         }
         public async Task<bool> SaveAsync()
         {
-            return  (await _context.SaveChangesAsync() >= 0);
+            return (await _context.SaveChangesAsync() >= 0);
         }
     }
 }

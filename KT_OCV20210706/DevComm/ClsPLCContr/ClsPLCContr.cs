@@ -249,8 +249,8 @@ namespace OCV
                     {
                         try
                         {
+                            //PlcTcpNet.Dispose();
                             PlcTcpNet.ConnectClose();
-
                             connectResult = PlcTcpNet.ConnectServer(); //连接PLC
 
                             if (!connectResult.IsSuccess) //若连接失败

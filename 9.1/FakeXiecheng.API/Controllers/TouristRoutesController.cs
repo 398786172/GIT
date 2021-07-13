@@ -95,7 +95,8 @@ new
                 paramaters.RatingOperator,
                 paramaters.RatingValue,
                 paramaters2.PageSize,
-                    paramaters2.PageNumber);
+                paramaters2.PageNumber,
+                paramaters.OrderBy);
             if (touristRoutesFromRepo == null || touristRoutesFromRepo.Count() <= 0)
             {
                 return NotFound("没有旅游路线");

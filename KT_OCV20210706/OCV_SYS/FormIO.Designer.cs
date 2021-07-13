@@ -242,10 +242,10 @@ namespace OCV
             // 
             this.tabControl3.BackColor = System.Drawing.Color.Transparent;
             this.tabControl3.CanReorderTabs = true;
-            this.tabControl3.Controls.Add(this.tabControlPanel5);
             this.tabControl3.Controls.Add(this.tabControlPanel1);
-            this.tabControl3.Controls.Add(this.tabControlPanel3);
             this.tabControl3.Controls.Add(this.tabControlPanel4);
+            this.tabControl3.Controls.Add(this.tabControlPanel5);
+            this.tabControl3.Controls.Add(this.tabControlPanel3);
             this.tabControl3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabControl3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
             this.tabControl3.Location = new System.Drawing.Point(4, 28);
@@ -1303,7 +1303,7 @@ namespace OCV
             // lblNegLimit
             // 
             this.lblNegLimit.BackColor = System.Drawing.Color.Transparent;
-            this.lblNegLimit.Location = new System.Drawing.Point(53, 153);
+            this.lblNegLimit.Location = new System.Drawing.Point(53, 111);
             this.lblNegLimit.Margin = new System.Windows.Forms.Padding(65, 193, 65, 193);
             this.lblNegLimit.Name = "lblNegLimit";
             this.lblNegLimit.Size = new System.Drawing.Size(29, 25);
@@ -1340,7 +1340,7 @@ namespace OCV
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(80, 155);
+            this.label22.Location = new System.Drawing.Point(80, 115);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(51, 20);
             this.label22.TabIndex = 243;
@@ -1370,11 +1370,12 @@ namespace OCV
             // lblHome
             // 
             this.lblHome.BackColor = System.Drawing.Color.Transparent;
-            this.lblHome.Location = new System.Drawing.Point(53, 113);
+            this.lblHome.Location = new System.Drawing.Point(53, 149);
             this.lblHome.Margin = new System.Windows.Forms.Padding(65, 193, 65, 193);
             this.lblHome.Name = "lblHome";
             this.lblHome.Size = new System.Drawing.Size(29, 25);
             this.lblHome.TabIndex = 242;
+            this.lblHome.Visible = false;
             // 
             // label28
             // 
@@ -1388,7 +1389,7 @@ namespace OCV
             // lblHomeIng
             // 
             this.lblHomeIng.BackColor = System.Drawing.Color.Transparent;
-            this.lblHomeIng.Location = new System.Drawing.Point(173, 110);
+            this.lblHomeIng.Location = new System.Drawing.Point(173, 111);
             this.lblHomeIng.Margin = new System.Windows.Forms.Padding(37, 108, 37, 108);
             this.lblHomeIng.Name = "lblHomeIng";
             this.lblHomeIng.Size = new System.Drawing.Size(29, 25);
@@ -1397,12 +1398,13 @@ namespace OCV
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(80, 115);
+            this.label10.Location = new System.Drawing.Point(80, 155);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(37, 20);
             this.label10.TabIndex = 241;
             this.label10.Text = "原点";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label10.Visible = false;
             // 
             // label15
             // 

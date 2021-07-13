@@ -384,7 +384,7 @@ namespace OCV
                 {
                     if (ClsGlobal.CodeScanMode == 1)
                     {
-                        ClsGlobal.CodeScan = new ClsSocketCodeScan(ClsGlobal.CodeScanIP, int.Parse(ClsGlobal.CodeScanPort));
+                       ClsGlobal.CodeScan = new ClsSocketCodeScan(ClsGlobal.CodeScanIP, int.Parse(ClsGlobal.CodeScanPort));
                     }
                     else
                     {

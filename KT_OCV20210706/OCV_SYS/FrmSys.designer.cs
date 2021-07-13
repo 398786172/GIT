@@ -82,7 +82,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtPeriod = new System.Windows.Forms.TextBox();
             this.labelX6 = new DevComponents.DotNetBar.LabelX();
-            this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.lblFrOCVAllow = new ClsDeviceComm.Controls.UserLantern();
             this.labelX47 = new DevComponents.DotNetBar.LabelX();
             this.lblBhOCVReq = new ClsDeviceComm.Controls.UserLantern();
@@ -125,6 +124,7 @@
             this.labelX36 = new DevComponents.DotNetBar.LabelX();
             this.btnRunMode = new ClsDeviceComm.Controls.UserSwitch();
             this.btnDBTest = new System.Windows.Forms.Button();
+            this.labelX3 = new DevComponents.DotNetBar.LabelX();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.系统设置ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -212,7 +212,7 @@
             // splitContainer1.Panel2
             // 
             this.splitContainer1.Panel2.Controls.Add(this.panel1);
-            this.splitContainer1.Size = new System.Drawing.Size(1331, 201);
+            this.splitContainer1.Size = new System.Drawing.Size(1331, 183);
             this.splitContainer1.SplitterDistance = 829;
             this.splitContainer1.TabIndex = 170;
             // 
@@ -268,7 +268,7 @@
             this.dataGridView1.RowTemplate.Height = 17;
             this.dataGridView1.RowTemplate.ReadOnly = true;
             this.dataGridView1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dataGridView1.Size = new System.Drawing.Size(829, 201);
+            this.dataGridView1.Size = new System.Drawing.Size(829, 183);
             this.dataGridView1.TabIndex = 197;
             // 
             // dataGridViewTextBoxColumn1
@@ -391,7 +391,7 @@
             this.dgvTest.RowTemplate.Height = 17;
             this.dgvTest.RowTemplate.ReadOnly = true;
             this.dgvTest.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.dgvTest.Size = new System.Drawing.Size(829, 201);
+            this.dgvTest.Size = new System.Drawing.Size(829, 183);
             this.dgvTest.TabIndex = 197;
             // 
             // Col_Num
@@ -468,7 +468,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(498, 201);
+            this.panel1.Size = new System.Drawing.Size(498, 183);
             this.panel1.TabIndex = 196;
             // 
             // tabControl1
@@ -483,7 +483,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedTabFont = new System.Drawing.Font("宋体", 9F, System.Drawing.FontStyle.Bold);
             this.tabControl1.SelectedTabIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(496, 167);
+            this.tabControl1.Size = new System.Drawing.Size(496, 149);
             this.tabControl1.TabIndex = 183;
             this.tabControl1.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
             this.tabControl1.Tabs.Add(this.tabItem1);
@@ -497,7 +497,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 26);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(496, 141);
+            this.tabControlPanel1.Size = new System.Drawing.Size(496, 123);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(142)))), ((int)(((byte)(179)))), ((int)(((byte)(231)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.FromArgb(((int)(((byte)(223)))), ((int)(((byte)(237)))), ((int)(((byte)(254)))));
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -518,7 +518,7 @@
             this.txtInfoA.Name = "txtInfoA";
             this.txtInfoA.ReadOnly = true;
             this.txtInfoA.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtInfoA.Size = new System.Drawing.Size(494, 139);
+            this.txtInfoA.Size = new System.Drawing.Size(494, 121);
             this.txtInfoA.TabIndex = 178;
             // 
             // tabItem1
@@ -534,7 +534,7 @@
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 26);
             this.tabControlPanel2.Name = "tabControlPanel2";
             this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(496, 141);
+            this.tabControlPanel2.Size = new System.Drawing.Size(496, 123);
             this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.SystemColors.ButtonFace;
             this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.SystemColors.ButtonFace;
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -555,7 +555,7 @@
             this.listBox1.ItemHeight = 17;
             this.listBox1.Location = new System.Drawing.Point(1, 1);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(494, 139);
+            this.listBox1.Size = new System.Drawing.Size(494, 121);
             this.listBox1.TabIndex = 0;
             // 
             // tabPLCError
@@ -622,7 +622,7 @@
             this.sscMain.Panel2.Controls.Add(this.groupPanel1);
             this.sscMain.Panel2MinSize = 0;
             this.sscMain.Size = new System.Drawing.Size(1331, 639);
-            this.sscMain.SplitterDistance = 201;
+            this.sscMain.SplitterDistance = 183;
             this.sscMain.SplitterWidth = 10;
             this.sscMain.TabIndex = 199;
             this.sscMain.SplitterMoved += new System.Windows.Forms.SplitterEventHandler(this.sscMain_SplitterMoved);
@@ -639,7 +639,7 @@
             this.groupPanel1.Location = new System.Drawing.Point(0, 0);
             this.groupPanel1.Margin = new System.Windows.Forms.Padding(1);
             this.groupPanel1.Name = "groupPanel1";
-            this.groupPanel1.Size = new System.Drawing.Size(1331, 428);
+            this.groupPanel1.Size = new System.Drawing.Size(1331, 446);
             // 
             // 
             // 
@@ -672,7 +672,7 @@
             this.groupPanel3.Location = new System.Drawing.Point(665, 0);
             this.groupPanel3.Margin = new System.Windows.Forms.Padding(0);
             this.groupPanel3.Name = "groupPanel3";
-            this.groupPanel3.Size = new System.Drawing.Size(660, 422);
+            this.groupPanel3.Size = new System.Drawing.Size(660, 440);
             // 
             // 
             // 
@@ -707,7 +707,7 @@
             this.textBox1.Name = "textBox1";
             this.textBox1.ReadOnly = true;
             this.textBox1.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.textBox1.Size = new System.Drawing.Size(654, 396);
+            this.textBox1.Size = new System.Drawing.Size(654, 414);
             this.textBox1.TabIndex = 179;
             // 
             // groupPanel2
@@ -720,7 +720,6 @@
             this.groupPanel2.Controls.Add(this.label8);
             this.groupPanel2.Controls.Add(this.txtPeriod);
             this.groupPanel2.Controls.Add(this.labelX6);
-            this.groupPanel2.Controls.Add(this.labelX3);
             this.groupPanel2.Controls.Add(this.lblFrOCVAllow);
             this.groupPanel2.Controls.Add(this.labelX47);
             this.groupPanel2.Controls.Add(this.lblBhOCVReq);
@@ -757,12 +756,13 @@
             this.groupPanel2.Controls.Add(this.labelX36);
             this.groupPanel2.Controls.Add(this.btnRunMode);
             this.groupPanel2.Controls.Add(this.btnDBTest);
+            this.groupPanel2.Controls.Add(this.labelX3);
             this.groupPanel2.Dock = System.Windows.Forms.DockStyle.Left;
             this.groupPanel2.Location = new System.Drawing.Point(0, 0);
             this.groupPanel2.Margin = new System.Windows.Forms.Padding(0);
             this.groupPanel2.Name = "groupPanel2";
             this.groupPanel2.ShowFocusRectangle = true;
-            this.groupPanel2.Size = new System.Drawing.Size(665, 422);
+            this.groupPanel2.Size = new System.Drawing.Size(665, 440);
             // 
             // 
             // 
@@ -834,23 +834,12 @@
             this.labelX6.TabIndex = 268;
             this.labelX6.Text = "初始化工步";
             // 
-            // labelX3
-            // 
-            this.labelX3.BackColor = System.Drawing.Color.Transparent;
-            this.labelX3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX3.Location = new System.Drawing.Point(500, 53);
-            this.labelX3.Margin = new System.Windows.Forms.Padding(2);
-            this.labelX3.Name = "labelX3";
-            this.labelX3.Size = new System.Drawing.Size(70, 18);
-            this.labelX3.TabIndex = 26;
-            this.labelX3.Text = "请求下料";
-            // 
             // lblFrOCVAllow
             // 
             this.lblFrOCVAllow.AutoSize = true;
             this.lblFrOCVAllow.BackColor = System.Drawing.Color.Transparent;
             this.lblFrOCVAllow.LanternBackground = System.Drawing.Color.Gray;
-            this.lblFrOCVAllow.Location = new System.Drawing.Point(444, 79);
+            this.lblFrOCVAllow.Location = new System.Drawing.Point(430, 79);
             this.lblFrOCVAllow.Margin = new System.Windows.Forms.Padding(122, 1167, 122, 1167);
             this.lblFrOCVAllow.Name = "lblFrOCVAllow";
             this.lblFrOCVAllow.Size = new System.Drawing.Size(31, 27);
@@ -860,7 +849,7 @@
             // 
             this.labelX47.BackColor = System.Drawing.Color.Transparent;
             this.labelX47.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX47.Location = new System.Drawing.Point(432, 54);
+            this.labelX47.Location = new System.Drawing.Point(418, 54);
             this.labelX47.Margin = new System.Windows.Forms.Padding(2);
             this.labelX47.Name = "labelX47";
             this.labelX47.Size = new System.Drawing.Size(70, 18);
@@ -872,7 +861,7 @@
             this.lblBhOCVReq.AutoSize = true;
             this.lblBhOCVReq.BackColor = System.Drawing.Color.Transparent;
             this.lblBhOCVReq.LanternBackground = System.Drawing.Color.Gray;
-            this.lblBhOCVReq.Location = new System.Drawing.Point(511, 79);
+            this.lblBhOCVReq.Location = new System.Drawing.Point(501, 79);
             this.lblBhOCVReq.Margin = new System.Windows.Forms.Padding(122, 1167, 122, 1167);
             this.lblBhOCVReq.Name = "lblBhOCVReq";
             this.lblBhOCVReq.Size = new System.Drawing.Size(27, 27);
@@ -1054,7 +1043,7 @@
             this.lblBhCVAllow.AutoSize = true;
             this.lblBhCVAllow.BackColor = System.Drawing.Color.Transparent;
             this.lblBhCVAllow.LanternBackground = System.Drawing.Color.Gray;
-            this.lblBhCVAllow.Location = new System.Drawing.Point(574, 79);
+            this.lblBhCVAllow.Location = new System.Drawing.Point(568, 79);
             this.lblBhCVAllow.Margin = new System.Windows.Forms.Padding(142, 1653, 142, 1653);
             this.lblBhCVAllow.Name = "lblBhCVAllow";
             this.lblBhCVAllow.Size = new System.Drawing.Size(27, 27);
@@ -1118,7 +1107,7 @@
             // 
             this.labelX4.BackColor = System.Drawing.Color.Transparent;
             this.labelX4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX4.Location = new System.Drawing.Point(566, 54);
+            this.labelX4.Location = new System.Drawing.Point(555, 54);
             this.labelX4.Margin = new System.Windows.Forms.Padding(2);
             this.labelX4.Name = "labelX4";
             this.labelX4.Size = new System.Drawing.Size(57, 18);
@@ -1142,7 +1131,7 @@
             this.lblFrCVRequest.AutoSize = true;
             this.lblFrCVRequest.BackColor = System.Drawing.Color.Transparent;
             this.lblFrCVRequest.LanternBackground = System.Drawing.Color.Gray;
-            this.lblFrCVRequest.Location = new System.Drawing.Point(381, 79);
+            this.lblFrCVRequest.Location = new System.Drawing.Point(363, 79);
             this.lblFrCVRequest.Margin = new System.Windows.Forms.Padding(90, 582, 90, 582);
             this.lblFrCVRequest.Name = "lblFrCVRequest";
             this.lblFrCVRequest.Size = new System.Drawing.Size(27, 27);
@@ -1173,7 +1162,7 @@
             // 
             this.lblNegLimit.BackColor = System.Drawing.Color.Transparent;
             this.lblNegLimit.LanternBackground = System.Drawing.Color.Gray;
-            this.lblNegLimit.Location = new System.Drawing.Point(192, 79);
+            this.lblNegLimit.Location = new System.Drawing.Point(162, 79);
             this.lblNegLimit.Margin = new System.Windows.Forms.Padding(76, 273, 76, 273);
             this.lblNegLimit.Name = "lblNegLimit";
             this.lblNegLimit.Size = new System.Drawing.Size(27, 27);
@@ -1183,7 +1172,7 @@
             // 
             this.lblHomeFinish.BackColor = System.Drawing.Color.Transparent;
             this.lblHomeFinish.LanternBackground = System.Drawing.Color.Gray;
-            this.lblHomeFinish.Location = new System.Drawing.Point(318, 79);
+            this.lblHomeFinish.Location = new System.Drawing.Point(296, 79);
             this.lblHomeFinish.Margin = new System.Windows.Forms.Padding(33, 116, 33, 116);
             this.lblHomeFinish.Name = "lblHomeFinish";
             this.lblHomeFinish.Size = new System.Drawing.Size(27, 27);
@@ -1192,7 +1181,7 @@
             // label25
             // 
             this.label25.AutoSize = true;
-            this.label25.Location = new System.Drawing.Point(303, 54);
+            this.label25.Location = new System.Drawing.Point(283, 55);
             this.label25.Name = "label25";
             this.label25.Size = new System.Drawing.Size(56, 17);
             this.label25.TabIndex = 248;
@@ -1214,7 +1203,7 @@
             // 
             this.labelX45.BackColor = System.Drawing.Color.Transparent;
             this.labelX45.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.labelX45.Location = new System.Drawing.Point(367, 54);
+            this.labelX45.Location = new System.Drawing.Point(353, 54);
             this.labelX45.Margin = new System.Windows.Forms.Padding(2);
             this.labelX45.Name = "labelX45";
             this.labelX45.Size = new System.Drawing.Size(61, 18);
@@ -1225,7 +1214,7 @@
             // 
             this.lblHomeIng.BackColor = System.Drawing.Color.Transparent;
             this.lblHomeIng.LanternBackground = System.Drawing.Color.Gray;
-            this.lblHomeIng.Location = new System.Drawing.Point(255, 79);
+            this.lblHomeIng.Location = new System.Drawing.Point(229, 79);
             this.lblHomeIng.Margin = new System.Windows.Forms.Padding(43, 153, 43, 153);
             this.lblHomeIng.Name = "lblHomeIng";
             this.lblHomeIng.Size = new System.Drawing.Size(27, 27);
@@ -1234,7 +1223,7 @@
             // label21
             // 
             this.label21.AutoSize = true;
-            this.label21.Location = new System.Drawing.Point(248, 54);
+            this.label21.Location = new System.Drawing.Point(223, 55);
             this.label21.Name = "label21";
             this.label21.Size = new System.Drawing.Size(44, 17);
             this.label21.TabIndex = 249;
@@ -1244,7 +1233,7 @@
             // label22
             // 
             this.label22.AutoSize = true;
-            this.label22.Location = new System.Drawing.Point(185, 54);
+            this.label22.Location = new System.Drawing.Point(156, 55);
             this.label22.Name = "label22";
             this.label22.Size = new System.Drawing.Size(44, 17);
             this.label22.TabIndex = 255;
@@ -1266,21 +1255,23 @@
             // 
             this.lblHome.BackColor = System.Drawing.Color.Transparent;
             this.lblHome.LanternBackground = System.Drawing.Color.Gray;
-            this.lblHome.Location = new System.Drawing.Point(129, 79);
+            this.lblHome.Location = new System.Drawing.Point(28, 79);
             this.lblHome.Margin = new System.Windows.Forms.Padding(76, 273, 76, 273);
             this.lblHome.Name = "lblHome";
             this.lblHome.Size = new System.Drawing.Size(27, 27);
             this.lblHome.TabIndex = 254;
+            this.lblHome.Visible = false;
             // 
             // label10
             // 
             this.label10.AutoSize = true;
-            this.label10.Location = new System.Drawing.Point(129, 54);
+            this.label10.Location = new System.Drawing.Point(23, 55);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(32, 17);
             this.label10.TabIndex = 253;
             this.label10.Text = "原点";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.label10.Visible = false;
             // 
             // labelX38
             // 
@@ -1297,7 +1288,7 @@
             // label15
             // 
             this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(67, 54);
+            this.label15.Location = new System.Drawing.Point(86, 55);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(44, 17);
             this.label15.TabIndex = 251;
@@ -1317,7 +1308,7 @@
             // 
             this.lblPosLimit.BackColor = System.Drawing.Color.Transparent;
             this.lblPosLimit.LanternBackground = System.Drawing.Color.Gray;
-            this.lblPosLimit.Location = new System.Drawing.Point(66, 79);
+            this.lblPosLimit.Location = new System.Drawing.Point(95, 79);
             this.lblPosLimit.Margin = new System.Windows.Forms.Padding(57, 205, 57, 205);
             this.lblPosLimit.Name = "lblPosLimit";
             this.lblPosLimit.Size = new System.Drawing.Size(27, 27);
@@ -1361,6 +1352,17 @@
             this.btnDBTest.UseVisualStyleBackColor = true;
             this.btnDBTest.Visible = false;
             this.btnDBTest.Click += new System.EventHandler(this.btnDBTest_Click);
+            // 
+            // labelX3
+            // 
+            this.labelX3.BackColor = System.Drawing.Color.Transparent;
+            this.labelX3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
+            this.labelX3.Location = new System.Drawing.Point(489, 54);
+            this.labelX3.Margin = new System.Windows.Forms.Padding(2);
+            this.labelX3.Name = "labelX3";
+            this.labelX3.Size = new System.Drawing.Size(70, 18);
+            this.labelX3.TabIndex = 26;
+            this.labelX3.Text = "请求下料";
             // 
             // menuStrip1
             // 
