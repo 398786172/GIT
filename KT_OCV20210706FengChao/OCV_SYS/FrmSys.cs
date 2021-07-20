@@ -277,8 +277,10 @@ namespace OCV
                 {
                     //获取内阻校准参数
                     ClsGlobal.mIRAdjustVal = ClsGlobal.GetAdjustVal_ACIR(ClsGlobal.mIRAdjustPath);
-                    this.HIOKI365X = new ClsHIOKI365X(ClsGlobal.RT_Port);
-                    this.HIOKI365X.InitControl_IMM(2);
+                    //this.HIOKI365X = new ClsHIOKI365X(ClsGlobal.RT_Port);
+                    //this.HIOKI365X.InitControl_IMM(2);
+                    this.HIOKI4560 = new ClsHIOKI4560(ClsGlobal.RT_Port);
+                    this.HIOKI4560.InitControl_IMM();
                 }
                 catch (Exception ex)
                 {
@@ -350,8 +352,8 @@ namespace OCV
                 #endregion
 
                 ClsGlobal.OCVTestContr =
-                    new ClsOCVContr(this.SWControl, this.DMM_Ag344X, this.HIOKI365X, InfoHandleA, this);
-
+                    //new ClsOCVContr(this.SWControl, this.DMM_Ag344X, this.HIOKI365X, InfoHandleA, this);
+                    new ClsOCVContr(this.SWControl, this.DMM_Ag344X, HIOKI4560, InfoHandleA, this);
                 #region 温度测试
 
                 ClsGlobal.mTempAdjustVal_P = ClsGlobal.GetAdjustVal_Temp(ClsGlobal.mTempAdjustPath, "P");
