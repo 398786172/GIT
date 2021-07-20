@@ -25,17 +25,20 @@ namespace FakeXiecheng.API.Controllers
         private ITouristRouteRepository _touristRouteRepository;
         private readonly IMapper _mapper;
         private readonly IUrlHelper _urlHelper;
+        private readonly IPropertyMappingService _propertyMappingService;
 
         public TouristRoutesController(
             ITouristRouteRepository touristRouteRepository,
             IMapper mapper,
             IUrlHelperFactory urlHelperFactory,
-            IActionContextAccessor actionContextAccessor
+            IActionContextAccessor actionContextAccessor,
+            IPropertyMappingService propertyMappingService
         )
         {
             _touristRouteRepository = touristRouteRepository;
             _mapper = mapper;
             _urlHelper = urlHelperFactory.GetUrlHelper(actionContextAccessor.ActionContext);
+            _propertyMappingService = propertyMappingService;
         }
         private string GenerateTouristRouteResourceURL(
             TouristRouteResourceParamaters paramaters,
@@ -51,6 +54,8 @@ namespace FakeXiecheng.API.Controllers
                     result = _urlHelper.Link("GetTouristRoutes",
 new
 {
+    fields = paramaters.Fields,
+    orderBy = paramaters.OrderBy,
     keyword = paramaters.Keyword,
     rating = paramaters.Rating,
     pageNumber = paramaters2.PageNumber - 1,
@@ -61,6 +66,8 @@ new
                     result = _urlHelper.Link("GetTouristRoutes",
 new
 {
+    fields = paramaters.Fields,
+    orderBy = paramaters.OrderBy,
     keyword = paramaters.Keyword,
     rating = paramaters.Rating,
     pageNumber = paramaters2.PageNumber + 1,
@@ -71,6 +78,8 @@ new
                     result = _urlHelper.Link("GetTouristRoutes",
                 new
                 {
+                    fields = paramaters.Fields,
+                    orderBy = paramaters.OrderBy,
                     keyword = paramaters.Keyword,
                     rating = paramaters.Rating,
                     pageNumber = paramaters2.PageNumber,
@@ -90,6 +99,12 @@ new
         //string rating // 小于lessThan, 大于largerThan, 等于equalTo lessThan3, largerThan2, equalTo5 
         )// FromQuery vs FromBody
         {
+            if (!_propertyMappingService
+                .IsMappingExists<TouristRouteDto, TouristRoute>(
+                    paramaters.OrderBy))
+            {
+                return BadRequest("请输入正确的排序参数");
+            }
             var touristRoutesFromRepo = await _touristRouteRepository.GetTouristRoutesAsync(
                 paramaters.Keyword,
                 paramaters.RatingOperator,
@@ -125,12 +140,12 @@ new
 
             Response.Headers.Add("x-pagination",
                 Newtonsoft.Json.JsonConvert.SerializeObject(paginationMetadata));
-            return Ok(touristRoutesDto);
+            return Ok(touristRoutesDto.ShapeData(paramaters.Fields));
         }
 
         // api/touristroutes/{touristRouteId}
         [HttpGet("{touristRouteId}", Name = "GetTouristRouteById")]
-        public async Task<IActionResult> GetTouristRouteById(Guid touristRouteId)
+        public async Task<IActionResult> GetTouristRouteById(Guid touristRouteId, string fields)
         {
             var touristRouteFromRepo = await _touristRouteRepository.GetTouristRouteAsync(touristRouteId);
             if (touristRouteFromRepo == null)
@@ -154,7 +169,7 @@ new
             //    DepartureCity = touristRouteFromRepo.DepartureCity.ToString()
             //};
             var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRouteFromRepo);
-            return Ok(touristRouteDto);
+            return Ok(touristRouteDto.ShapeData(fields));
         }
 
         [HttpPost]

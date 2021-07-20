@@ -1,0 +1,29 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:sys="clr-namespace:System;assembly=mscorlib"
+                    xmlns:local="clr-namespace:DCS.Model2700_COM.Language">
+    <sys:String x:Key="frmSetting_Title">Model 34410A 配置</sys:String>
+    <sys:String x:Key="ComboxItem_最快">最快</sys:String>
+    <sys:String x:Key="ComboxItem_快">快</sys:String>
+    <sys:String x:Key="ComboxItem_中">中</sys:String>
+    <sys:String x:Key="ComboxItem_慢">慢</sys:String>
+    <sys:String x:Key="ComboxItem_最慢">最慢</sys:String>
+
+    <sys:String x:Key="lbl_Address">USB/TCP/GPIB地址：</sys:String>
+    <sys:String x:Key="lbl_Speed">万用表速率：</sys:String>
+    <sys:String x:Key="lbl_ErrorMsg">错误信息</sys:String>
+
+    <sys:String x:Key="btn_SaveSpeed">保存速率</sys:String>
+    <sys:String x:Key="btn_Reconnect">重连万用表</sys:String>
+    <sys:String x:Key="btn_ReadProduct">读取型号</sys:String>
+
+    <sys:String x:Key="btn_Send">发送</sys:String>
+    <sys:String x:Key="btn_Read">读取</sys:String>
+
+    <sys:String x:Key="groupHeader_Read">调试</sys:String>
+
+    <sys:String x:Key="msg_Send">发送</sys:String>
+    <sys:String x:Key="msg_Receive">接收</sys:String>
+    <sys:String x:Key="msg_设备连接错误_请重新连接">设备连接错误，请重新连接</sys:String>
+    <sys:String x:Key="msg_无返回值">无返回值！</sys:String>
+</ResourceDictionary>

@@ -1,0 +1,9 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<Mul_Model2700_COM_Compare>
+  <PortName>COM1</PortName>
+  <BauRate>9600</BauRate>
+  <Parity>NONE</Parity>
+  <DataBits>8</DataBits>
+  <StopBits>1</StopBits>
+  <MeasureSpeed>中</MeasureSpeed>
+</Mul_Model2700_COM_Compare>

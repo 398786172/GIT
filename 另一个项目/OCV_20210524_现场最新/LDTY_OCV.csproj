@@ -1,0 +1,462 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{6E4170D8-0423-41A0-A723-34102CD1935D}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>OCV</RootNamespace>
+    <AssemblyName>OCV</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <TargetFrameworkProfile>
+    </TargetFrameworkProfile>
+    <FileAlignment>512</FileAlignment>
+    <IsWebBootstrapper>false</IsWebBootstrapper>
+    <PublishUrl>D:\work\FX321\</PublishUrl>
+    <Install>true</Install>
+    <InstallFrom>Disk</InstallFrom>
+    <UpdateEnabled>false</UpdateEnabled>
+    <UpdateMode>Foreground</UpdateMode>
+    <UpdateInterval>7</UpdateInterval>
+    <UpdateIntervalUnits>Days</UpdateIntervalUnits>
+    <UpdatePeriodically>false</UpdatePeriodically>
+    <UpdateRequired>false</UpdateRequired>
+    <MapFileExtensions>true</MapFileExtensions>
+    <ApplicationRevision>2</ApplicationRevision>
+    <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
+    <UseApplicationTrust>false</UseApplicationTrust>
+    <PublishWizardCompleted>true</PublishWizardCompleted>
+    <BootstrapperEnabled>true</BootstrapperEnabled>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <GenerateSerializationAssemblies>Off</GenerateSerializationAssemblies>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestCertificateThumbprint>E4CCA25246A6745547F28476140C597617D9DF27</ManifestCertificateThumbprint>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ManifestKeyFile>OCV_DCR_TemporaryKey.pfx</ManifestKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <GenerateManifests>true</GenerateManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <SignManifests>false</SignManifests>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>2.ico</ApplicationIcon>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="BouncyCastle.Crypto, Version=1.8.6.0, Culture=neutral, PublicKeyToken=0e99375e54769942, processorArchitecture=MSIL">
+      <HintPath>packages\Portable.BouncyCastle.1.8.6\lib\net40\BouncyCastle.Crypto.dll</HintPath>
+    </Reference>
+    <Reference Include="ICSharpCode.SharpZipLib, Version=1.2.0.246, Culture=neutral, PublicKeyToken=1b03e6acf1164f73, processorArchitecture=MSIL">
+      <HintPath>packages\SharpZipLib.1.2.0\lib\net45\ICSharpCode.SharpZipLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Office.Interop.Excel, Version=15.0.0.0, Culture=neutral, PublicKeyToken=71e9bce111e9429c, processorArchitecture=MSIL">
+      <HintPath>packages\Microsoft.Office.Interop.Excel.15.0.4795.1000\lib\net20\Microsoft.Office.Interop.Excel.dll</HintPath>
+      <EmbedInteropTypes>True</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualBasic.PowerPacks.Vs, Version=10.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>bin\Release\dll\Microsoft.VisualBasic.PowerPacks.Vs.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=6.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL" />
+    <Reference Include="NPOI, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.5.1\lib\net45\NPOI.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OOXML, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.5.1\lib\net45\NPOI.OOXML.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXml4Net, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.5.1\lib\net45\NPOI.OpenXml4Net.dll</HintPath>
+    </Reference>
+    <Reference Include="NPOI.OpenXmlFormats, Version=2.5.1.0, Culture=neutral, PublicKeyToken=0df73ec7942b34e1, processorArchitecture=MSIL">
+      <HintPath>packages\NPOI.2.5.1\lib\net45\NPOI.OpenXmlFormats.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.SQLite">
+      <HintPath>bin\Debug\System.Data.SQLite.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data.SqlServerCe, Version=4.0.0.0, Culture=neutral, PublicKeyToken=89845dcd8080cc91" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="LogHelper.cs" />
+    <Compile Include="DBCOM\COM\DBCOM_KT.cs" />
+    <Compile Include="DBCOM\DAL\BatInfo.cs" />
+    <Compile Include="DBCOM\DAL\BatInfo_Year.cs" />
+    <Compile Include="DBCOM\DAL\DbHelperSQL.cs" />
+    <Compile Include="DBCOM\DAL\FlowValue.cs" />
+    <Compile Include="DBCOM\DAL\ProcessList.cs" />
+    <Compile Include="DBCOM\Model\BatInfo.cs" />
+    <Compile Include="DBCOM\Model\BatInfo_Year.cs" />
+    <Compile Include="DBCOM\Model\FlowValue.cs" />
+    <Compile Include="DBCOM\Model\ProcessList.cs" />
+    <Compile Include="Driver\agvisa32.cs" />
+    <Compile Include="OCVTest\BateryTitleView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OCVTest\BateryTitleView.Designer.cs">
+      <DependentUpon>BateryTitleView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\BateryViewController.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OCVTest\BateryViewController.Designer.cs">
+      <DependentUpon>BateryViewController.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\ChanleMaping.cs" />
+    <Compile Include="OCVTest\ClsTempControl.cs" />
+    <Compile Include="OCVTest\ClsCommWithMES.cs" />
+    <Compile Include="OCVTest\ClsCodeScaner.cs" />
+    <Compile Include="OCVTest\ClsIOControl.cs" />
+    <Compile Include="OCVTest\ClsIODef.cs" />
+    <Compile Include="OCVTest\ClsOCVIRTest.cs" />
+    <Compile Include="OCVTest\ClsSWDef.cs" />
+    <Compile Include="OCVTest\CustomException.cs" />
+    <Compile Include="OCVTest\FormProbeRecover.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FormProbeRecover.Designer.cs">
+      <DependentUpon>FormProbeRecover.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FormTempView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FormTempView.Designer.cs">
+      <DependentUpon>FormTempView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmAdjustSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmAdjustSetting.Designer.cs">
+      <DependentUpon>FrmAdjustSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmBateryTestView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmBateryTestView.Designer.cs">
+      <DependentUpon>FrmBateryTestView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmProcessManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmProcessManager.Designer.cs">
+      <DependentUpon>FrmProcessManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmTempWarning.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmTempWarning.Designer.cs">
+      <DependentUpon>FrmTempWarning.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\OCVSelection.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\ProcessModel.cs" />
+    <Compile Include="OCVTest\SelectionPara.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\UCTempView.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="OCVTest\UCTempView.Designer.cs">
+      <DependentUpon>UCTempView.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\ClsSysSetting.cs" />
+    <Compile Include="OCV_SYS\FormLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FormLogin.Designer.cs">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FormSysSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FormSysSetting.Designer.cs">
+      <DependentUpon>FormSysSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FormUserManager.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FormUserManager.Designer.cs">
+      <DependentUpon>FormUserManager.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmAbout.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmAbout.designer.cs">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmSys.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmSys.designer.cs">
+      <DependentUpon>FrmSys.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\ClsDMM_Ag344X.cs" />
+    <Compile Include="OCVTest\ET_CELL.cs" />
+    <Compile Include="OCVTest\FrmOCVMasterSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmOCVMasterSetting.Designer.cs">
+      <DependentUpon>FrmOCVMasterSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmManualUpload.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmManualUpload.designer.cs">
+      <DependentUpon>FrmManualUpload.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmRunMode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmRunMode.Designer.cs">
+      <DependentUpon>FrmRunMode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmSystemSetting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\FrmSystemSetting.Designer.cs">
+      <DependentUpon>FrmSystemSetting.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\FrmOCV.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVTest\FrmOCV.Designer.cs">
+      <DependentUpon>FrmOCV.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\frmUpdatePwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\frmUpdatePwd.Designer.cs">
+      <DependentUpon>frmUpdatePwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCV_SYS\frmUserPwd.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCV_SYS\frmUserPwd.Designer.cs">
+      <DependentUpon>frmUserPwd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVTest\ClsHIOKI356X.cs" />
+    <Compile Include="ClsGlobal.cs" />
+    <Compile Include="OCVMonitor\ClsProcess.cs" />
+    <Compile Include="OCVMonitor\FrmCode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVMonitor\FrmCode.designer.cs">
+      <DependentUpon>FrmCode.cs</DependentUpon>
+    </Compile>
+    <Compile Include="OCVMonitor\FrmMonitor.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="OCVMonitor\FrmMonitor.designer.cs">
+      <DependentUpon>FrmMonitor.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Web References\YL_WebService\Reference.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Reference.map</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="OCVTest\BateryTitleView.resx">
+      <DependentUpon>BateryTitleView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\BateryViewController.resx">
+      <DependentUpon>BateryViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FormProbeRecover.resx">
+      <DependentUpon>FormProbeRecover.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FormTempView.resx">
+      <DependentUpon>FormTempView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmAdjustSetting.resx">
+      <DependentUpon>FrmAdjustSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmBateryTestView.resx">
+      <DependentUpon>FrmBateryTestView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmProcessManager.resx">
+      <DependentUpon>FrmProcessManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmTempWarning.resx">
+      <DependentUpon>FrmTempWarning.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\UCTempView.resx">
+      <DependentUpon>UCTempView.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FormLogin.resx">
+      <DependentUpon>FormLogin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FormSysSetting.resx">
+      <DependentUpon>FormSysSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FormUserManager.resx">
+      <DependentUpon>FormUserManager.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmAbout.resx">
+      <DependentUpon>FrmAbout.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmSys.resx">
+      <DependentUpon>FrmSys.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmOCVMasterSetting.resx">
+      <DependentUpon>FrmOCVMasterSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmManualUpload.resx">
+      <DependentUpon>FrmManualUpload.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmRunMode.resx">
+      <DependentUpon>FrmRunMode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\FrmSystemSetting.resx">
+      <DependentUpon>FrmSystemSetting.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVTest\FrmOCV.resx">
+      <DependentUpon>FrmOCV.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\frmUpdatePwd.resx">
+      <DependentUpon>frmUpdatePwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCV_SYS\frmUserPwd.resx">
+      <DependentUpon>frmUserPwd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVMonitor\FrmCode.resx">
+      <DependentUpon>FrmCode.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="OCVMonitor\FrmMonitor.resx">
+      <DependentUpon>FrmMonitor.cs</DependentUpon>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <None Include="app.config">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="app.manifest" />
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <None Include="Web References\YL_WebService\index.wsdl" />
+    <None Include="Web References\YL_WebService\Reference.map">
+      <Generator>MSDiscoCodeGenerator</Generator>
+      <LastGenOutput>Reference.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <BootstrapperPackage Include=".NETFramework,Version=v4.0,Profile=Client">
+      <Visible>False</Visible>
+      <ProductName>Microsoft .NET Framework 4 Client Profile %28x86 和 x64%29</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Client.3.5">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1 Client Profile</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Net.Framework.3.5.SP1">
+      <Visible>False</Visible>
+      <ProductName>.NET Framework 3.5 SP1</ProductName>
+      <Install>false</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.SQL.Server.Compact.4.0">
+      <Visible>False</Visible>
+      <ProductName>SQL Server Compact 4.0 SP1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+    <BootstrapperPackage Include="Microsoft.Windows.Installer.3.1">
+      <Visible>False</Visible>
+      <ProductName>Windows Installer 3.1</ProductName>
+      <Install>true</Install>
+    </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="2.ico" />
+    <None Include="Web References\YL_WebService\index.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Service References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferences Include="Web References\" />
+  </ItemGroup>
+  <ItemGroup>
+    <WebReferenceUrl Include="http://10.37.59.150:8090/index.asmx">
+      <UrlBehavior>Dynamic</UrlBehavior>
+      <RelPath>Web References\YL_WebService\</RelPath>
+      <UpdateFromURL>http://10.37.59.150:8090/index.asmx</UpdateFromURL>
+      <ServiceLocationURL>
+      </ServiceLocationURL>
+      <CachedDynamicPropName>
+      </CachedDynamicPropName>
+      <CachedAppSettingsObjectName>Settings</CachedAppSettingsObjectName>
+      <CachedSettingsPropName>OCV_YL_WebService_index</CachedSettingsPropName>
+    </WebReferenceUrl>
+  </ItemGroup>
+  <ItemGroup />
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

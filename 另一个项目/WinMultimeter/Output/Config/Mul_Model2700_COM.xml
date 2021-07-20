@@ -1,0 +1,10 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mul_Model2700_COM>
+  <PortName>COM7</PortName>
+  <BauRate>9600</BauRate>
+  <Parity>None</Parity>
+  <DataBits>8</DataBits>
+  <StopBits>One</StopBits>
+  <Speed>0</Speed>
+  <Unit>V/A</Unit>
+</Mul_Model2700_COM>

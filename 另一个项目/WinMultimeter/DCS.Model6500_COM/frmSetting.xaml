@@ -1,0 +1,178 @@
+﻿<Controls:MetroWindow x:Class="DCS.Model6500_COM.frmSetting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:Controls="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:IconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:System="clr-namespace:System;assembly=mscorlib" 
+        xmlns:serialPort="clr-namespace:System.IO.Ports;assembly=System"
+        mc:Ignorable="d"
+        Title="{DynamicResource frmSetting_Title}" Height="550" Width="800" BorderBrush="{DynamicResource WindowTitleColorBrush}" BorderThickness="1" ShowMaxRestoreButton="False" ShowMinButton="False" ResizeMode="NoResize">
+    <Controls:MetroWindow.Resources>
+        
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                
+                <!--借用皮肤-->
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Colors.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/Blue.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Accents/BaseLight.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/FlatButton.xaml" />
+                <ResourceDictionary Source="Language/Language.zh-CN.xaml"></ResourceDictionary>
+                <ResourceDictionary>
+                    <ObjectDataProvider x:Key="Parity" MethodName="GetNames" ObjectType="{x:Type System:Enum}">
+                        <ObjectDataProvider.MethodParameters>
+                            <x:Type TypeName="serialPort:Parity"/>
+                        </ObjectDataProvider.MethodParameters>
+                    </ObjectDataProvider>
+                    <ObjectDataProvider x:Key="StopBits" MethodName="GetNames" ObjectType="{x:Type System:Enum}">
+                        <ObjectDataProvider.MethodParameters>
+                            <x:Type TypeName="serialPort:StopBits"></x:Type>
+                        </ObjectDataProvider.MethodParameters>
+                    </ObjectDataProvider>
+                    
+                </ResourceDictionary>
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
+    </Controls:MetroWindow.Resources>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="280"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <GroupBox Header="基本设置" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <Label HorizontalAlignment="Right" VerticalAlignment="Center" Content="串口名称："/>
+                <StackPanel Grid.Row="0" Grid.Column="1" Orientation="Horizontal">
+                    <ComboBox Name="cbPortName" IsEditable="True" Margin="5,5,0,5" Width="82"/>
+                    <Button Height="38" Name="btnRefreshSerialPort" Margin="1,0,0,0" Click="btnRefreshSerialPort_Click">
+                        <IconPacks:PackIconModern Kind="Refresh"></IconPacks:PackIconModern>
+                    </Button>
+                </StackPanel>
+                <Label Grid.Row="0" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="波特率："/>
+                <ComboBox Grid.Row="0" Grid.Column="3" Margin="5" Name="cbBauRate">
+                    <System:String>2400</System:String>
+                    <System:String>4800</System:String>
+                    <System:String>9600</System:String>
+                    <System:String>19200</System:String>
+                    <System:String>38400</System:String>
+                    <System:String>57600</System:String>
+                    <System:String>115200</System:String>
+                </ComboBox>
+
+                <Label Grid.Row="0" Grid.Column="4" HorizontalAlignment="Right" VerticalAlignment="Center" Content="万用表返回值单位："></Label>
+                <ComboBox Grid.Row="0" Grid.Column="5" Margin="5" Name="cbUnit" IsEditable="False">
+                    <System:String>V/A</System:String>
+                    <System:String>mV/mA</System:String>
+                </ComboBox>
+
+                <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="奇偶校验位："/>
+                <ComboBox Name="cbParity" Grid.Row="1" Grid.Column="1" Margin="5" ItemsSource="{Binding Source={StaticResource Parity}}"/>
+                <Label Grid.Row="1" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="标准数据位长度："/>
+                <ComboBox Grid.Row="1" Grid.Column="3" Margin="5" Name="cbDataBits">
+                    <System:String>6</System:String>
+                    <System:String>7</System:String>
+                    <System:String>8</System:String>
+                </ComboBox>
+
+
+                <Label Grid.Row="2" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="停止位："/>
+                <ComboBox Name="cbStopBits" Grid.Row="2" Grid.Column="1" Margin="5" ItemsSource="{Binding Source={StaticResource StopBits}}"/>
+                <Label Grid.Row="2" Grid.Column="2" HorizontalAlignment="Right" VerticalAlignment="Center" Content="量测速率："></Label>
+                <ComboBox Grid.Row="2" Name="cbSpeed" Grid.Column="3" Margin="5">
+                   
+                </ComboBox>
+                <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center" Content="错误信息："/>
+                <Label Name="lbErrorMsg" Grid.Row="3" Grid.Column="1" Foreground="Red" Grid.ColumnSpan="5" Margin="2" HorizontalContentAlignment="Left" VerticalContentAlignment="Center"></Label>
+                <Button Grid.Row="4" Grid.Column="0" Margin="5" Name="btnReadProductModel" Click="btnReadProductModel_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="读取型号" Margin="0,0,0,0"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="1" Margin="5" Name="btnSetVoltage" Click="btnSetVoltage_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="设置电压及速率" Margin="0,0,0,0"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="2" Margin="5" Name="btnSetCurrent" Click="btnSetCurrent_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="设置电流及速率" Margin="0,0,0,0"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="3" Margin="5" Name="btnReset" Click="btnReset_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="重置万用表" Margin="0,0,0,0"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="4" Margin="5" Name="btnReconnect" Click="btnReconnect_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <IconPacks:PackIconModern Kind="Connect">
+                        </IconPacks:PackIconModern>
+                        <TextBlock Text="重连万用表" Margin="5,0,0,0"></TextBlock>
+                    </StackPanel>
+                </Button>
+                <Button Grid.Row="4" Grid.Column="5" Margin="5" Name="btnSave" Click="btnSave_Click">
+                    <StackPanel Orientation="Horizontal">
+                        <IconPacks:PackIconModern Kind="Save">
+                        </IconPacks:PackIconModern>
+                        <TextBlock Text="保存配置" Margin="5,0,0,0"></TextBlock>
+                    </StackPanel>
+                </Button>
+            </Grid>
+
+        </GroupBox>
+        <GroupBox Grid.Row="1" Header="调试" Margin="2">
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"></RowDefinition>
+                    <RowDefinition></RowDefinition>
+                </Grid.RowDefinitions>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                        <ColumnDefinition Width="100"></ColumnDefinition>
+                    </Grid.ColumnDefinitions>
+                    <TextBox Margin="3" Name="tbCmd"></TextBox>
+                    <Button Grid.Column="1" Margin="3" Name="btnSend" Click="btnSend_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <IconPacks:PackIconModern Kind="MessageSend" VerticalAlignment="Center"></IconPacks:PackIconModern>
+                            <TextBlock Text="发送" Margin="10,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Grid.Column="2" Margin="3" Name="btnRead" Click="btnRead_Click">
+                        <StackPanel Orientation="Horizontal">
+                            <IconPacks:PackIconMaterial Kind="CallReceived" VerticalAlignment="Center"></IconPacks:PackIconMaterial>
+                            <TextBlock Text="读取" Margin="10,0,0,0"></TextBlock>
+                        </StackPanel>
+                    </Button>
+                </Grid>
+                <RichTextBox Grid.Row="1" BorderThickness="0" Name="rtb">
+                    <RichTextBox.Document>
+                        <FlowDocument>
+                            <Paragraph Name="paragraph"></Paragraph>
+                        </FlowDocument>
+                    </RichTextBox.Document>
+                </RichTextBox>
+            </Grid>
+        </GroupBox>
+    </Grid>
+</Controls:MetroWindow>
