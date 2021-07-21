@@ -1,11 +1,13 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.1062
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31424.327
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LDTY_OCV", "LDTY_OCV.csproj", "{6E4170D8-0423-41A0-A723-34102CD1935D}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ChannleAdjust", "..\ChannleAdjust\ChannleAdjust.csproj", "{BD155A70-FE9A-4D04-AA53-72C5894EB78E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DCS.Model2700_COM", "DBCOM\COM\DCS.Model2700_COM\DCS.Model2700_COM.csproj", "{E33E3272-6844-4CEE-B7D9-A2752D667C20}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -30,6 +32,14 @@ Global
 		{BD155A70-FE9A-4D04-AA53-72C5894EB78E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{BD155A70-FE9A-4D04-AA53-72C5894EB78E}.Release|x86.ActiveCfg = Release|Any CPU
 		{BD155A70-FE9A-4D04-AA53-72C5894EB78E}.Release|x86.Build.0 = Release|Any CPU
+		{E33E3272-6844-4CEE-B7D9-A2752D667C20}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E33E3272-6844-4CEE-B7D9-A2752D667C20}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E33E3272-6844-4CEE-B7D9-A2752D667C20}.Debug|x86.ActiveCfg = Debug|x86
+		{E33E3272-6844-4CEE-B7D9-A2752D667C20}.Debug|x86.Build.0 = Debug|x86
+		{E33E3272-6844-4CEE-B7D9-A2752D667C20}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E33E3272-6844-4CEE-B7D9-A2752D667C20}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E33E3272-6844-4CEE-B7D9-A2752D667C20}.Release|x86.ActiveCfg = Release|x86
+		{E33E3272-6844-4CEE-B7D9-A2752D667C20}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

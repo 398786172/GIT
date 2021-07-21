@@ -277,10 +277,8 @@ namespace OCV
                 {
                     //获取内阻校准参数
                     ClsGlobal.mIRAdjustVal = ClsGlobal.GetAdjustVal_ACIR(ClsGlobal.mIRAdjustPath);
-                    //this.HIOKI365X = new ClsHIOKI365X(ClsGlobal.RT_Port);
-                    //this.HIOKI365X.InitControl_IMM(2);
-                    this.HIOKI4560 = new ClsHIOKI4560(ClsGlobal.RT_Port);
-                    this.HIOKI4560.InitControl_IMM();
+                    this.HIOKI365X = new ClsHIOKI365X(ClsGlobal.RT_Port);
+                    this.HIOKI365X.InitControl_IMM(2);
                 }
                 catch (Exception ex)
                 {
@@ -351,9 +349,7 @@ namespace OCV
 
                 #endregion
 
-                ClsGlobal.OCVTestContr =
-                    //new ClsOCVContr(this.SWControl, this.DMM_Ag344X, this.HIOKI365X, InfoHandleA, this);
-                    new ClsOCVContr(this.SWControl, this.DMM_Ag344X, HIOKI4560, InfoHandleA, this);
+                ClsGlobal.OCVTestContr = new ClsOCVContr(this.SWControl, this.DMM_Ag344X, this.HIOKI365X, InfoHandleA, this);
                 #region 温度测试
 
                 ClsGlobal.mTempAdjustVal_P = ClsGlobal.GetAdjustVal_Temp(ClsGlobal.mTempAdjustPath, "P");
@@ -442,7 +438,7 @@ namespace OCV
                     InfoHandleA("设备参数异常！");
                     return;
                 }
-                ClsGlobal.sysOK = true;
+                //ClsGlobal.sysOK = true;
 
             }
             catch (Exception ex)
@@ -561,7 +557,7 @@ namespace OCV
             //工步显示
             txtConUpStep_D300.Text = ClsPLCValue.PlcValue.Plc_AutoStepNO.ToString();
             txtPlc_ResetStepNO.Text = ClsPLCValue.PlcValue.Plc_ResetStepNO.ToString();
-            txtPeriod.Text = (ClsPLCValue.PlcValue.Plc_Period1+ ClsPLCValue.PlcValue.Plc_Period2*256).ToString();
+            txtPeriod.Text = (ClsPLCValue.PlcValue.Plc_Period1*256+ ClsPLCValue.PlcValue.Plc_Period2).ToString();
             //状态显示          
             if (mProc.RunState == 1 && ClsPLCValue.PlcValue.Plc_HaveTray == 1)
             {
@@ -1012,6 +1008,7 @@ namespace OCV
             {
                 //W00073
                 ClsGlobal.mPLCContr.WriteDB(ClsGlobal.mPLCContr.mPlcAddr.PC_整体复位, 1);
+                ShowInfo("设备整体复位" + Environment.NewLine);
                 Thread.Sleep(500);
                 ClsGlobal.mPLCContr.WriteDB(ClsGlobal.mPLCContr.mPlcAddr.PC_整体复位, 0);
             };

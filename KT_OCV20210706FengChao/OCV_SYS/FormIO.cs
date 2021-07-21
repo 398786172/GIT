@@ -470,7 +470,7 @@ namespace OCV
 
             try
             {
-                short val = 0;
+                byte val = 0;
                 ClsGlobal.mPLCContr.ReadDB(txt_Radder.Text, out val);
                 txt_Rval.Text = val.ToString();
 
@@ -486,8 +486,15 @@ namespace OCV
         {
             try
             {
+                Byte val ;
+                // = byte.Parse(txt_Wval.Text);
+                if (!byte.TryParse(txt_Wval.Text,out val))
+                {
+                    MessageBox.Show("请输入小于256的整数");
+                    txt_Wval.Text = "";
+                    return;
+                }
                 //short val = short.Parse(txt_Wval.Text);
-                byte val =byte.Parse(txt_Wval.Text);
                 //int val = int.Parse(txt_Wval.Text);
                 //uint val = uint.Parse(txt_Wval.Text);
                 ClsGlobal.mPLCContr.WriteDB(txt_Wadder.Text, val);

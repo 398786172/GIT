@@ -107,8 +107,8 @@ namespace OCV
                             ClsPLCValue.PlcValue.Plc_IO_ZeroIng = opr.Content[16];         //X轴回零中？
                             ClsPLCValue.PlcValue.Plc_StartReply = opr.Content[17];         //PLC启动应答
                             ClsPLCValue.PlcValue.Plc_On_Position = opr.Content[20];        //PLC_到位
-                            ClsPLCValue.PlcValue.Plc_Period1 = opr.Content[21];            //PLC单次运动时间1
-                            ClsPLCValue.PlcValue.Plc_Period2 = opr.Content[22];            //PLC单次运动时间2
+                            ClsPLCValue.PlcValue.Plc_Period1 = opr.Content[22];            //PLC单次运动时间1
+                            ClsPLCValue.PlcValue.Plc_Period2 = opr.Content[23];            //PLC单次运动时间2
                             ClsPLCValue.PlcValue.Plc_IO_ZeroCompletion = opr.Content[25];  //X轴回零完成
                             ClsPLCValue.PlcValue.Plc_CurrentPosition1 = opr.Content[32];   //X轴位置1信息
                             ClsPLCValue.PlcValue.Plc_CurrentPosition2 = opr.Content[33];   //X轴位置2信息
@@ -1024,9 +1024,9 @@ namespace OCV
         /// 设备X轴正向运动
         /// </summary>
         /// <param name="speed">速度值,单位: pps</param>
-        public void DevMove_Pos(short speed)
+        public void DevMove_Pos(int speed)
         {
-            short i;
+            int i;
             int tempVal;
             if (speed < 0 || speed > MaxSpeed)
             {
@@ -1036,7 +1036,7 @@ namespace OCV
             try
             {
                 OperateResult<short[]> read = PlcTcpNet.ReadInt16(mPlcAddr.PC_速度, 2);
-                tempVal = (ushort)read.Content[1] +(ushort)
+                tempVal = (ushort)read.Content[1] + (ushort)
                           read.Content[0] * 65536;
                 if (i != tempVal)
                 {
@@ -1056,9 +1056,9 @@ namespace OCV
         /// 设备X轴反向运动
         /// </summary>
         /// <param name="speed">速度值,单位: pps</param>
-        public void DevMove_Neg(short speed)
+        public void DevMove_Neg(int speed)
         {
-            short i;
+            int i;
             int tempVal;
             if (speed < 0 || speed > MaxSpeed)
             {
@@ -1099,7 +1099,7 @@ namespace OCV
             {
                 short[] tSpeed = new short[2];
                 tSpeed[1] = (short)(speed & 0xffff);
-                tSpeed[0] = (short)(speed / 0xffff);
+                tSpeed[0] = (short)(speed >> 16);
                 PlcTcpNet.Write(mPlcAddr.PC_速度, tSpeed);
                 Thread.Sleep(10);
             }
@@ -1161,7 +1161,8 @@ namespace OCV
             {
                 short[] tAcctime = new short[2];
                 tAcctime[1] = (short)(mAccTime & 0xffff);
-                tAcctime[0] = (short)(mAccTime / 0xffff);
+                tAcctime[0] = (short)(mAccTime >> 16);
+
                 PlcTcpNet.Write(mPlcAddr.PC_加减速时间, tAcctime);
             }
             catch (Exception ex)
@@ -1204,7 +1205,9 @@ namespace OCV
                 }
                 short[] sPos = new short[2];
                 sPos[1] = (short)(pos & 0xffff);
-                sPos[0] = (short)(pos / 0xffff);
+                sPos[0] = (short)(pos >> 16);
+
+
                 switch (num)
                 {
                     case 1:
@@ -1336,14 +1339,14 @@ namespace OCV
         /// <returns>X轴坐标,单位: pps</returns>
         public int DevMove_CurrentPos()
         {
-            int tempVal;
+            int tempVal, tempValTemp;
             short[] tempVal1;
             try
             {
                 OperateResult<short[]> read = null;
                 read = PlcTcpNet.ReadInt16(mPlcAddr.PLC_当前坐标, 2);
                 tempVal1 = read.Content;
-                tempVal = (ushort)tempVal1[0] + tempVal1[1] * 65536;
+                tempVal = (ushort)tempVal1[1] + (ushort)tempVal1[0] * 65536;
                 return tempVal;
             }
             catch (Exception ex)
@@ -1401,22 +1404,23 @@ namespace OCV
             {
                 OperateResult<short[]> read = PlcTcpNet.ReadInt16(mPlcAddr.PC_速度, 2);
                 tempVal = (ushort)read.Content[1] +
-                                 (ushort) read.Content[0] * 65536;
+                                 (ushort)read.Content[0] * 65536;
                 if (i != tempVal && i != 0)
                 {
                     DevMove_ChangeSpeed(i);
-                   //PlcTcpNet.Write(mPlcAddr.PC_速度, i);
+                    //PlcTcpNet.Write(mPlcAddr.PC_速度, i);
                     Thread.Sleep(10);
                 }
                 j = position;
                 OperateResult<short[]> read1 = PlcTcpNet.ReadInt16(mPlcAddr.PC_运动值, 2);
                 tempVal = (short)read1.Content[1] +
-                                 (short) read1.Content[0] * 65536;
+                                 (short)read1.Content[0] * 65536;
                 if (j != tempVal)
                 {
                     short[] tMovePosition = new short[2];
                     tMovePosition[1] = (short)(j & 0xffff);
-                    tMovePosition[0] = (short)(j / 0xffff);
+                    tMovePosition[0] = (short)(j >> 16);
+
                     PlcTcpNet.Write(mPlcAddr.PC_运动值, tMovePosition);
                     //PlcTcpNet.Write(mPlcAddr.PC_运动值, j);
                     Thread.Sleep(10);
@@ -1450,7 +1454,7 @@ namespace OCV
             i = speed;
             try
             {
-                // PlcTcpNet.Write(mPlcAddr.PC_启动, mReSet);
+                //PlcTcpNet.Write(mPlcAddr.PC_启动, mReSet);
                 OperateResult<short[]> read = PlcTcpNet.ReadInt16(mPlcAddr.PC_速度, 2);
                 OperateResult<byte[]> read1 = PlcTcpNet.Read(mPlcAddr.PC_坐标, 1);
                 tempVal = (ushort)read.Content[1] +
@@ -1462,7 +1466,7 @@ namespace OCV
                     Thread.Sleep(10);
                 }
 
-                j =(byte) posNO;
+                j = (byte)posNO;
                 read1 = PlcTcpNet.Read(mPlcAddr.PC_坐标, 1);
                 tempVal = read.Content[0];
                 if (j != tempVal)

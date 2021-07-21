@@ -105,6 +105,11 @@ new
             {
                 return BadRequest("请输入正确的排序参数");
             }
+            if (!_propertyMappingService
+                .IsPropertiesExists<TouristRouteDto>(paramaters.Fields))
+            {
+                return BadRequest("请输入正确的塑性参数");
+            }
             var touristRoutesFromRepo = await _touristRouteRepository.GetTouristRoutesAsync(
                 paramaters.Keyword,
                 paramaters.RatingOperator,
