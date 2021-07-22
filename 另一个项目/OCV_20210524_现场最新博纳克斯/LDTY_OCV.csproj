@@ -450,7 +450,12 @@
       <CachedSettingsPropName>OCV_YL_WebService_index</CachedSettingsPropName>
     </WebReferenceUrl>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="DBCOM\COM\DCS.Model2700_COM\DCS.Model2700_COM.csproj">
+      <Project>{e33e3272-6844-4cee-b7d9-a2752d667c20}</Project>
+      <Name>DCS.Model2700_COM</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

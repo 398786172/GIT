@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using DCS.Common;
-using DCS.Common.Interface;
 using System.Windows.Controls;
 using System.IO;
 using System.Windows;
@@ -12,13 +10,14 @@ using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Threading;
 using System.ComponentModel;
+using DCS.Model2700_COM.ComDriver;
 
 namespace DCS.Model2700_COM
 {
-    [MultimeterDescription("Agilent 2700/HIOKI DM7276", "串口通讯")]
-    public class Mul_Model2700_COM : IMultimeter
+    //[MultimeterDescription("Agilent 2700/HIOKI DM7276", "串口通讯")]
+    public class Mul_Model2700_COM //: IMultimeter
     {
-        private DictionaryEx dicEx;
+        private Dictionary<string,string> dicEx;
         private IDriver driver = new ComDriver.ComDriver();
         public IDriver Driver
         {
@@ -29,9 +28,9 @@ namespace DCS.Model2700_COM
         {
             dicEx = this.GetConfig();
         }
-        public DictionaryEx GetConfig()
+        public Dictionary<string, string> GetConfig()
         {
-            DictionaryEx dic = new DictionaryEx();
+            Dictionary<string, string> dic = new Dictionary<string, string>();
             //读取配置，初始化
             string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config\\" + this.GetType().Name + ".xml");
             if (!File.Exists(configFile))
@@ -58,11 +57,11 @@ namespace DCS.Model2700_COM
             this.Driver.Init(dicEx);
         }
 
-        public void ShowSetting()
-        {
-            frmSetting frm = new frmSetting(this);
-            frm.ShowDialog();
-        }
+        //public void ShowSetting()
+        //{
+        //    frmSetting frm = new frmSetting(this);
+        //    frm.ShowDialog();
+        //}
 
         public void Reset()
         {
@@ -71,7 +70,7 @@ namespace DCS.Model2700_COM
             this.WriteString("*CLS", false);
         }
 
-        public void SaveConfig(DictionaryEx dic)
+        public void SaveConfig(Dictionary<string, string> dic)
         {
             dicEx = dic;//20190510 li 更新配置信息
             string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config\\" + this.GetType().Name + ".xml");

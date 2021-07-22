@@ -211,13 +211,13 @@ namespace OCV
                         case 2:
                             if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen1 == 1 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose1 == 0)
                             {
+                                pos = (short)(j + 1);
                                 if (pos > 9)
                                 {
                                     mStep_TestReq = 7;
                                 }
                                 else
                                 {
-                                    pos = (short)(j + 1);
                                     ClsGlobal.mPLCContr.DevMove_AbsNO(0, pos);
                                     mInfoSend("PC指示X轴移动至位置：" + pos);
                                     mStep_TestReq = 3;
@@ -1381,13 +1381,13 @@ namespace OCV
                         case 2:
                             if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen1 == 1 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose1 == 0)
                             {
+                                pos = (short)(j + 1);
                                 if (pos > 9)
                                 {
                                     mStep_TestReq = 7;
                                 }
                                 else
                                 {
-                                    pos = (short)(j + 1);
                                     ClsGlobal.mPLCContr.DevMove_AbsNO(0, pos);
                                     ClsGlobal.ManualMessInfo = "PC指示X轴移动至位置：" + pos;
                                     mStep_TestReq = 3;
@@ -1411,7 +1411,7 @@ namespace OCV
                                 mStep_TestReq = 4;
                             }
                             TsTestReqThread = DateTime.Now - TimeTestReqThread;
-                            if (TsTestReqThread.TotalSeconds > 5)
+                            if (TsTestReqThread.TotalSeconds > 30)
                             {
                                 ClsGlobal.ManualMessInfo = "X轴动作超时...";
                                 throw new Exception("X轴动作超时...");

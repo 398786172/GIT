@@ -174,10 +174,16 @@ new
             //    DepartureCity = touristRouteFromRepo.DepartureCity.ToString()
             //};
             var touristRouteDto = _mapper.Map<TouristRouteDto>(touristRouteFromRepo);
-            return Ok(touristRouteDto.ShapeData(fields));
+            //return Ok(touristRouteDto.ShapeData(fields));
+            var linkDtos = CreateLinkForTouristRoute(touristRouteId, fields);
+
+            var result = touristRouteDto.ShapeData(fields)
+                as IDictionary<string, object>;
+            result.Add("links", linkDtos);
+            return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost(Name = "CreateTouristRoute")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> CreateTouristRoute([FromBody] TouristRouteForCreationDto touristRouteForCreationDto)
@@ -186,14 +192,18 @@ new
             _touristRouteRepository.AddTouristRoute(touristRouteModel);
             await _touristRouteRepository.SaveAsync();
             var touristRouteToReture = _mapper.Map<TouristRouteDto>(touristRouteModel);
+            var links = CreateLinkForTouristRoute(touristRouteModel.Id, null);
+            var result = touristRouteToReture.ShapeData(null)
+                as IDictionary<string, object>;
+            result.Add("links", links);
             return CreatedAtRoute(
                 "GetTouristRouteById",
-                new { touristRouteId = touristRouteToReture.Id },
-                touristRouteToReture
+                new { touristRouteId = result["Id"] },
+                result
             );
         }
 
-        [HttpPut("{touristRouteId}")]
+        [HttpPut("{touristRouteId}", Name = "UpdateTouristRoute")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> UpdateTouristRoute(
@@ -217,7 +227,7 @@ new
             return NoContent();
         }
 
-        [HttpPatch("{touristRouteId}")]
+        [HttpPatch("{touristRouteId}", Name = "PartiallyUpdateTouristRoute")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> PartiallyUpdateTouristRoute(
@@ -243,7 +253,7 @@ new
             return NoContent();
         }
 
-        [HttpDelete("{touristRouteId}")]
+        [HttpDelete("{touristRouteId}", Name = "DeleteTouristRoute")]
         [Authorize(AuthenticationSchemes = "Bearer")]
         [Authorize(Roles = "Admin")]
         public async Task<IActionResult> DeleteTouristRoute([FromRoute] Guid touristRouteId)
@@ -275,6 +285,63 @@ new
             await _touristRouteRepository.SaveAsync();
 
             return NoContent();
+        }
+        private IEnumerable<LinkDto> CreateLinkForTouristRoute(
+            Guid touristRouteId,
+            string fields)
+        {
+            var links = new List<LinkDto>();
+
+            links.Add(
+                new LinkDto(
+                    _urlHelper.Link("GetTouristRouteById", new { touristRouteId, fields }),
+                    "self",
+                    "GET"
+                )
+            );
+
+            // 更新
+            links.Add(
+                new LinkDto(
+                    _urlHelper.Link("UpdateTouristRoute", new { touristRouteId }),
+                    "update",
+                    "PUT"
+                )
+            );
+
+            // 局部更新 
+            links.Add(
+                new LinkDto(
+                    _urlHelper.Link("PartiallyUpdateTouristRoute", new { touristRouteId }),
+                    "partially_update",
+                    "PATCH")
+            );
+
+            // 删除
+            links.Add(
+                new LinkDto(
+                    _urlHelper.Link("DeleteTouristRoute", new { touristRouteId }),
+                    "delete",
+                    "DELETE")
+            );
+
+            // 获取路线图片
+            links.Add(
+                new LinkDto(
+                    _urlHelper.Link("GetPictureListForTouristRoute", new { touristRouteId }),
+                    "get_pictures",
+                    "GET")
+            );
+
+            // 添加新图片
+            links.Add(
+                new LinkDto(
+                    _urlHelper.Link("CreateTouristRoutePicture", new { touristRouteId }),
+                    "create_picture",
+                    "POST")
+            );
+
+            return links;
         }
     }
 }

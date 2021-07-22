@@ -85,9 +85,8 @@
     <Reference Include="PresentationFramework" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="frmSetting.xaml.cs">
-      <DependentUpon>frmSetting.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="ComDriver\ComDriver.cs" />
+    <Compile Include="ComDriver\IDriver.cs" />
     <Compile Include="Mul_Model2700_COM.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
@@ -122,20 +121,6 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
-  <ItemGroup>
-    <Page Include="frmSetting.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Language\Language.en-US.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Language\Language.zh-CN.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-  </ItemGroup>
   <ItemGroup>
     <None Include="Config\Mul_Model2700_COM.xml">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

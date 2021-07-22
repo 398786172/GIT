@@ -247,6 +247,11 @@ namespace OCV
 
                 #endregion
 
+                #region 位置数据加载
+
+                ClsGlobal cls=new ClsGlobal();
+
+                #endregion
                 #region 万用表参数
 
                 try
@@ -438,7 +443,7 @@ namespace OCV
                     InfoHandleA("设备参数异常！");
                     return;
                 }
-                //ClsGlobal.sysOK = true;
+                ClsGlobal.sysOK = true;
 
             }
             catch (Exception ex)
