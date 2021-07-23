@@ -340,6 +340,9 @@ namespace OCV
 
         //万用表通讯
         public static string DMT_USBAddr;
+        public static string DMT_SerialPort_Com;
+        public static string DMT_SerialPort_Com_Speed;
+        public static string DMT_Connection_Type;
         SerialPort DMTCom = new SerialPort();               //万用表通讯(已经很少再用串口)
 
         //内阻仪通讯

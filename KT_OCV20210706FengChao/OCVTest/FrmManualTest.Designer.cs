@@ -90,6 +90,7 @@
             // tim_UI
             // 
             this.tim_UI.Enabled = true;
+            this.tim_UI.Interval = 10;
             this.tim_UI.Tick += new System.EventHandler(this.tim_UI_Tick);
             // 
             // tab_MultiTest
@@ -270,6 +271,7 @@
             this.btnTestMultiVolt_ShellNeg.TabIndex = 47;
             this.btnTestMultiVolt_ShellNeg.Text = "测壳体负极电压";
             this.btnTestMultiVolt_ShellNeg.UseVisualStyleBackColor = true;
+            this.btnTestMultiVolt_ShellNeg.Visible = false;
             this.btnTestMultiVolt_ShellNeg.Click += new System.EventHandler(this.btnTestMultiVolt_ShellNeg_Click);
             // 
             // tab_ManualTest
@@ -553,6 +555,7 @@
             this.ShowIcon = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "手动测试";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.FrmManualTest_FormClosing);
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.FrmManualTestOCV_FormClosed);
             this.Load += new System.EventHandler(this.FrmOCV_Load);
             this.tab_MultiTest.ResumeLayout(false);

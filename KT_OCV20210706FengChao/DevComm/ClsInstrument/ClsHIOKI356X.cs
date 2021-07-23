@@ -160,7 +160,7 @@ namespace OCV
 
         /// <summary>
         /// 内阻仪初始化(内部触发方式)
-        /// 量程:300毫欧
+        /// 量程:300毫欧 -3毫欧
         /// 修改 20180402
         /// </summary>
         /// <param name="SampleRateType">采样速率: SLOW->1 MED->2, FAST->3</param>
@@ -176,7 +176,7 @@ namespace OCV
             }
             SPort.WriteLine("*RST");
             SPort.WriteLine("*CLS");
-            SPort.WriteLine(":RES:RANG 300E-3");
+            SPort.WriteLine(":RES:RANG 3E-3");
             SPort.WriteLine(":TRIG:SOUR IMM");    //触发方式：内部触发
             //SPort.WriteLine(":RES:RANG 300E-3");    //量程:300毫欧
             //SPort.WriteLine(":TRIG:SOUR IMM");

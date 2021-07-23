@@ -19,6 +19,7 @@ using System.Windows.Forms;
 using System.Drawing;
 using OCV.OCVTest;
 using System.Threading.Tasks;
+using DCS.Model2700_COM;
 
 namespace OCV
 {
@@ -28,7 +29,7 @@ namespace OCV
         FrmOCV mForm;
 
         public ClsIOControl SwitchDev;          //切换控制
-        public ClsDMM_Ag344X mDmm;              //万用表
+        public dynamic mDmm;                    //万用表                    
         public ClsHIOKI365X mRTester;           //内阻仪 
 
         Thread ThreadTestAction;
@@ -51,7 +52,7 @@ namespace OCV
             mStop = true;
         }
 
-        public ClsOCVIRTest(ClsIOControl Contr, SerialPort RTester_SP, int RT_Speed, string DMM_OCV, FrmOCV f1)
+        public ClsOCVIRTest(ClsIOControl Contr, SerialPort RTester_SP, int RT_Speed, string DMM_OCV, FrmOCV f1,string DMM_OCV_COM_Speed)
         {
             try
             {
@@ -68,8 +69,17 @@ namespace OCV
                 mRTester.ClearData();
 
                 //万用表
-                mDmm = new ClsDMM_Ag344X(DMM_OCV);
-                mDmm.InitControl_IMM();
+                if (ClsGlobal.DMT_Connection_Type=="1")
+                {
+                    mDmm = new ClsDMM_Ag344X(DMM_OCV);
+                    mDmm.InitControl_IMM();
+                }
+                else
+                {
+                    mDmm = new Mul_Model2700_COM(DMM_OCV,"中");
+                    mDmm.SetVoltageFunction();
+                }
+                
 
 
                 //IO控制

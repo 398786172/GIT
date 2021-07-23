@@ -177,6 +177,7 @@ namespace OCV
         {
             try
             {
+                ClsGlobal.OCVTestContr.ManualTestFinish = false;
                 grpbxTestManual.Enabled = false;
                 btnTestMultiVolt_PosNeg.Text = "测电压中...";
                 ClsGlobal.OCVTestContr.StartManualTestVolt_PosNeg_Action(this);
@@ -191,6 +192,7 @@ namespace OCV
         {
             try
             {
+                ClsGlobal.OCVTestContr.ManualTestFinish = false;
                 grpbxTestManual.Enabled = false;
                 btnTestMultiVolt_ShellNeg.Text = "测壳体电压中...";
                 ClsGlobal.OCVTestContr.StartManualTestVolt_ShellNeg_Action(this);
@@ -206,6 +208,7 @@ namespace OCV
         {
             try
             {
+                ClsGlobal.OCVTestContr.ManualTestFinish = false;
                 grpbxTestManual.Enabled = false;
                 btnTestMultiIR_BT4560.Text = "测ACIR中...";
                 ClsGlobal.OCVTestContr.StartManualTestIR_BT4560_Action(this);
@@ -287,7 +290,7 @@ namespace OCV
 
             if (int.TryParse(txtChannel.Text, out resCH) == true)
             {
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(1, resCH);//正极对负极   
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, resCH);//正极对负极   
                 //ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, resCH);//正极对负极       
             }
             else
@@ -300,7 +303,7 @@ namespace OCV
         {
             try
             {
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(1, 0);
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, 0);
                 //ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, 0);
             }
             catch (Exception)
@@ -315,7 +318,7 @@ namespace OCV
            
             if (int.TryParse(txtChannel.Text, out resCH) == true)
             {
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(3, resCH);//壳体对负极
+                //ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(3, resCH);//壳体对负极
                 //ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(2, resCH);//壳体对负极
             }
             else
@@ -329,7 +332,7 @@ namespace OCV
  
             try
             {
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
+                //ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
                 // ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(2, 0);
             }
             catch (Exception)
@@ -343,7 +346,7 @@ namespace OCV
             if (int.TryParse(txtChannel.Text, out resCH) == true)
             {
                 //ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, resCH);
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, resCH);
+                ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(1, resCH);
             }
             else
             {
@@ -355,7 +358,7 @@ namespace OCV
         {
             try
             {
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0); //内阻测试
+                ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(1, 0); //内阻测试
                 //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, 0);
             }
             catch (Exception)
@@ -433,5 +436,12 @@ namespace OCV
             txtInfoA.ScrollToCaret();
         }
 
+        private void FrmManualTest_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("请确认手动多通道测试是否已经结束，若未结束，请暂时不要关闭该窗口", "请注意", MessageBoxButtons.OKCancel)==DialogResult.Cancel)
+            {
+                e.Cancel = true;
+            }
+        }
     }
 }

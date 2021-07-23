@@ -145,7 +145,22 @@ new
 
             Response.Headers.Add("x-pagination",
                 Newtonsoft.Json.JsonConvert.SerializeObject(paginationMetadata));
-            return Ok(touristRoutesDto.ShapeData(paramaters.Fields));
+            var shapedDtoList = touristRoutesDto.ShapeData(paramaters.Fields);
+            var linkDto = CreateLinksForTouristRouteList(paramaters, paramaters2);
+            var shapedDtoWithLinklist = shapedDtoList.Select(t =>
+            {
+                var touristRouteDictionary = t as IDictionary<string, object>;
+                var links = CreateLinkForTouristRoute(
+                    (Guid)touristRouteDictionary["Id"], null);
+                touristRouteDictionary.Add("links", links);
+                return touristRouteDictionary;
+            });
+            var result = new
+            {
+                value = shapedDtoWithLinklist,
+                links = linkDto
+            };
+            return Ok(result);
         }
 
         // api/touristroutes/{touristRouteId}
@@ -341,6 +356,29 @@ new
                     "POST")
             );
 
+            return links;
+        }
+
+        private IEnumerable<LinkDto> CreateLinksForTouristRouteList(
+            TouristRouteResourceParamaters paramaters,
+            PaginationResourceParamaters paramaters2)
+        {
+            var links = new List<LinkDto>();
+            // 添加self，自我链接
+            links.Add(new LinkDto(
+                GenerateTouristRouteResourceURL(
+                    paramaters, paramaters2, ResourceUriType.CurrnetPage),
+                "self",
+                "GET"
+            ));
+
+            // "api/touristRoutes"
+            // 添加创建旅游路线
+            links.Add(new LinkDto(
+                Url.Link("CreateTouristRoute", null),
+                "create_tourist_route",
+                "POST"
+            ));
             return links;
         }
     }

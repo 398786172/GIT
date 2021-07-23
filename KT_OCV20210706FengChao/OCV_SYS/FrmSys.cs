@@ -416,8 +416,8 @@ namespace OCV
                 #region 数据库
 
                 //擎天数据库的OCV数据连接
-                // ClsGlobal.mDBCOM_OCV_QT = new DBCOM_OCV(ClsGlobal.Server_OCV_IP, ClsGlobal.Server_OCV_DB, ClsGlobal.Server_OCV_id, ClsGlobal.Server_OCV_Pwd);
-                //   ClsGlobal.mDBCOM_ProjectInfo = new ProjectInfo(ClsGlobal.Server_OCV_IP, ClsGlobal.Server_OCV_DB, ClsGlobal.Server_OCV_id, ClsGlobal.Server_OCV_Pwd);
+                //ClsGlobal.mDBCOM_OCV_QT = new DBCOM_OCV(ClsGlobal.Server_OCV_IP, ClsGlobal.Server_OCV_DB, ClsGlobal.Server_OCV_id, ClsGlobal.Server_OCV_Pwd);
+                //ClsGlobal.mDBCOM_ProjectInfo = new ProjectInfo(ClsGlobal.Server_OCV_IP, ClsGlobal.Server_OCV_DB, ClsGlobal.Server_OCV_id, ClsGlobal.Server_OCV_Pwd);
                 //本地OCV数据连接
                 //ClsGlobal.mDBCOM_OCV_Local = new DBCOM_OCV(ClsGlobal.Server_Local_IP, ClsGlobal.Server_Local_DB);
                 //现场装SQL SERVER时,权限不足已用混合密码

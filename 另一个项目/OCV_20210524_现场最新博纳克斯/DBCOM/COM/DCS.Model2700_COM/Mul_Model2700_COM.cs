@@ -15,7 +15,7 @@ using DCS.Model2700_COM.ComDriver;
 namespace DCS.Model2700_COM
 {
     //[MultimeterDescription("Agilent 2700/HIOKI DM7276", "串口通讯")]
-    public class Mul_Model2700_COM //: IMultimeter
+    public class Mul_Model2700_COM
     {
         private Dictionary<string,string> dicEx;
         private IDriver driver = new ComDriver.ComDriver();
@@ -24,27 +24,19 @@ namespace DCS.Model2700_COM
             get { return driver; }
             set { driver = value; }
         }
-        public Mul_Model2700_COM()
+        public Mul_Model2700_COM(string Com,string speed)
         {
-            dicEx = this.GetConfig();
-        }
-        public Dictionary<string, string> GetConfig()
-        {
-            Dictionary<string, string> dic = new Dictionary<string, string>();
-            //读取配置，初始化
-            string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config\\" + this.GetType().Name + ".xml");
-            if (!File.Exists(configFile))
+            dicEx = new Dictionary<string, string>()
             {
-                MessageBox.Show(this.GetType().Name + "配置文件不存在,请检查路径：\r\n" + configFile);
-                Environment.Exit(-1);
-                return null;
-            }
-            XDocument doc = XDocument.Load(configFile);
-            foreach (var element in doc.Element(this.GetType().Name).Elements())
-            {
-                dic[element.Name.ToString()] = element.Value;
-            }
-            return dic;
+                {"PortName",Com },
+                {"BauRate","9600"},
+                {"Parity","None" },
+                { "DataBits","8"},
+                { "StopBits","One"},
+                { "Speed",speed},
+                { "Unit","V/A"},
+            };
+            this.Driver.Init(dicEx);
         }
 
         public string GetProductInfo()
@@ -52,42 +44,13 @@ namespace DCS.Model2700_COM
             return this.WriteString("*IDN?", true);            
         }
 
-        public void Init(Dictionary<string, object> dic)
-        {
-            this.Driver.Init(dicEx);
-        }
 
-        //public void ShowSetting()
-        //{
-        //    frmSetting frm = new frmSetting(this);
-        //    frm.ShowDialog();
-        //}
 
         public void Reset()
         {
             this.WriteString("*RST", false);
             System.Threading.Thread.Sleep(100);
             this.WriteString("*CLS", false);
-        }
-
-        public void SaveConfig(Dictionary<string, string> dic)
-        {
-            dicEx = dic;//20190510 li 更新配置信息
-            string configFile = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Config\\" + this.GetType().Name + ".xml");
-            if (File.Exists(configFile))
-            {
-                File.Delete(configFile);
-            }
-            string className = this.GetType().Name;
-            XDocument doc = new XDocument(new XDeclaration("1.0", "utf-8", null), new XElement(className));
-            XElement xElement = doc.Element(className);
-            foreach (var key in dic.Keys)
-            {
-                XElement childElement = new XElement(key);
-                childElement.Value = dic[key];
-                xElement.Add(childElement);
-            }
-            doc.Save(configFile);
         }
 
         public bool SetCurrentFunction()

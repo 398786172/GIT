@@ -503,7 +503,7 @@ namespace OCV
             {
                 Num = (int)theBtn.Tag + 1;
                 chNum = ((int)theBtn.Tag + 1) % 2 == 0 ? 2 : 1;
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(1, chNum);
+                ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, chNum);
                 //ClsGlobal.OCVTestContr.SWControl.ChannelVoltSwitchContr(1, Num);   //正极对负极
                 Thread.Sleep(50);
                 ClsGlobal.OCVTestContr.DMM_Ag344X.ReadVolt(out theVoltSample);
@@ -622,7 +622,7 @@ namespace OCV
                 //切换
                 Num = (int)theBtn.Tag + 1;
                 chNum = ((int)theBtn.Tag + 1) % 2 == 0 ? 2 : 1;
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, chNum);//内阻采样
+                ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(1, chNum);//内阻采样
                 //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
                 Thread.Sleep(100);
                 ClsGlobal.OCVTestContr.HIOKI365X.ReadData(out theIRSample);//获取内阻结果
@@ -674,7 +674,7 @@ namespace OCV
                     return;
                 }
 
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, chNum);
+                ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(1, chNum);
                 //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
 
                 Thread.Sleep(100);
@@ -827,7 +827,7 @@ namespace OCV
                     return;
                 }
 
-                ClsGlobal.OCVTestContr.SWControl.ChannelVoltIRShellNegSwitchContr(2, chNum);
+                ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(1, chNum);
                 //ClsGlobal.OCVTestContr.SWControl.ChannelAcirSwitchContr(2, Num);
 
                 Thread.Sleep(100);

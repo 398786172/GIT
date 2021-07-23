@@ -299,7 +299,7 @@ namespace OCV
         public static bool IsAWorking;
 
         public static int SampleRateType = 2;            //内阻仪采样速率: SLOW->1 MED->2, FAST->3</param>
-        public static int SWDelayTime = 40;               //切换通道时间   单位毫秒
+        public static int SWDelayTime = 60;               //切换通道时间   单位毫秒
 
         //数据库
         //MES地址

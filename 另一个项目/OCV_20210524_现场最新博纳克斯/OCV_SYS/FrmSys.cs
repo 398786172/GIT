@@ -175,7 +175,9 @@ namespace OCV
                 #region 万用表
 
                 ClsGlobal.DMT_USBAddr = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "DMT_USBAddr", null);
-
+                ClsGlobal.DMT_SerialPort_Com = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Port", null);
+                ClsGlobal.DMT_SerialPort_Com_Speed = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", null);
+                ClsGlobal.DMT_Connection_Type = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "Multimeter_Connection_Type", null);
                 #endregion
 
                 //内阻校准

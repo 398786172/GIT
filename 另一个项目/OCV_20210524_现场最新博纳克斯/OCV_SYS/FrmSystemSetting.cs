@@ -32,16 +32,31 @@ namespace OCV
 
             //万用表连接模式            
             INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "DMT_USBAddr", txtUSBAddr.Text.Trim());
+            INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Port", cmbmultimeterCOM_RT.Text.Trim());
+            if (rdoVoltSpeedSlow.Checked)
+            {
+                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "1");
+            }
+            if (rdoVoltSpeedMid.Checked)
+            {
+                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "2");
+            }
+            if (rdoUSBConnection.Checked)
+            {
+                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "Multimeter_Connection_Type", "1");
+            }
+            if (rdoCOMConnection.Checked)
+            {
+                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "Multimeter_Connection_Type", "2");
+            }
 
-
-      
             //数据库连接
             //INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "Server_ZD", "IP", txtZDServer.Text.Trim());
             //INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "Server_QT", "IP", txtServer.Text.Trim());
             //INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "Server_QT", "DB", txtDBName.Text.Trim());
             //INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "Server_QT", "IP", txtDBUser.Text.Trim());
             //INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "Server_QT", "Pwd", txtDBPwd.Text.Trim());
-                        
+
             //TrayType托盘类型 
             if (rdoTray256CH.Checked == true)
             {
@@ -139,7 +154,33 @@ namespace OCV
             {
                 rdoIRSpeedMid.Checked = true;
             }
+            //万用表
+            cmbmultimeterCOM_RT.Items.Add("");
+            for (int i = 1; i < 30; i++)
+            {
+                cmbmultimeterCOM_RT.Items.Add("COM" + i);
+            }
+            Val1 = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Port", null);
+            cmbmultimeterCOM_RT.Text = Val1;
 
+            Val1 = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", null);
+            if (int.Parse(Val1) == 1)
+            {
+                rdoVoltSpeedSlow.Checked = true;
+            }
+            else
+            {
+                rdoVoltSpeedMid.Checked = true;
+            }
+            Val1 = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "Multimeter_Connection_Type", null);
+            if (int.Parse(Val1) == 1)
+            {
+                rdoUSBConnection.Checked = true;
+            }
+            else
+            {
+                rdoCOMConnection.Checked = true;
+            }
             //切换系统
             cmbCOM_SW.Items.Add("");
             for (int i = 1; i < 30; i++)
@@ -152,7 +193,7 @@ namespace OCV
             //USB地址
             txtUSBAddr.Text = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "DMT_USBAddr", null);
 
-
+            //COM地址
         
             //TrayType
             Val3 = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "TrayType", null);
@@ -234,5 +275,16 @@ namespace OCV
 
         }
 
+        private void rdoUSBConnection_CheckedChanged(object sender, EventArgs e)
+        {
+            cmbmultimeterCOM_RT.Enabled = false;
+            rdoVoltSpeedMid.Enabled = false;
+            rdoVoltSpeedSlow.Enabled = false;
+        }
+
+        private void rdoCOMConnection_CheckedChanged(object sender, EventArgs e)
+        {
+            txtUSBAddr.Enabled = false;
+        }
     }
 }

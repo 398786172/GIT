@@ -12,6 +12,7 @@ using System.IO;
 using System.IO.Ports;
 using System.Windows.Forms;
 using System.Drawing;
+using System.Threading.Tasks;
 using System.Windows.Forms.VisualStyles;
 
 
@@ -221,7 +222,7 @@ namespace OCV
                                     ClsGlobal.mPLCContr.DevMove_AbsNO(0, pos);
                                     mInfoSend("PC指示X轴移动至位置：" + pos);
                                     mStep_TestReq = 3;
-                                    Thread.Sleep(500);
+                                    Thread.Sleep(200);
                                     TimeTestReqThread = DateTime.Now;
                                 }
 
@@ -237,6 +238,7 @@ namespace OCV
                             if (ClsGlobal.mPLCContr.GetState_MoveInPlace(pos))
                             {
                                 mInfoSend("X轴移动到位置：" + pos + "到位");
+                                Thread.Sleep(200);
                                 TimeTestReqThread = DateTime.Now;
                                 mStep_TestReq = 4;
                             }
@@ -250,6 +252,7 @@ namespace OCV
                         case 4:
                             ClsGlobal.mPLCContr.Set_CylBlock_Down();
                             mInfoSend("PC指示压合探针");
+                            Thread.Sleep(200);
                             TimeTestReqThread = DateTime.Now;
                             mStep_TestReq = 5;
                             break;
@@ -258,7 +261,7 @@ namespace OCV
                             {
                                 mInfoSend("开始测试位置：" + pos + "...");
                                 mStep_TestReq = 6;
-                                Thread.Sleep(500);
+                                Thread.Sleep(200);
                                 TimeTestReqThread = DateTime.Now;
                             }
                             TsTestReqThread = DateTime.Now - TimeTestReqThread;
@@ -316,6 +319,7 @@ namespace OCV
                                     break;
                             }
                             mInfoSend("位置：" + pos + "测试完成");
+                            Thread.Sleep(200);
                             j = j + 1;
                             mStep_TestReq = 1;
                             break;
@@ -329,7 +333,6 @@ namespace OCV
                     {
                         break;
                     }
-                    // }
                 }
                 this.CalDROPRange();
                 if (ClsGlobal.IS_Enable_ACIRRange == "Y" && ClsGlobal.TestType == 2)
@@ -526,16 +529,16 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltIRShellNegSwitchContr(1, 0); //结束,通道全部关断
+                        this.SWControl.ChannelVoltSwitchContr(1, 0); //结束,通道全部关断
                         //this.SWControl.ChannelVoltSwitch(1, 0); //结束,通道全部关断
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltIRShellNegSwitchContr(1, i); //单通道测电压
+                    this.SWControl.ChannelVoltSwitchContr(1, i); //单通道测电压
                     //this.SWControl.ChannelVoltSwitch(1, i);  //单通道测电压
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
-                    int index = 2 * (pos - 1) + i;
-                    iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index]);    //转换为真实对应的通道
+                    int index = 4 * (pos - 1) + i;
+                    iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index-1]);    //转换为真实对应的通道
                     if (Math.Abs(theDMMVolt) < 1e+6)
                     {
                         ClsGlobal.listETCELL[iSW].OCV_Now = Math.Round(theDMMVolt * 1000, 4);
@@ -555,7 +558,7 @@ namespace OCV
                     }
                     #endregion
                 }
-                this.SWControl.ChannelVoltIRShellNegSwitchContr(1, 0); //结束,通道全部关断
+                this.SWControl.ChannelVoltSwitchContr(1, 0); //结束,通道全部关断
                 //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
             }
             catch (Exception ex)
@@ -578,25 +581,25 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);//结束,通道全部关断  
+                        this.SWControl.ChannelAcirSwitchContr(1, 0);//结束,通道全部关断  
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltIRShellNegSwitchContr(2, i);  //单通道测内阻
+                    this.SWControl.ChannelAcirSwitchContr(1, i);  //单通道测内阻
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     this.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
 
-                    int index = 2 * (pos - 1) + i;
-                    iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index]);    //转换为真实对应的通道
+                    int index = 4 * (pos - 1) + i;
+                    iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index-1]);    //转换为真实对应的通道
                     theIRAcir = theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[iSW - 1]);   //经过adjust
                     //内阻数据
                     if (0 < theIRAcir && theIRAcir < ClsGlobal.ReTestLmt_ACIR)
                     {
                         //内阻数据
-                        ClsGlobal.listETCELL[iSW].ACIR_Now = Math.Round(theIRAcir, 4);
+                        ClsGlobal.listETCELL[iSW-1].ACIR_Now = Math.Round(theIRAcir, 4);
                     }
                     else
                     {
-                        ClsGlobal.listETCELL[iSW].ACIR_Now = 9999;
+                        ClsGlobal.listETCELL[iSW-1].ACIR_Now = 9999;
                     }
 
                     #region 显示数据
@@ -611,7 +614,7 @@ namespace OCV
                     #endregion
                 }
 
-                this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);      //结束,通道全部关断   
+                this.SWControl.ChannelAcirSwitchContr(1, 0);      //结束,通道全部关断   
             }
             catch (Exception ex)
             {
@@ -632,12 +635,12 @@ namespace OCV
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltIRShellNegSwitchContr(3, 0); //结束,通道全部关断
+                        //this.SWControl.ChannelVoltIRShellNegSwitchContr(3, 0); //结束,通道全部关断
                         //this.SWControl.ChannelVoltSwitch(2, 0); 
                         throw new Exception("测试被终止");
                     }
 
-                    this.SWControl.ChannelVoltIRShellNegSwitchContr(3, i); //单通道测电压
+                    //this.SWControl.ChannelVoltIRShellNegSwitchContr(3, i); //单通道测电压
                     //this.SWControl.ChannelVoltSwitch(2, 0);
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
@@ -662,7 +665,7 @@ namespace OCV
                     }
                     #endregion
                 }
-                this.SWControl.ChannelVoltIRShellNegSwitchContr(3, 0); //结束,通道全部关断   
+                //this.SWControl.ChannelVoltIRShellNegSwitchContr(3, 0); //结束,通道全部关断   
                 //this.SWControl.ChannelVoltSwitch(2, 0);
             }
             catch (Exception ex)
@@ -1391,7 +1394,7 @@ namespace OCV
                                     ClsGlobal.mPLCContr.DevMove_AbsNO(0, pos);
                                     ClsGlobal.ManualMessInfo = "PC指示X轴移动至位置：" + pos;
                                     mStep_TestReq = 3;
-                                    Thread.Sleep(500);
+                                    Thread.Sleep(200);
                                     TimeTestReqThread = DateTime.Now;
                                 }
 
@@ -1407,6 +1410,7 @@ namespace OCV
                             if (ClsGlobal.mPLCContr.GetState_MoveInPlace(pos))
                             {
                                 ClsGlobal.ManualMessInfo = "X轴移动到位置：" + pos + "到位";
+                                Thread.Sleep(200);
                                 TimeTestReqThread = DateTime.Now;
                                 mStep_TestReq = 4;
                             }
@@ -1420,6 +1424,7 @@ namespace OCV
                         case 4:
                             ClsGlobal.mPLCContr.Set_CylBlock_Down();
                             ClsGlobal.ManualMessInfo = "PC指示压合探针";
+                            Thread.Sleep(200);
                             TimeTestReqThread = DateTime.Now;
                             mStep_TestReq = 5;
                             break;
@@ -1428,7 +1433,7 @@ namespace OCV
                             {
                                 ClsGlobal.ManualMessInfo = "开始测试位置：" + pos + "...";
                                 mStep_TestReq = 6;
-                                Thread.Sleep(500);
+                                Thread.Sleep(200);
                                 TimeTestReqThread = DateTime.Now;
                             }
                             TsTestReqThread = DateTime.Now - TimeTestReqThread;
@@ -1473,6 +1478,7 @@ namespace OCV
                                     break;
                             }
                             ClsGlobal.ManualMessInfo = "位置：" + pos + "测试完成";
+                            Thread.Sleep(200);
                             j = j + 1;
                             mStep_TestReq = 1;
                             break;
@@ -1494,7 +1500,7 @@ namespace OCV
             {
                 //测试异常   
                 ClsGlobal.OCV_TestState = eTestState.ErrOCVTest;
-
+                mManualTestFinish = true;
             }
         }
 
@@ -1503,37 +1509,41 @@ namespace OCV
         {
             try
             {
-                this.ClearDgv(1);
+                if (pos==1)
+                {
+                    this.ClearDgv(1);
+                }
                 mManualTestFinish = false;
                 mManualTestStop = false;
                 //SWControl.ChannelVoltSwitch(1, 0);        //正极对负极
-                SWControl.ChannelVoltIRShellNegSwitchContr(1, 0); //正极对负极
+                SWControl.ChannelVoltSwitchContr(1, 0); //正极对负极
                 double theDMMVolt = 0;
                 int iSW;
                 for (int i = 1; i <= 4; i++)
                 {
                     if (mManualTestStop == true)
                     {
-                        SWControl.ChannelVoltIRShellNegSwitchContr(1, 0); //结束,通道全部关断   
+                        SWControl.ChannelVoltSwitchContr(1, 0); //结束,通道全部关断   
                         //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
                         throw new Exception("测试被终止");
                     }
-                    SWControl.ChannelVoltIRShellNegSwitchContr(1, i);
+                    SWControl.ChannelVoltSwitchContr(1, i);
                     //this.SWControl.ChannelVoltSwitch(1, i);  //单通道测电压
 
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
-                    int index = 2 * (pos - 1) + i;
-                    iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index]);    //转换为真实对应的通道
+                    int index = 4 * (pos - 1) + i;
+                    iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index-1]);    //转换为真实对应的通道
                     if (ManualTest.IsHandleCreated == true && mManualTestStop == false)
                     {
                         ManualTest.Invoke(new EventHandler(delegate
                         {
-                            ManualTest.dgvManualTest.Rows[iSW].Cells[1].Value = Math.Round(theDMMVolt * 1000, 4).ToString("F4");   //刷新界面
+                            ManualTest.dgvManualTest.Rows[iSW-1].Cells[1].Value = Math.Round(theDMMVolt * 1000, 4).ToString("F4");   //刷新界面
+                            Thread.Sleep(100);
                         }));
                     }
                 }
-                SWControl.ChannelVoltIRShellNegSwitchContr(1, 0);
+                SWControl.ChannelVoltSwitchContr(1, 0);
                 //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
 
                 mManualTestFinish = true;
@@ -1552,7 +1562,7 @@ namespace OCV
                 this.ClearDgv(2);
                 mManualTestFinish = false;
                 mManualTestStop = false;
-                SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
+                //SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
                 //SWControl.ChannelVoltSwitch(2, 0);//正极对负极
 
                 double theDMMVolt = 0;
@@ -1561,16 +1571,16 @@ namespace OCV
                 {
                     if (mManualTestStop == true)
                     {
-                        SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
+                        //SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
                         //this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
                         throw new Exception("测试被终止");
                     }
-                    SWControl.ChannelVoltIRShellNegSwitchContr(3, i);
+                    //SWControl.ChannelVoltIRShellNegSwitchContr(3, i);
                     //this.SWControl.ChannelVoltSwitch(2, i);  //单通道测电压
 
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     DMM_Ag344X.ReadVolt(out theDMMVolt);
-                    int index = 2 * (pos - 1) + i;
+                    int index = 4 * (pos - 1) + i;
                     iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index]);    //转换为真实对应的通道
                     if (ManualTest.IsHandleCreated == true && mManualTestStop == false)
                     {
@@ -1580,7 +1590,7 @@ namespace OCV
                         }));
                     }
                 }
-                SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
+                //SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
                 //this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
 
                 mManualTestFinish = true;
@@ -1600,35 +1610,38 @@ namespace OCV
                 int iSW;
                 double theIRAcir = 0;
                 double theIRSample = 0;
-
-                this.ClearDgv(3);
+                if (pos==1)
+                { 
+                    this.ClearDgv(3);
+                }
                 mManualTestFinish = false;
                 mManualTestStop = false;
                 for (int i = 1; i <= 4; i++)
                 {
                     if (mAutoTestStop == true)
                     {
-                        this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);//结束,通道全部关断  
+                        this.SWControl.ChannelAcirSwitchContr(1, 0);//结束,通道全部关断  
                         throw new Exception("测试被终止");
                     }
-                    this.SWControl.ChannelVoltIRShellNegSwitchContr(2, i); //单通道测内阻
+                    this.SWControl.ChannelAcirSwitchContr(1, i); //单通道测内阻
                     Thread.Sleep(ClsGlobal.SWDelayTime);
                     this.HIOKI365X.ReadData(out theIRSample);     //获取内阻结果
-                    int index = 2 * (pos - 1) + i;
-                    iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index]);    //转换为真实对应的通道                                                      //内阻数据
+                    int index = 4 * (pos - 1) + i;
+                    iSW = Convert.ToUInt16(ClsGlobal.mSwitchCH[index-1]);    //转换为真实对应的通道                                                      //内阻数据
                     theIRAcir = theIRSample * 1000 + double.Parse(ClsGlobal.mIRAdjustVal[iSW - 1]);   //经过adjust
                     if (ManualTest.IsHandleCreated == true && mManualTestStop == false)
                     {
                         ManualTest.Invoke(new EventHandler(delegate
                         {
-                            ManualTest.dgvManualTest.Rows[iSW].Cells[3].Value = Math.Round(theIRAcir, 4).ToString("F4");   //刷新界面
+                            ManualTest.dgvManualTest.Rows[iSW-1].Cells[3].Value = Math.Round(theIRAcir, 4).ToString("F4");   //刷新界面
+                            Thread.Sleep(100);
                         }));
                     }
                 }
 
-                this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);      //结束,通道全部关断   
+                this.SWControl.ChannelAcirSwitchContr(1, 0);      //结束,通道全部关断   
                 mManualTestFinish = true;
-                MessageBox.Show("多通道手动内阻测试结束");
+                //MessageBox.Show("多通道手动内阻测试结束");
             }
             catch (Exception ex)
             {
@@ -1691,10 +1704,10 @@ namespace OCV
                         if (mManualVoltZeroStop == true)
                         {
                             Thread.Sleep(50);
-                            SWControl.ChannelVoltIRShellNegSwitchContr(1, 0);
+                            SWControl.ChannelVoltSwitchContr(1, 0);
                             break;
                         }
-                        SWControl.ChannelVoltIRShellNegSwitchContr(1, Num + 1);//电压切换
+                        SWControl.ChannelVoltSwitchContr(1, Num + 1);//电压切换
                         Thread.Sleep(200);
                         DMM_Ag344X.ReadVolt(out theVoltSample);   //电压值
                         theAdjusVolt = 0 - theVoltSample * 1000; //计算得到校准值
@@ -1762,11 +1775,11 @@ namespace OCV
                         if (mManualIRAdjustStop == true)
                         {
                             Thread.Sleep(50);
-                            this.SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);
+                            this.SWControl.ChannelAcirSwitchContr(1, 0);
                             //.ChannelAcirSwitchContr(2, 0);
                             break;
                         }
-                        this.SWControl.ChannelVoltIRShellNegSwitchContr(2, Num + 1);//内阻通道选择   
+                        this.SWControl.ChannelAcirSwitchContr(1, Num + 1);//内阻通道选择   
                         //SWControl.ChannelAcirSwitchContr(2, Num + 1);                    
                         Thread.Sleep(300);
                         HIOKI365X.ReadData(out theIRSample);//内阻采样
@@ -1861,11 +1874,11 @@ namespace OCV
                         if (mManualIRAdjustStop == true)
                         {
                             Thread.Sleep(50);
-                            SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);
+                            SWControl.ChannelAcirSwitchContr(1, 0);
                             //SWControl.ChannelAcirSwitchContr(2, 0);
                             break;
                         }
-                        SWControl.ChannelVoltIRShellNegSwitchContr(2, Num + 1);//内阻通道选择 
+                        SWControl.ChannelAcirSwitchContr(1, Num + 1);//内阻通道选择 
                         //SWControl.ChannelAcirSwitchContr(2, Num + 1);                      
                         Thread.Sleep(300);
                         HIOKI365X.ReadData(out theIRSample);//内阻采样
@@ -1983,10 +1996,10 @@ namespace OCV
                         if (mManualIRAdjustStop == true)
                         {
                             Thread.Sleep(50);
-                            SWControl.ChannelVoltIRShellNegSwitchContr(2, 0);
+                            SWControl.ChannelAcirSwitchContr(1, 0);
                             break;
                         }
-                        SWControl.ChannelVoltIRShellNegSwitchContr(2, Num + 1); //内阻通道选择          
+                        SWControl.ChannelAcirSwitchContr(1, Num + 1); //内阻通道选择          
                         Thread.Sleep(300);
                         HIOKI365X.ReadData(out theIRSample);//内阻采样
                         for (int loopIndex = 0; loopIndex < ClsGlobal.TrayType; loopIndex += 2)

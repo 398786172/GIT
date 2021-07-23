@@ -149,13 +149,21 @@ namespace OCV
 
                 try
                 {
-                    if (ClsGlobal.OCVType == 1)         //设备类型:OCV-IR, 
+                    if (ClsGlobal.OCVType == 1&&ClsGlobal.DMT_Connection_Type=="1")         //设备类型:OCV-IR, 
                     {
-                        mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.RTCom, ClsGlobal.RT_Speed, ClsGlobal.DMT_USBAddr, this);
+                        mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.RTCom, ClsGlobal.RT_Speed, ClsGlobal.DMT_USBAddr, this,ClsGlobal.DMT_SerialPort_Com_Speed);
                     }
-                    else if (ClsGlobal.OCVType == 2)    //设备类型:OCV 
+                    else if(ClsGlobal.OCVType == 1 && ClsGlobal.DMT_Connection_Type == "2")
+                    {
+                        mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.RTCom, ClsGlobal.RT_Speed, ClsGlobal.DMT_SerialPort_Com, this,  ClsGlobal.DMT_SerialPort_Com_Speed);
+                    }
+                    else if (ClsGlobal.OCVType == 2 && ClsGlobal.DMT_Connection_Type == "1")    //设备类型:OCV 
                     {
                         mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.DMT_USBAddr, this);
+                    }
+                    else if(ClsGlobal.OCVType == 2 && ClsGlobal.DMT_Connection_Type == "2")
+                    {
+                        mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.DMT_SerialPort_Com, this);
                     }
                     ClsGlobal.OCVIRTest = mOCVIRTest;
                 }
