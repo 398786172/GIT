@@ -144,6 +144,7 @@
       <DependentUpon>BateryViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="OCVTest\ChanleMaping.cs" />
+    <Compile Include="OCVTest\ClsSWControl.cs" />
     <Compile Include="OCVTest\ClsTempControl.cs" />
     <Compile Include="OCVTest\ClsCommWithMES.cs" />
     <Compile Include="OCVTest\ClsCodeScaner.cs" />
@@ -456,6 +457,7 @@
       <Name>DCS.Model2700_COM</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
