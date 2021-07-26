@@ -35,11 +35,11 @@ namespace OCV
             INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Port", cmbmultimeterCOM_RT.Text.Trim());
             if (rdoVoltSpeedSlow.Checked)
             {
-                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "1");
+                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "2");
             }
             if (rdoVoltSpeedMid.Checked)
             {
-                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "2");
+                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "1");
             }
             if (rdoUSBConnection.Checked)
             {
