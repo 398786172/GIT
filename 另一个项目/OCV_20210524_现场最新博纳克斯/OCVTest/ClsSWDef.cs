@@ -5,13 +5,6 @@ using System.Text;
 
 namespace OCV
 {
-    /// <summary>
-    /// 支持4种测试类型:
-    /// 测试类型1: 正负极电压+内阻
-    /// 测试类型2: 正负极电压 + 负极对壳压
-    /// 测试类型3: 只测试正负极电压
-    /// 测试类型4: 正负极电压 + 内阻 + 负极对壳压  (20210520增) 
-    /// </summary>
     class ClsSWDef
     {
         //ON or OFF (Normal)
@@ -32,22 +25,25 @@ namespace OCV
         public const byte FUNC_WRITE_HOLDINGREGS_MULTI = 0x10;
 
         //定义
+        //设备状态
+        public const byte AddrH_DevState = 0;
+        public const byte AddrL_DevState = 0;
 
-        //当前测试类型状态
-        public const byte AddrH_DevSwStyle_State = 0;
-        public const byte AddrL_DevSwStyle_State = 133;
+        //初始化命令
+        public const byte AddrH_DevInit_CMD = 0;
+        public const byte AddrL_DevInit_CMD = 1;
 
-        //测试类型使能设置
-        public const byte AddrH_SetDevSwStyle_CMD = 0;          //设置测试类型
-        public const byte AddrL_SetDevSwStyle_CMD = 136;
+        //测试信号选通命令 
+        public const byte AddrH_StoD_CMD = 0;
+        public const byte AddrL_StoD_CMD = 4;
 
-        public const byte AddrH_SetDevSwStyle_Choice = 0;
-        public const byte AddrL_SetDevSwStyle_Choice = 137;
+        public const byte AddrH_StoD_Region = 0;
+        public const byte AddrL_StoD_Region = 5;
 
-        public const byte AddrH_SetDevSwStyle_key = 0;
-        public const byte AddrL_SetDevSwStyle_key = 138;
+        public const byte AddrH_StoD_TestType = 0;
+        public const byte AddrL_StoD_TestType = 6;
 
-        //正极接入命令(单独调试正极接入,一般不用)
+        //正极接入命令
         public const byte AddrH_PosIn_CMD = 0;
         public const byte AddrL_PosIn_CMD = 9;
 
@@ -87,19 +83,6 @@ namespace OCV
 
         public const byte AddrH_SW3_Channel = 0;     //通道号
         public const byte AddrL_SW3_Channel = 24;
-
-        //切换命令(4型)   对应接线:只测正负极电压
-        public const byte AddrH_SW4_CMD = 0;
-        public const byte AddrL_SW4_CMD = 26;
-
-        public const byte AddrH_SW4_SWType = 0;      //切换类型: 1:正负极电压，2:内阻  3：壳体对负极电压
-        public const byte AddrL_SW4_SWType = 27;
-
-        public const byte AddrH_SW4_Channel = 0;     //通道号
-        public const byte AddrL_SW4_Channel = 28;
-
-
-
 
     }
 }

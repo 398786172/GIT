@@ -144,14 +144,10 @@
       <DependentUpon>BateryViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="OCVTest\ChanleMaping.cs" />
-    <Compile Include="OCVTest\ClsSWControl.cs" />
     <Compile Include="OCVTest\ClsTempControl.cs" />
     <Compile Include="OCVTest\ClsCommWithMES.cs" />
     <Compile Include="OCVTest\ClsCodeScaner.cs" />
-    <Compile Include="OCVTest\ClsIOControl.cs" />
-    <Compile Include="OCVTest\ClsIODef.cs" />
     <Compile Include="OCVTest\ClsOCVIRTest.cs" />
-    <Compile Include="OCVTest\ClsSWDef.cs" />
     <Compile Include="OCVTest\CustomException.cs" />
     <Compile Include="OCVTest\FormProbeRecover.cs">
       <SubType>Form</SubType>
