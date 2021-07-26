@@ -35,11 +35,11 @@ namespace OCV
             INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Port", cmbmultimeterCOM_RT.Text.Trim());
             if (rdoVoltSpeedSlow.Checked)
             {
-                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "1");
+                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "2");
             }
             if (rdoVoltSpeedMid.Checked)
             {
-                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "2");
+                INIAPI.INIWriteValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", "1");
             }
             if (rdoUSBConnection.Checked)
             {
@@ -164,7 +164,7 @@ namespace OCV
             cmbmultimeterCOM_RT.Text = Val1;
 
             Val1 = INIAPI.INIGetStringValue(ClsGlobal.mSettingPath, "System", "MultimeterCOM_RT_Speed", null);
-            if (int.Parse(Val1) == 1)
+            if (int.Parse(Val1) == 2)
             {
                 rdoVoltSpeedSlow.Checked = true;
             }
@@ -286,5 +286,6 @@ namespace OCV
         {
             txtUSBAddr.Enabled = false;
         }
+
     }
 }

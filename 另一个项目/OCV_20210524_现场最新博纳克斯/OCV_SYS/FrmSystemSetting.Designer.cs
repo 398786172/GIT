@@ -34,10 +34,11 @@
             this.rdoUSBConnection = new System.Windows.Forms.RadioButton();
             this.label2 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
-            this.rdoVoltSpeedMid = new System.Windows.Forms.RadioButton();
             this.txtUSBAddr = new System.Windows.Forms.TextBox();
-            this.rdoVoltSpeedSlow = new System.Windows.Forms.RadioButton();
             this.cmbmultimeterCOM_RT = new System.Windows.Forms.ComboBox();
+            this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.rdoVoltSpeedSlow = new System.Windows.Forms.RadioButton();
+            this.rdoVoltSpeedMid = new System.Windows.Forms.RadioButton();
             this.label3 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.rdoTray256CH = new System.Windows.Forms.RadioButton();
@@ -52,13 +53,12 @@
             this.groupBox10 = new System.Windows.Forms.GroupBox();
             this.label7 = new System.Windows.Forms.Label();
             this.cmbCOM_SW = new System.Windows.Forms.ComboBox();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
             this.groupBox1.SuspendLayout();
+            this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox6.SuspendLayout();
             this.groupBox8.SuspendLayout();
             this.groupBox10.SuspendLayout();
-            this.groupBox3.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnSave
@@ -131,24 +131,32 @@
             this.label5.TabIndex = 176;
             this.label5.Text = "USB通讯名";
             // 
-            // rdoVoltSpeedMid
-            // 
-            this.rdoVoltSpeedMid.AutoSize = true;
-            this.rdoVoltSpeedMid.Location = new System.Drawing.Point(78, 15);
-            this.rdoVoltSpeedMid.Margin = new System.Windows.Forms.Padding(2);
-            this.rdoVoltSpeedMid.Name = "rdoVoltSpeedMid";
-            this.rdoVoltSpeedMid.Size = new System.Drawing.Size(58, 20);
-            this.rdoVoltSpeedMid.TabIndex = 193;
-            this.rdoVoltSpeedMid.TabStop = true;
-            this.rdoVoltSpeedMid.Text = "中速";
-            this.rdoVoltSpeedMid.UseVisualStyleBackColor = true;
-            // 
             // txtUSBAddr
             // 
             this.txtUSBAddr.Location = new System.Drawing.Point(106, 28);
             this.txtUSBAddr.Name = "txtUSBAddr";
             this.txtUSBAddr.Size = new System.Drawing.Size(104, 26);
             this.txtUSBAddr.TabIndex = 3;
+            // 
+            // cmbmultimeterCOM_RT
+            // 
+            this.cmbmultimeterCOM_RT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cmbmultimeterCOM_RT.Font = new System.Drawing.Font("微软雅黑", 10F);
+            this.cmbmultimeterCOM_RT.FormattingEnabled = true;
+            this.cmbmultimeterCOM_RT.Location = new System.Drawing.Point(106, 60);
+            this.cmbmultimeterCOM_RT.Name = "cmbmultimeterCOM_RT";
+            this.cmbmultimeterCOM_RT.Size = new System.Drawing.Size(80, 27);
+            this.cmbmultimeterCOM_RT.TabIndex = 191;
+            // 
+            // groupBox3
+            // 
+            this.groupBox3.Controls.Add(this.rdoVoltSpeedSlow);
+            this.groupBox3.Controls.Add(this.rdoVoltSpeedMid);
+            this.groupBox3.Location = new System.Drawing.Point(71, 79);
+            this.groupBox3.Name = "groupBox3";
+            this.groupBox3.Size = new System.Drawing.Size(146, 40);
+            this.groupBox3.TabIndex = 188;
+            this.groupBox3.TabStop = false;
             // 
             // rdoVoltSpeedSlow
             // 
@@ -162,15 +170,17 @@
             this.rdoVoltSpeedSlow.Text = "慢速";
             this.rdoVoltSpeedSlow.UseVisualStyleBackColor = true;
             // 
-            // cmbmultimeterCOM_RT
+            // rdoVoltSpeedMid
             // 
-            this.cmbmultimeterCOM_RT.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cmbmultimeterCOM_RT.Font = new System.Drawing.Font("微软雅黑", 10F);
-            this.cmbmultimeterCOM_RT.FormattingEnabled = true;
-            this.cmbmultimeterCOM_RT.Location = new System.Drawing.Point(106, 60);
-            this.cmbmultimeterCOM_RT.Name = "cmbmultimeterCOM_RT";
-            this.cmbmultimeterCOM_RT.Size = new System.Drawing.Size(80, 27);
-            this.cmbmultimeterCOM_RT.TabIndex = 191;
+            this.rdoVoltSpeedMid.AutoSize = true;
+            this.rdoVoltSpeedMid.Location = new System.Drawing.Point(78, 15);
+            this.rdoVoltSpeedMid.Margin = new System.Windows.Forms.Padding(2);
+            this.rdoVoltSpeedMid.Name = "rdoVoltSpeedMid";
+            this.rdoVoltSpeedMid.Size = new System.Drawing.Size(58, 20);
+            this.rdoVoltSpeedMid.TabIndex = 193;
+            this.rdoVoltSpeedMid.TabStop = true;
+            this.rdoVoltSpeedMid.Text = "中速";
+            this.rdoVoltSpeedMid.UseVisualStyleBackColor = true;
             // 
             // label3
             // 
@@ -323,16 +333,6 @@
             this.cmbCOM_SW.Size = new System.Drawing.Size(80, 27);
             this.cmbCOM_SW.TabIndex = 182;
             // 
-            // groupBox3
-            // 
-            this.groupBox3.Controls.Add(this.rdoVoltSpeedSlow);
-            this.groupBox3.Controls.Add(this.rdoVoltSpeedMid);
-            this.groupBox3.Location = new System.Drawing.Point(71, 79);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(146, 40);
-            this.groupBox3.TabIndex = 188;
-            this.groupBox3.TabStop = false;
-            // 
             // FrmSystemSetting
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -355,6 +355,8 @@
             this.Load += new System.EventHandler(this.FrmSystemSetting_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            this.groupBox3.ResumeLayout(false);
+            this.groupBox3.PerformLayout();
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             this.groupBox6.ResumeLayout(false);
@@ -362,8 +364,6 @@
             this.groupBox8.PerformLayout();
             this.groupBox10.ResumeLayout(false);
             this.groupBox10.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
             this.ResumeLayout(false);
 
         }

@@ -144,6 +144,9 @@
       <DependentUpon>BateryViewController.cs</DependentUpon>
     </Compile>
     <Compile Include="OCVTest\ChanleMaping.cs" />
+    <Compile Include="OCVTest\ClsIOControl.cs" />
+    <Compile Include="OCVTest\ClsIODef.cs" />
+    <Compile Include="OCVTest\ClsSWDef.cs" />
     <Compile Include="OCVTest\ClsTempControl.cs" />
     <Compile Include="OCVTest\ClsCommWithMES.cs" />
     <Compile Include="OCVTest\ClsCodeScaner.cs" />
