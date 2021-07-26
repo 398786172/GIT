@@ -1546,7 +1546,7 @@ namespace OCV
                 SWControl.ChannelVoltSwitchContr(1, 0);
                 //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
 
-                //mManualTestFinish = true;
+                mManualTestFinish = true;
             }
             catch (Exception ex)
             {
@@ -1640,7 +1640,7 @@ namespace OCV
                 }
 
                 this.SWControl.ChannelAcirSwitchContr(1, 0);      //结束,通道全部关断   
-                //mManualTestFinish = true;
+                mManualTestFinish = true;
                 //MessageBox.Show("多通道手动内阻测试结束");
             }
             catch (Exception ex)
