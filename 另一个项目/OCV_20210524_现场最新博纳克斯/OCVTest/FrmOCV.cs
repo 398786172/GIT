@@ -159,11 +159,11 @@ namespace OCV
                     }
                     else if (ClsGlobal.OCVType == 2 && ClsGlobal.DMT_Connection_Type == "1")    //设备类型:OCV 
                     {
-                        mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.DMT_USBAddr, this, ClsGlobal.DMT_SerialPort_Com_Speed);
+                        mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.DMT_USBAddr, this);
                     }
                     else if(ClsGlobal.OCVType == 2 && ClsGlobal.DMT_Connection_Type == "2")
                     {
-                        mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.DMT_SerialPort_Com, this, ClsGlobal.DMT_SerialPort_Com_Speed);
+                        mOCVIRTest = new ClsOCVIRTest(ClsGlobal.mIOControl, ClsGlobal.DMT_SerialPort_Com, this);
                     }
                     ClsGlobal.OCVIRTest = mOCVIRTest;
                 }
