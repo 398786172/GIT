@@ -52,7 +52,7 @@ namespace OCV
             mStop = true;
         }
 
-        public ClsOCVIRTest(ClsIOControl Contr, SerialPort RTester_SP, int RT_Speed, string DMM_OCV, FrmOCV f1, string DMM_OCV_COM_Speed)
+        public ClsOCVIRTest(ClsIOControl Contr, SerialPort RTester_SP, int RT_Speed, string DMM_OCV, FrmOCV f1,string DMM_OCV_COM_Speed)
         {
             try
             {
@@ -69,17 +69,17 @@ namespace OCV
                 mRTester.ClearData();
 
                 //万用表
-                if (ClsGlobal.DMT_Connection_Type == "1")
+                if (ClsGlobal.DMT_Connection_Type=="1")
                 {
                     mDmm = new ClsDMM_Ag344X(DMM_OCV);
                     mDmm.InitControl_IMM();
                 }
                 else
                 {
-                    mDmm = new Mul_Model2700_COM(DMM_OCV, DMM_OCV_COM_Speed);
+                    mDmm = new Mul_Model2700_COM(DMM_OCV,"中");
                     mDmm.SetVoltageFunction();
                 }
-
+                
 
 
                 //IO控制
@@ -92,21 +92,13 @@ namespace OCV
             }
         }
 
-        public ClsOCVIRTest(ClsIOControl Contr, string DMM_OCV, FrmOCV f1, string DMM_OCV_COM_Speed)
+        public ClsOCVIRTest(ClsIOControl Contr, string DMM_OCV, FrmOCV f1)
         {
             try
             {
-                if (ClsGlobal.DMT_Connection_Type == "1")
-                {
-                    //万用表
-                    mDmm = new ClsDMM_Ag344X(DMM_OCV);
-                    mDmm.InitControl_IMM();
-                }
-                else
-                {
-                    mDmm = new Mul_Model2700_COM(DMM_OCV, DMM_OCV_COM_Speed);
-                    mDmm.SetVoltageFunction();
-                }
+                //万用表
+                mDmm = new ClsDMM_Ag344X(DMM_OCV);
+                mDmm.InitControl_IMM();
 
                 //IO控制
                 SwitchDev = Contr;
@@ -206,14 +198,7 @@ namespace OCV
 
                     if (ClsGlobal.EN_TestOCV == 1)
                     {
-                        if (ClsGlobal.DMT_Connection_Type == "1")
-                        {
-                            mDmm.ReadVolt(out theDMMVolt);
-                        }
-                        else
-                        {
-                            theDMMVolt = mDmm.ReadValue();
-                        }
+                        mDmm.ReadVolt(out theDMMVolt);
                         rV[i - 1] = theDMMVolt;
                     }
                 }
@@ -532,15 +517,8 @@ namespace OCV
 
                 //仪表初始化
                 //mRTester.InitControl_IMM(2, 1);
-                if (ClsGlobal.DMT_Connection_Type=="1")
-                {
-                    mDmm.InitControl_IMM();
-                }
-                else
-                {
-                    mDmm.SetVoltageFunction();
-                }
-                
+                mDmm.InitControl_IMM();
+
                 Thread.Sleep(200);
 
                 //测量OCV ACIR
@@ -632,15 +610,7 @@ namespace OCV
                         Thread.Sleep(ClsGlobal.DelayTime);
                         if (ClsGlobal.EN_TestACIR == 1)
                         {
-                            if (ClsGlobal.DMT_Connection_Type=="1")
-                            {
-                                mDmm.ReadVolt(out theDMMVolt);
-                            }
-                            else
-                            {
-                                theDMMVolt = mDmm.ReadValue();
-                            }
-                           
+                            mDmm.ReadVolt(out theDMMVolt);
                             rV[i - 1] = theDMMVolt;
                             //arrDMMVolt[lstRegionA[i] - 1] = theDMMVolt;
                         }
@@ -707,15 +677,9 @@ namespace OCV
                                         //SwitchDev.ChanndlVoltSwitchContr(c, out err);        //电压类型切换
                                         SwitchDev.ChannelVoltIRSwitchContr(2, 1, c);
                                         Thread.Sleep(ClsGlobal.DelayTime);
-                                        if (ClsGlobal.DMT_Connection_Type=="1")
-                                        {
-                                            mDmm.ReadVolt(out theDMMVolt);
-                                        }
-                                        else
-                                        {
-                                            theDMMVolt=mDmm.ReadValue();
-                                        }
+                                        mDmm.ReadVolt(out theDMMVolt);
                                         rV[c - 1] = theDMMVolt;
+
                                     }
                                     catch (Exception ex)
                                     {
@@ -1079,18 +1043,11 @@ namespace OCV
                                     Thread.Sleep(ClsGlobal.DelayTime);
                                     SwitchDev.ChannelVoltIRSwitchContr(2, 1, rCh);
                                     Thread.Sleep(ClsGlobal.DelayTime);
-                                    if (ClsGlobal.DMT_Connection_Type=="1")
-                                    {
-                                        mDmm.ReadVolt(out theIRVolt);
-                                    }
-                                    else
-                                    {
-                                        theIRVolt=mDmm.ReadValue();
-                                    }
+                                    mDmm.ReadVolt(out theIRVolt);
                                     double reTestV = theIRVolt;
                                     SwitchDev.ChannelVoltIRSwitchContr(2, 1, 0);
 
-                                    ClsGlobal.G_dbl_ACIRArr[ChannelNo - 1] = Math.Round((reTestIR * 1000) + double.Parse(ClsGlobal.ArrIRAdjustPara[ChannelNo - 1]), 2);
+                                    ClsGlobal.G_dbl_ACIRArr[ChannelNo - 1] = Math.Round((reTestIR * 1000) + double.Parse(ClsGlobal.ArrIRAdjustPara[ChannelNo - 1]),2);
                                     ClsGlobal.G_dbl_VDataArr[ChannelNo - 1] = Math.Round(reTestV * 1000, 2);
                                     ClsGlobal.listETCELL[ChannelNo - 1].OCV_V1 = ClsGlobal.G_dbl_VDataArr[ChannelNo - 1];
                                     ClsGlobal.listETCELL[ChannelNo - 1].OCV_V2 = 0;
@@ -1239,7 +1196,7 @@ namespace OCV
 
                     //更新数据
                     theIRAcir = CurrentTestStaticData.IRAcir;
-                    theIRAcir = Math.Round(theIRAcir * 1000 + double.Parse(ClsGlobal.ArrIRAdjustPara[c]), 2);
+                    theIRAcir = Math.Round(theIRAcir * 1000 + double.Parse(ClsGlobal.ArrIRAdjustPara[c]),2); 
                     ClsGlobal.listETCELL[c].ACIR = theIRAcir;
                     ChanleMapingSetting.ListBatTestData[c].ACIR = theIRAcir;
 
@@ -1264,15 +1221,7 @@ namespace OCV
                     SwitchDev.ChannelVoltIRSwitchContr(2, 1, devChannel);
                     Thread.Sleep(ClsGlobal.DelayTime);
                     double theDMMVolt = 0;
-                    if (ClsGlobal.DMT_Connection_Type=="1")
-                    {
-                        mDmm.ReadVolt(out theDMMVolt);
-                    }
-                    else
-                    {
-                        theDMMVolt = mDmm.ReadValue();
-                    }
-                    
+                    mDmm.ReadVolt(out theDMMVolt);
                     theDMMVolt = theDMMVolt * 1000;
 
                     //更新数据
@@ -1426,7 +1375,7 @@ namespace OCV
                 }
                 #endregion
                 ClsGlobal.OCV_TestState = eTestState.AdjustEnd;        //校准OK
-
+            
             }
             catch (Exception ex)
             {
@@ -1522,15 +1471,7 @@ namespace OCV
             try
             {
                 double theIRVolt;
-                if (ClsGlobal.DMT_Connection_Type=="1")
-                {
-                    mDmm.ReadVolt(out theIRVolt);
-                }
-                else
-                {
-                    theIRVolt= mDmm.ReadValue();
-                }
-                
+                mDmm.ReadVolt(out theIRVolt);
                 CurrentTestStaticData.IRVolt = theIRVolt;
             }
             catch (Exception ex)
