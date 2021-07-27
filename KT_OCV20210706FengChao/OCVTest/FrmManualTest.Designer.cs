@@ -74,6 +74,7 @@
             this.btnSWCH_ShellNeg = new System.Windows.Forms.Button();
             this.txtChannel = new System.Windows.Forms.TextBox();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.btnStop = new System.Windows.Forms.Button();
             this.tab_MultiTest.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvManualTest)).BeginInit();
             this.grpbxTestManual.SuspendLayout();
@@ -177,6 +178,7 @@
             // 
             // grpbxTestManual
             // 
+            this.grpbxTestManual.Controls.Add(this.btnStop);
             this.grpbxTestManual.Controls.Add(this.btnStartTempTest);
             this.grpbxTestManual.Controls.Add(this.btnSaveTest);
             this.grpbxTestManual.Controls.Add(this.btnDmm_Init);
@@ -541,6 +543,17 @@
             this.tabControl1.Size = new System.Drawing.Size(1104, 742);
             this.tabControl1.TabIndex = 119;
             // 
+            // btnStop
+            // 
+            this.btnStop.Enabled = false;
+            this.btnStop.Location = new System.Drawing.Point(30, 431);
+            this.btnStop.Name = "btnStop";
+            this.btnStop.Size = new System.Drawing.Size(182, 40);
+            this.btnStop.TabIndex = 54;
+            this.btnStop.Text = "停止";
+            this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
+            // 
             // FrmManualTest
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
@@ -624,6 +637,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn TempData;
         private System.Windows.Forms.DataGridViewTextBoxColumn Column1;
         public System.Windows.Forms.TextBox txtInfoA;
+        private System.Windows.Forms.Button btnStop;
     }
 }
 

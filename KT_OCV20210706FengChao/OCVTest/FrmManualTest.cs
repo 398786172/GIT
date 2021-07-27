@@ -164,6 +164,7 @@ namespace OCV
                 btnTestMultiVolt_PosNeg.Text = "测正负极电压";
                 btnTestMultiVolt_ShellNeg.Text = "测壳体负极电压";
                 btnTestMultiIR_BT4560.Text = "测BT3562内阻";
+                btnStop.Enabled = false;
             }
             if (ClsGlobal.ManualMessInfo !="" )
             {
@@ -177,8 +178,10 @@ namespace OCV
         {
             try
             {
+                ClsGlobal.OCVTestContr.mManualTestStop = false;
                 ClsGlobal.OCVTestContr.ManualTestFinish = false;
                 grpbxTestManual.Enabled = false;
+                btnStop.Enabled = true;
                 btnTestMultiVolt_PosNeg.Text = "测电压中...";
                 ClsGlobal.OCVTestContr.StartManualTestVolt_PosNeg_Action(this);
             }
@@ -192,8 +195,10 @@ namespace OCV
         {
             try
             {
+                ClsGlobal.OCVTestContr.mManualTestStop = false;
                 ClsGlobal.OCVTestContr.ManualTestFinish = false;
                 grpbxTestManual.Enabled = false;
+                btnStop.Enabled = true;
                 btnTestMultiVolt_ShellNeg.Text = "测壳体电压中...";
                 ClsGlobal.OCVTestContr.StartManualTestVolt_ShellNeg_Action(this);
               
@@ -208,8 +213,10 @@ namespace OCV
         {
             try
             {
+                ClsGlobal.OCVTestContr.mManualTestStop = false;
                 ClsGlobal.OCVTestContr.ManualTestFinish = false;
                 grpbxTestManual.Enabled = false;
+                btnStop.Enabled = true;
                 btnTestMultiIR_BT4560.Text = "测ACIR中...";
                 ClsGlobal.OCVTestContr.StartManualTestIR_BT4560_Action(this);
             }
@@ -442,6 +449,11 @@ namespace OCV
             {
                 e.Cancel = true;
             }
+        }
+
+        private void btnStop_Click(object sender, EventArgs e)
+        {
+            ClsGlobal.OCVTestContr.mManualTestStop = true;
         }
     }
 }

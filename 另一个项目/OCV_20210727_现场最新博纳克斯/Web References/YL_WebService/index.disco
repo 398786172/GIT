@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<discovery xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns="http://schemas.xmlsoap.org/disco/">
+  <contractRef ref="http://10.37.59.150:8090/index.asmx?wsdl" docRef="http://10.37.59.150:8090/index.asmx" xmlns="http://schemas.xmlsoap.org/disco/scl/" />
+  <soap address="http://10.37.59.150:8090/index.asmx" xmlns:q1="http://kinte.com/" binding="q1:indexSoap" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+  <soap address="http://10.37.59.150:8090/index.asmx" xmlns:q2="http://kinte.com/" binding="q2:indexSoap12" xmlns="http://schemas.xmlsoap.org/disco/soap/" />
+</discovery>

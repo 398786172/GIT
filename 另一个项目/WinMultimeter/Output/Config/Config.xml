@@ -1,6 +1,0 @@
-<?xml version="1.0"?>
-<SettingInfo xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
-  <StrMultimeterName />
-  <CSVSavePath>D:\工作软件及文档\自动柜校准软件\读表软件\WinMultimeter\Output\test.csv</CSVSavePath>
-  <ReadTime>10</ReadTime>
-</SettingInfo>

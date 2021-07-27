@@ -37,7 +37,7 @@ namespace OCV
         private int ShowHalfVal = ClsGlobal.TrayType / 2;                     //界面更新用
 
         //手动测试
-        private bool mManualTestStop;
+        public bool mManualTestStop;
         private bool mManualTestFinish;
         private int SWCount = 1;
         public bool ManualTestFinish { get { return mManualTestFinish; } set { mManualTestFinish = value; } }
@@ -1385,6 +1385,10 @@ namespace OCV
                             if (ClsPLCValue.PlcValue.Plc_IO_ProbeCylOpen1 == 1 && ClsPLCValue.PlcValue.Plc_IO_ProbeCylClose1 == 0)
                             {
                                 pos = (short)(j + 1);
+                                if (ClsGlobal.OCVTestContr.mAutoTestStop==true)
+                                {
+                                    mStep_TestReq = 7;
+                                }
                                 if (pos > 9)
                                 {
                                     mStep_TestReq = 7;
@@ -1546,7 +1550,7 @@ namespace OCV
                 SWControl.ChannelVoltSwitchContr(1, 0);
                 //this.SWControl.ChannelVoltSwitch(1, 0);      //结束,通道全部关断   
 
-                mManualTestFinish = true;
+               // mManualTestFinish = true;
             }
             catch (Exception ex)
             {
@@ -1593,7 +1597,7 @@ namespace OCV
                 //SWControl.ChannelVoltIRShellNegSwitchContr(3, 0);
                 //this.SWControl.ChannelVoltSwitch(2, 0);      //结束,通道全部关断   
 
-                mManualTestFinish = true;
+                //mManualTestFinish = true;
                 MessageBox.Show("多通道手动负极对壳体电压测试结束");
             }
             catch (Exception ex)
@@ -1640,7 +1644,7 @@ namespace OCV
                 }
 
                 this.SWControl.ChannelAcirSwitchContr(1, 0);      //结束,通道全部关断   
-                mManualTestFinish = true;
+                //mManualTestFinish = true;
                 //MessageBox.Show("多通道手动内阻测试结束");
             }
             catch (Exception ex)
