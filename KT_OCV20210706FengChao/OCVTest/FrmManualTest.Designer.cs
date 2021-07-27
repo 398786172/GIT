@@ -91,7 +91,6 @@
             // tim_UI
             // 
             this.tim_UI.Enabled = true;
-            this.tim_UI.Interval = 10;
             this.tim_UI.Tick += new System.EventHandler(this.tim_UI_Tick);
             // 
             // tab_MultiTest
